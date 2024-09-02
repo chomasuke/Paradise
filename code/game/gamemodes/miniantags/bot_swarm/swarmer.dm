@@ -450,7 +450,7 @@
 	to_chat(S, "<span class='warning'>Destroying this vehicle would destroy us. Aborting.</span>")
 	return FALSE
 
-/obj/machinery/clonepod/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+/obj/machinery/clonescanner/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	if(occupant)
 		to_chat(S, "<span class='warning'>Destroying this machine while it is occupied would result in biological and sentient resources to be harmed. Aborting.</span>")
 		return FALSE

@@ -187,7 +187,7 @@
 /datum/component/diona_internals/proc/transform_organ()
 	SIGNAL_HANDLER // COMSIG_ORGAN_REMOVED
 
-	if(is_int_organ(parent))
+	if(is_internal_organ(parent))
 		var/obj/item/organ/internal/organ = parent
 		var/mob/living/simple_animal/diona/nymph = new /mob/living/simple_animal/diona(get_turf(organ.owner))
 		nymph.health = round(clamp(1 - organ.damage / organ.min_broken_damage, 0, 1) * nymph.maxHealth)

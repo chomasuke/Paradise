@@ -325,7 +325,9 @@
 
 #define isnewplayer(A)  (istype((A), /mob/new_player))
 
-#define isexternalorgan(A)		(istype((A), /obj/item/organ/external))
+#define is_external_organ(A)		(istype((A), /obj/item/organ/external))
+#define is_internal_organ(A)		(istype((A), /obj/item/organ/internal))
+#define	is_organ(A)				(istype((A), /obj/item/organ))
 
 #define hasorgans(A)	(iscarbon(A))
 

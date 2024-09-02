@@ -850,7 +850,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				childpart.dir = SOUTH
 
 	for(var/obj/item/thing in contents)
-		if(isexternalorgan(thing))
+		if(is_external_organ(thing))
 			continue
 		thing.forceMove(drop_loc)
 

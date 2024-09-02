@@ -40,7 +40,7 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			if(isexternalorgan(def_zone))
+			if(is_external_organ(def_zone))
 				var/obj/item/organ/external/bodypart = def_zone
 				var/brute_was = bodypart.brute_dam
 				if(bodypart.external_receive_damage(damage, 0, blocked, sharp, used_weapon, forced = forced, updating_health = FALSE, silent = silent) && update_damage_icon)
@@ -52,7 +52,7 @@
 			else
 				. |= adjustBruteLoss(damage, updating_health, def_zone, blocked, forced, used_weapon, sharp, silent)
 		if(BURN)
-			if(isexternalorgan(def_zone))
+			if(is_external_organ(def_zone))
 				var/obj/item/organ/external/bodypart = def_zone
 				var/burn_was = bodypart.burn_dam
 				if(bodypart.external_receive_damage(0, damage, blocked, sharp, used_weapon, forced = forced, updating_health = FALSE, silent = silent) && update_damage_icon)
@@ -136,7 +136,7 @@
 	. = STATUS_UPDATE_NONE
 	var/should_update_health = FALSE
 	var/should_update_damage_icon = FALSE
-	var/def_zone_external = isexternalorgan(def_zone)
+	var/def_zone_external = is_external_organ(def_zone)
 	if(brute)
 		. |= apply_damage(brute, BRUTE, def_zone, blocked, sharp, used_weapon, spread_damage, forced, silent, FALSE, FALSE)
 		if(.)

@@ -554,6 +554,10 @@ REAGENT SCANNER
 	else
 		. += "<span class='warning'>Мозг не обнаружен.</span>"
 
+	if(H.get_int_organ(/obj/item/organ/internal/bone_tumor))
+		. += "<span class='warning'>Обнаружено злокачественное костное образование."
+		. += "&emsp;Рекомендуется хирургическое вмешательство.</span>"
+
 	for(var/name in H.bodyparts_by_name)
 		var/obj/item/organ/external/e = H.bodyparts_by_name[name]
 		if(!e)

@@ -317,7 +317,7 @@
  */
 /obj/item/organ/proc/internal_receive_damage(amount = 0, silent = FALSE)
 	. = FALSE
-	if(isexternalorgan(src))
+	if(is_external_organ(src))
 		CRASH("internal_receive_damage() is called for external organ. Use external_receive_damage()")
 
 	if(tough)
