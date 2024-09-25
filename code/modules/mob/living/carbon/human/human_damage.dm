@@ -505,7 +505,7 @@ This function restores all organs.
 
 	// Otherwise if def zone is null, we'll get a random bodypart / zone to hit.
 	// ALso we'll automatically covnert string def zones into bodyparts to pass into parent call.
-	else if(!is_external_organ(def_zone))
+	else if(!isExternalOrgan(def_zone))
 		var/random_zone = def_zone || ran_zone(def_zone)
 		def_zone = get_organ(random_zone) || get_organ(BODY_ZONE_CHEST)
 		if(!def_zone)
@@ -538,7 +538,7 @@ This function restores all organs.
 	if(spread_damage)
 		def_zone = null
 
-	else if(!is_external_organ(def_zone))
+	else if(!isExternalOrgan(def_zone))
 		var/random_zone = def_zone || ran_zone(def_zone)
 		def_zone = get_organ(random_zone) || get_organ(BODY_ZONE_CHEST)
 		if(!def_zone)

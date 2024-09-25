@@ -28,5 +28,11 @@
 		for(var/obj/item/organ/internal/I in other_groin_organs)
 			I.internal_receive_damage(rand(5, 15) + tumor_damage_modifier)
 
+/obj/item/organ/internal/bone_tumor/remove(mob/living/carbon/holder, special = ORGAN_MANIPULATION_DEFAULT)
+	..()
+	if(!QDELETED(src))
+		qdel(src)
+	return null
+
 /obj/item/organ/internal/bone_tumor/slime_tumor
 	name = "crystalized slime jelly"

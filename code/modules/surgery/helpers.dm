@@ -69,7 +69,7 @@
 	if(affecting)
 		if(!surgery.requires_bodypart)
 			return
-		if((surgery.is_organ_noncompatible(affecting)))
+		if((surgery.isOrgan_noncompatible(affecting)))
 			return
 	else if(surgery.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 		return

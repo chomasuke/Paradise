@@ -56,8 +56,8 @@
 
 /obj/machinery/clonepod
 	anchored = TRUE
-	name = "cloning pod"
-	desc = "A pod for growing organic tissue."
+	name = "experimental biomass pod"
+	desc = "An electronically-lockable pod for growing organic tissue."
 	density = TRUE
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_idle"
@@ -498,7 +498,7 @@
 		to_chat(user, "<span class='warning'>[src]'s organ storage is full!</span>")
 		return
 
-	if(is_internal_organ(inserted_organ))
+	if(isinternalOrgan(inserted_organ))
 		if(is_type_in_list(inserted_organ, FORBIDDEN_INTERNAL_ORGANS))
 			to_chat(user, "<span class='warning'>[src] refuses [inserted_organ].</span>")
 			return
@@ -509,7 +509,7 @@
 			to_chat(user, "<span class='warning'>[src] refuses [inserted_organ].</span>")
 			return
 
-	if(is_external_organ(inserted_organ))
+	if(isExternalOrgan(inserted_organ))
 		if(is_type_in_list(inserted_organ, FORBIDDEN_LIMBS))
 			to_chat(user, "<span class='warning'>[src] refuses [inserted_organ].</span>")
 			return
@@ -572,7 +572,7 @@
 				log_admin("[key_name(user)] has activated a cloning pod's emergency eject at [COORD(src)] (clone: [key_name(clone)])")
 		return
 
-	if(is_organ(I) || is_type_in_list(I, ALLOWED_ROBOT_PARTS)) //fun fact, robot parts aren't organs!
+	if(isOrgan(I) || is_type_in_list(I, ALLOWED_ROBOT_PARTS)) //fun fact, robot parts aren't organs!
 		insert_organ(I, user)
 		return
 

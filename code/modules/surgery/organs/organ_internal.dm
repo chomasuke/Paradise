@@ -85,7 +85,7 @@
 	if(ishuman(organ_owner))
 		var/mob/living/carbon/human/h_owner = organ_owner
 		var/obj/item/organ/external/parent = h_owner.get_organ(check_zone(parent_organ_zone))
-		if(is_external_organ(parent))
+		if(isExternalOrgan(parent))
 			LAZYREMOVE(parent.internal_organs, src)
 		else
 			stack_trace("[src] attempted to remove from a [parent_organ_zone], but [parent_organ_zone] didn't exist! [atom_loc_line(target)]")

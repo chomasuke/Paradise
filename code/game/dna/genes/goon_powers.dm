@@ -263,7 +263,7 @@
 			if(!H.bodyparts_by_name[name])
 				continue
 			affecting = H.bodyparts_by_name[name]
-			if(!is_external_organ(affecting))
+			if(!isExternalOrgan(affecting))
 				continue
 			var/brute_was = affecting.brute_dam
 			update_damage_icon |= affecting.heal_damage(4, updating_health = FALSE)

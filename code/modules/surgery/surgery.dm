@@ -75,7 +75,7 @@
 	return ..()
 
 /// Get whether the target organ is non-compatible with the current surgery.
-/datum/surgery/proc/is_organ_noncompatible(obj/item/organ/external/affecting)
+/datum/surgery/proc/isOrgan_noncompatible(obj/item/organ/external/affecting)
 	if(!affecting || !istype(affecting))
 		return TRUE
 	return requires_organic_bodypart && affecting.is_robotic() || !requires_organic_bodypart && !affecting.is_robotic()
@@ -540,7 +540,7 @@
  * * tool - The tool performing the operation.
  */
 /proc/spread_germs_by_incision(obj/item/organ/external/E, obj/item/tool)
-	if(!is_external_organ(E))
+	if(!isExternalOrgan(E))
 		return
 
 	var/germs = 0

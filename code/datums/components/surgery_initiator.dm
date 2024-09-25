@@ -268,7 +268,7 @@
 
 		return
 
-	if(!isnull(affecting_limb) && (surgery.is_organ_noncompatible(affecting_limb)))
+	if(!isnull(affecting_limb) && (surgery.isOrgan_noncompatible(affecting_limb)))
 		to_chat(user, span_warning("That's not the right type of limb for this operation!"))
 		return
 
