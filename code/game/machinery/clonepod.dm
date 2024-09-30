@@ -557,24 +557,26 @@
 
 //Attackby and x_acts
 /obj/machinery/clonepod/attackby(obj/item/I, mob/user, params)
+	if(user.a_intent == INTENT_HARM)
+		return ..()
 	if(I.is_open_container())
 		return
 
 	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
 		if(!allowed(user))
 			to_chat(user, "<span class='warning'>Access denied.</span>")
-			return
+			return ATTACK_CHAIN_PROCEED
 
 		switch(tgui_alert(user, "Perform an emergency ejection of [src]?", "Cloning pod", list("Yes", "No")))
 			if("Yes")
 				eject_clone(TRUE) // GET OUT
 				to_chat(user, "<span class='warning'>You force [src] to eject its clone!</span>")
 				log_admin("[key_name(user)] has activated a cloning pod's emergency eject at [COORD(src)] (clone: [key_name(clone)])")
-		return
+		return ATTACK_CHAIN_PROCEED_SUCCESS
 
 	if(isOrgan(I) || is_type_in_list(I, ALLOWED_ROBOT_PARTS)) //fun fact, robot parts aren't organs!
 		insert_organ(I, user)
-		return
+		return ATTACK_CHAIN_PROCEED_SUCCESS
 
 	return ..()
 

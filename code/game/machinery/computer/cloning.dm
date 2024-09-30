@@ -48,40 +48,43 @@
 	return ..()
 
 /obj/machinery/computer/cloning/attackby(obj/item/I, mob/user, params)
+	return ..()
 
-	if(!ismultitool(I))
-		return ..()
-
-	var/obj/item/multitool/M = I
-	if(!M.buffer)
-		to_chat(user, "<span class='warning'>[M]'[M.p_s()] buffer is empty!</span>")
+/obj/machinery/computer/cloning/multitool_act(mob/user, obj/item/I)
+	. = TRUE
+	if(!I.use_tool(src, user, volume = I.tool_volume))
 		return
 
-	if(istype(M.buffer, /obj/machinery/clonepod))
-		var/obj/machinery/clonepod/buffer_pod = M.buffer
+	var/obj/item/multitool/multitool = I
+	if(!multitool.buffer)
+		to_chat(user, "<span class='warning'>[multitool]'[multitool.p_s()] buffer is empty!</span>")
+		return
+
+	if(istype(multitool.buffer, /obj/machinery/clonepod))
+		var/obj/machinery/clonepod/buffer_pod = multitool.buffer
 		if(buffer_pod.console == src)
-			to_chat(user, "<span class='warning'>[M.buffer] is already linked!</span>")
+			to_chat(user, "<span class='warning'>[multitool.buffer] is already linked!</span>")
 			return
 
-		pods += M.buffer
+		pods += multitool.buffer
 		buffer_pod.console = src
-		to_chat(user, "<span class='notice'>[M.buffer] was successfully added to the cloning pod array.</span>")
+		to_chat(user, "<span class='notice'>[multitool.buffer] was successfully added to the cloning pod array.</span>")
 		if(!selected_pod)
 			selected_pod = buffer_pod
 		return
 
-	if(istype(M.buffer, /obj/machinery/clonescanner))
-		var/obj/machinery/clonescanner/buffer_scanner = M.buffer
+	if(istype(multitool.buffer, /obj/machinery/clonescanner))
+		var/obj/machinery/clonescanner/buffer_scanner = multitool.buffer
 		if(scanner)
 			to_chat(user, "<span class='warning'>There's already a linked scanner!</span>")
 			return
 
 		scanner = buffer_scanner
 		buffer_scanner.console = src
-		to_chat(user, "<span class='notice'>[M.buffer] was successfully linked.</span>")
+		to_chat(user, "<span class='notice'>[multitool.buffer] was successfully linked.</span>")
 		return
 
-	to_chat(user, "<span class='warning'>[M.buffer] cannot be linked to [src].</span>")
+	to_chat(user, "<span class='warning'>[multitool.buffer] cannot be linked to [src].</span>")
 	return
 
 /obj/machinery/computer/cloning/attack_ai(mob/user)
