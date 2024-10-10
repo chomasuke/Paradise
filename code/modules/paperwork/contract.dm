@@ -321,9 +321,9 @@
 		id.assignment = JOB_TITLE_CAPTAIN
 		id.update_label()
 		if(worn)
-			if(istype(worn,/obj/item/pda))
-				var/obj/item/pda/PDA = worn
-				PDA.id = id
+			if(istype(worn,/obj/item/modular_computer/pda))
+				var/obj/item/modular_computer/pda/PDA = worn
+				PDA.computer_id_slot = id
 				id.loc = worn
 			else if(istype(worn,/obj/item/storage/wallet))
 				var/obj/item/storage/wallet/W = worn

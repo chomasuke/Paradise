@@ -5,7 +5,6 @@
 
 /obj/item/circuit_component/mod_program/messenger
 	associated_program = /datum/computer_file/program/messenger
-	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	///Contents of the last received message
 	var/datum/port/output/received_message
