@@ -473,8 +473,8 @@
 /obj/item/proc/GetJobName() //Used in secHUD icon generation
 	var/rankName = "Unknown"
 	if(is_pda(src))
-		var/obj/item/pda/P = src
-		rankName = P.ownrank
+		var/obj/item/modular_computer/pda/P = src
+		rankName = P.saved_rank
 	else
 		var/obj/item/card/id/id = GetID()
 		if(istype(id))

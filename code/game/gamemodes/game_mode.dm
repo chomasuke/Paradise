@@ -134,7 +134,7 @@
 		if(player.mind)
 			var/obj/item/pda/pda_owned = null
 			for(var/obj/item/pda/check in GLOB.PDAs)
-				if(check.owner == player.name)
+				if(check.saved_identification == player.name)
 					pda_owned = check
 					break
 
@@ -165,7 +165,7 @@
 						msg += "However, we were unable to send you the $[pay] you're entitled."
 
 					if(message_server && pda_owned)
-						message_server.send_pda_message("[pda_owned.owner]", "[command_name()] Payroll", msg)
+						message_server.send_pda_message("[pda_owned.saved_identification]", "[command_name()] Payroll", msg)
 
 						var/datum/data/pda/app/messenger/messenger = pda_owned.find_program(/datum/data/pda/app/messenger)
 						messenger.notify("<b>Message from [command_name()] (Payroll), </b>\"[msg]\" (<i>Unable to Reply</i>)", 0)

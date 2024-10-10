@@ -69,7 +69,7 @@
 	var/salary = 0
 	var/min_start_money = 0
 	var/max_start_money = 0
-	
+
 	var/outfit = null
 
 	/////////////////////////////////
@@ -272,12 +272,12 @@
 		C.owner_ckey = H.ckey
 
 /datum/outfit/job/proc/imprint_pda(mob/living/carbon/human/H)
-	var/obj/item/pda/PDA = H.wear_pda
+	var/obj/item/modular_computer/pda/PDA = H.wear_pda
 	var/obj/item/card/id/C = H.wear_id
 	if(istype(PDA) && istype(C))
-		PDA.owner = H.real_name
-		PDA.ownjob = C.assignment
-		PDA.ownrank = C.rank
+		PDA.saved_identification = H.real_name
+		PDA.saved_job = C.assignment
+		PDA.saved_rank = C.rank
 		PDA.update_appearance(UPDATE_NAME)
 
 

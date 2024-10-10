@@ -578,11 +578,11 @@
 	if(visualsOnly)
 		return
 
-	var/obj/item/pda/PDA = H.wear_pda
+	var/obj/item/modular_computer/pda/PDA = H.wear_pda
 	if(istype(PDA))
-		PDA.owner = H.real_name
-		PDA.ownjob = JOB_TITLE_MIME
-		PDA.name = "PDA-[H.real_name] ([PDA.ownjob])"
+		PDA.saved_identification = H.real_name
+		PDA.saved_job = JOB_TITLE_MIME
+		PDA.name = "PDA-[H.real_name] ([PDA.saved_job])"
 
 	var/obj/item/card/id/I = H.wear_id
 	if(istype(I))

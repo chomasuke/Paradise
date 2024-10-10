@@ -711,11 +711,11 @@ SUBSYSTEM_DEF(jobs)
 /datum/controller/subsystem/jobs/proc/account_job_transfer(name_owner, job_title, salary_capcap = TRUE)
 
 	var/datum/money_account/account_job = get_account_with_name(name_owner)
-				
+
 	if(account_job)
 		account_job.linked_job = SSjobs.GetJob(job_title)
 		account_job.salary_payment_active = salary_capcap
-	
+
 /datum/controller/subsystem/jobs/proc/notify_dept_head(jobtitle, antext)
 	// Used to notify the department head of jobtitle X that their employee was brigged, demoted or terminated
 	if(!jobtitle || !antext)
@@ -728,7 +728,7 @@ SUBSYSTEM_DEF(jobs)
 	var/boss_title = tgt_job.department_head[1]
 	var/obj/item/pda/target_pda
 	for(var/obj/item/pda/check_pda in GLOB.PDAs)
-		if(check_pda.ownrank == boss_title)
+		if(check_pda.saved_rank == boss_title)
 			target_pda = check_pda
 			break
 	if(!target_pda)

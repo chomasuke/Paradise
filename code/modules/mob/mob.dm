@@ -577,8 +577,8 @@
 	// If they still have their ID they're not brigged.
 	for(var/obj/item/card/id/card in src)
 		return 0
-	for(var/obj/item/pda/P in src)
-		if(P.id)
+	for(var/obj/item/modular_computer/pda/P in src)
+		if(P.computer_id_slot)
 			return 0
 
 	return 1
@@ -638,7 +638,7 @@
 	return FALSE
 
 /mob/proc/can_use_machinery(obj/machinery/mach)
-	return IsAdvancedToolUser() 
+	return IsAdvancedToolUser()
 
 /mob/proc/swap_hand()
 	return
@@ -673,7 +673,7 @@
 	var/mob/living/picked = tgui_input_list(usr, "Please select an NPC to respawn as", "Respawn as NPC", allowed_creatures)
 	if(!picked)
 		return
-		
+
 	if(picked == "Mouse")
 		become_mouse()
 		return
@@ -684,7 +684,7 @@
 	if(QDELETED(picked_mob) || picked_mob.key || picked_mob.stat == DEAD)
 		to_chat(usr, span_warning("[capitalize(picked_mob)] is no longer available to respawn!"))
 		return
-	
+
 	if(istype(picked_mob, /mob/living/simple_animal/borer))
 		var/mob/living/simple_animal/borer/borer = picked_mob
 		borer.transfer_personality(usr.client)
@@ -693,7 +693,7 @@
 	to_chat(usr, span_notify(message))
 	GLOB.respawnable_list -= usr
 	picked_mob.key = key
-		
+
 
 /mob/proc/become_mouse()
 	var/timedifference = world.time - client.time_joined_as_mouse
