@@ -368,9 +368,9 @@
 	var/obj/item/card/id/id = wear_id.GetID()
 	if(istype(id))
 		return id.assignment
-	var/obj/item/pda/pda = wear_id
+	var/obj/item/modular_computer/pda/pda = wear_id
 	if(istype(pda))
-		return pda.ownjob
+		return pda.saved_job
 	return if_no_job
 
 //gets name from ID or ID inside PDA or PDA itself
@@ -382,8 +382,8 @@
 			var/obj/item/card/id/id = wear_id.GetID()
 			name = id.registered_name
 		else if(is_pda(wear_id))
-			var/obj/item/pda/pda = wear_id
-			name = pda.owner
+			var/obj/item/modular_computer/pda/pda = wear_id
+			name = pda.saved_identification
 	return name
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
@@ -1578,9 +1578,9 @@ Eyes need to have significantly high darksight to shine unless the mob has the X
 		if(istype(id) && id.is_untrackable())
 			return FALSE
 	if(wear_pda)
-		var/obj/item/pda/pda = wear_pda
+		var/obj/item/modular_computer/pda/pda = wear_pda
 		if(istype(pda))
-			var/obj/item/card/id/id = pda.id
+			var/obj/item/card/id/id = pda.computer_id_slot
 			if(istype(id) && id.is_untrackable())
 				return FALSE
 	if(istype(head, /obj/item/clothing/head))

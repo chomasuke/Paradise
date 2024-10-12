@@ -234,7 +234,7 @@
 			var/logname = "Unknown"
 			if(HAS_AI_ACCESS(user))
 				logname = "AI [user.name]"
-			if(iscyborg(user))
+			if(isrobot(user))
 				logname = "CYBORG [user.name]"
 			if(iscarbon(user))
 				var/obj/item/card/id/idcard = user.get_active_held_item()

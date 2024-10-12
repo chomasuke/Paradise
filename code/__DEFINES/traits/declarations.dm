@@ -145,6 +145,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Takes precedence over all traits above
 #define TRAIT_VENTCRAWLER_ITEM_BASED "ventcrawler_item"
 
+/// PDA/ModPC Traits. This one makes PDAs explode if the user opens the messages menu
+#define TRAIT_PDA_MESSAGE_MENU_RIGGED "pda_message_menu_rigged"
+/// This one denotes a PDA has received a rigged message and will explode when the user tries to reply to a rigged PDA message
+#define TRAIT_PDA_CAN_EXPLODE "pda_can_explode"
+///The download speeds of programs from the dowloader is halved.
+#define TRAIT_MODPC_HALVED_DOWNLOAD_SPEED "modpc_halved_download_speed"
+
 /// Negates our gravity, letting us move normally on floors in 0-g
 #define TRAIT_NEGATES_GRAVITY "negates_gravity"
 /// We are ignoring gravity

@@ -202,7 +202,7 @@
 	set_message.set_value(trim(html_encode(set_message.value), MAX_MESSAGE_LEN))
 
 /obj/item/circuit_component/mod_program/borg_monitor/input_received(datum/port/port)
-	if(!length(set_message.value) || !iscyborg(target_robot.value))
+	if(!length(set_message.value) || !isrobot(target_robot.value))
 		return
 	var/mob/living/silicon/robot/robot = target_robot.value
 	var/datum/computer_file/program/borg_monitor/monitor = associated_program

@@ -373,8 +373,8 @@
 
 	for(var/obj/item/I in items)
 		if(is_pda(I))
-			var/obj/item/pda/P = I
-			QDEL_NULL(P.id)
+			var/obj/item/modular_computer/pda/P = I
+			QDEL_NULL(P.computer_id_slot)
 			qdel(P)
 			continue
 

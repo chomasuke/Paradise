@@ -10,9 +10,7 @@
 	light_power = 1.2
 	integrity_failure = 0.5
 	max_integrity = 100
-	armor_type = /datum/armor/item_modular_computer
-	light_system = OVERLAY_LIGHT_DIRECTIONAL
-	interaction_flags_mouse_drop = NEED_HANDS | ALLOW_RESTING
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 
 	///The ID currently stored in the computer.
 	var/obj/item/card/id/computer_id_slot = null
@@ -21,7 +19,7 @@
 	///The power cell the computer uses to run on.
 	var/obj/item/stock_parts/power_store/internal_cell = /obj/item/stock_parts/power_store/cell
 	///A pAI currently loaded into the modular computer.
-	var/obj/item/pai_card/inserted_pai
+	var/obj/item/paicard/inserted_pai
 	///Does the console update the crew manifest when the ID is removed?
 	var/crew_manifest_update = FALSE
 

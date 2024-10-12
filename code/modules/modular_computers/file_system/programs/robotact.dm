@@ -26,7 +26,7 @@
 
 /datum/computer_file/program/robotact/ui_data(mob/user)
 	var/list/data = list()
-	if(!iscyborg(user))
+	if(!isrobot(user))
 		return data
 
 	//Implied, since we can't run on non tablets
@@ -35,7 +35,7 @@
 	var/mob/living/silicon/robot/cyborg = tablet.silicon_owner
 
 	data["name"] = cyborg.name
-	data["designation"] = cyborg.model
+	data["designation"] = cyborg.module
 	data["masterAI"] = cyborg.connected_ai //Master AI
 
 	var/charge = 0
@@ -73,7 +73,7 @@
 
 /datum/computer_file/program/robotact/ui_static_data(mob/user)
 	var/list/data = list()
-	if(!iscyborg(user))
+	if(!isrobot(user))
 		return data
 	var/mob/living/silicon/robot/cyborg = user
 	//Implied
