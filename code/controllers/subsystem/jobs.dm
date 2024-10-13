@@ -743,7 +743,7 @@ SUBSYSTEM_DEF(jobs)
 		return
 	var/obj/item/pda/target_pda
 	for(var/obj/item/pda/check_pda in GLOB.PDAs)
-		if(check_pda.owner == target_name)
+		if(check_pda.saved_identification == target_name)
 			target_pda = check_pda
 			break
 	if(!target_pda)

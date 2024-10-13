@@ -146,8 +146,8 @@ GLOBAL_DATUM(CC_account, /datum/money_account)
 	..()
 
 /datum/money_account/proc/notify_pda_owner(var/text, var/noti = FALSE)
-	for(var/obj/item/pda/send_pda in GLOB.PDAs)
-		if(owner_name == send_pda.owner)
+	for(var/obj/item/modular_computer/pda/send_pda in GLOB.PDAs)
+		if(owner_name == send_pda.saved_identification)
 			var/datum/data/pda/app/messenger/PM = send_pda.find_program(/datum/data/pda/app/messenger)
 
 			if(PM && PM.can_receive())

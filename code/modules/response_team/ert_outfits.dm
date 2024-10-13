@@ -16,11 +16,11 @@
 		W.associated_account_number = H.mind.initial_account.account_number
 
 /datum/outfit/job/centcom/response_team/imprint_pda(mob/living/carbon/human/H)
-	var/obj/item/pda/PDA = H.wear_pda
+	var/obj/item/modular_computer/pda/PDA = H.wear_pda
 	if(istype(PDA))
-		PDA.owner = H.real_name
-		PDA.ownjob = rt_assignment
-		PDA.ownrank = rt_assignment
+		PDA.saved_identification = H.real_name
+		PDA.saved_job = rt_assignment
+		PDA.saved_rank = rt_assignment
 		PDA.update_appearance(UPDATE_NAME)
 
 

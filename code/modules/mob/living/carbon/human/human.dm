@@ -418,8 +418,8 @@
 		return id.registered_name
 
 	if(is_pda(wear_id))
-		var/obj/item/pda/pda = wear_id
-		return pda.owner
+		var/obj/item/modular_computer/pda/pda = wear_id
+		return pda.saved_identification
 
 	if(istype(wear_id, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/wallet = wear_id

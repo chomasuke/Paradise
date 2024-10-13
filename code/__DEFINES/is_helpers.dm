@@ -74,7 +74,7 @@
 
 #define is_pen(W) (istype(W, /obj/item/pen))
 
-#define is_pda(W) (istype(W, /obj/item/pda))
+#define is_pda(W) (istype(W, /obj/item/modular_computer/pda))
 
 #define isradio(A) istype(A, /obj/item/radio)
 

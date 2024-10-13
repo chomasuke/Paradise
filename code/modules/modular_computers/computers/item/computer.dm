@@ -17,7 +17,7 @@
 	///The disk in this PDA. If set, this will be inserted on Initialize.
 	var/obj/item/computer_disk/inserted_disk
 	///The power cell the computer uses to run on.
-	var/obj/item/stock_parts/power_store/internal_cell = /obj/item/stock_parts/power_store/cell
+	var/obj/item/stock_parts/cell/internal_cell = /obj/item/stock_parts/cell
 	///A pAI currently loaded into the modular computer.
 	var/obj/item/paicard/inserted_pai
 	///Does the console update the crew manifest when the ID is removed?
@@ -112,15 +112,6 @@
 	///The max amount of paper that can be held at once.
 	var/max_paper = 30
 
-	/// The capacity of the circuit shell component of this item
-	var/shell_capacity = SHELL_CAPACITY_MEDIUM
-
-	/**
-	 * Reference to the circuit shell component, because we're special and do special things with it,
-	 * such as creating and deleting unremovable circuit comps based on the programs installed.
-	 */
-	var/datum/component/shell/shell
-
 /datum/armor/item_modular_computer
 	bullet = 20
 	laser = 20
@@ -131,7 +122,6 @@
 	START_PROCESSING(SSobj, src)
 	if(!physical)
 		physical = src
-		add_shell_component(shell_capacity)
 	set_light_color(comp_light_color)
 	set_light_range(comp_light_luminosity)
 	if(looping_sound)
@@ -145,28 +135,15 @@
 		internal_cell = new internal_cell(src)
 
 	install_default_programs()
-	register_context()
+	// register_context()
 	update_appearance()
 
-///Initialize the shell for this item, or the physical machinery it belongs to.
-/obj/item/modular_computer/proc/add_shell_component(capacity = SHELL_CAPACITY_MEDIUM, shell_flags = NONE)
-	shell = physical.AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/modpc), capacity, shell_flags)
-	RegisterSignal(shell, COMSIG_SHELL_CIRCUIT_ATTACHED, PROC_REF(on_circuit_attached))
-	RegisterSignal(shell, COMSIG_SHELL_CIRCUIT_REMOVED, PROC_REF(on_circuit_removed))
 
-/obj/item/modular_computer/proc/on_circuit_attached(datum/source)
-	SIGNAL_HANDLER
-	RegisterSignal(shell.attached_circuit, COMSIG_CIRCUIT_PRE_POWER_USAGE, PROC_REF(use_energy_for_circuits))
-
-///Try to draw power from our internal cell first, before switching to that of the circuit.
-/obj/item/modular_computer/proc/use_energy_for_circuits(datum/source, energy_usage_per_input)
-	SIGNAL_HANDLER
-	if(use_energy(energy_usage_per_input, check_programs = FALSE))
-		return COMPONENT_OVERRIDE_POWER_USAGE
-
-/obj/item/modular_computer/proc/on_circuit_removed(datum/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(shell.attached_circuit, COMSIG_CIRCUIT_PRE_POWER_USAGE)
+// ///Try to draw power from our internal cell first, before switching to that of the circuit.
+// /obj/item/modular_computer/proc/use_energy_for_circuits(datum/source, energy_usage_per_input)
+// 	SIGNAL_HANDLER
+// 	if(use_energy(energy_usage_per_input, check_programs = FALSE))
+// 		return COMPONENT_OVERRIDE_POWER_USAGE
 
 /obj/item/modular_computer/proc/install_default_programs()
 	SHOULD_CALL_PARENT(FALSE)
@@ -189,7 +166,6 @@
 	if(computer_id_slot)
 		QDEL_NULL(computer_id_slot)
 
-	shell = null
 	physical = null
 	return ..()
 
@@ -308,7 +284,7 @@
  */
 /obj/item/modular_computer/RemoveID(mob/user, silent = FALSE)
 	if(!computer_id_slot)
-		return ..()
+		return null
 
 	if(crew_manifest_update)
 		GLOB.manifest.modify(computer_id_slot.registered_name, computer_id_slot.assignment, computer_id_slot.get_trim_assignment())
@@ -330,7 +306,7 @@
 		if(human_wearer.wear_id == src)
 			human_wearer.sec_hud_set_ID()
 
-	update_slot_icon()
+	update_icon(UPDATE_OVERLAYS)
 	update_appearance()
 	return TRUE
 
@@ -375,7 +351,7 @@
 
 /obj/item/modular_computer/examine(mob/user)
 	. = ..()
-	var/healthpercent = round((atom_integrity/max_integrity) * 100, 1)
+	var/healthpercent = round((obj_integrity/max_integrity) * 100, 1)
 	switch(healthpercent)
 		if(50 to 99)
 			. += span_info("It looks slightly damaged.")
@@ -409,31 +385,31 @@
 	if(Adjacent(user))
 		. += span_notice("Paper level: [stored_paper] / [max_paper].")
 
-/obj/item/modular_computer/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
-	. = ..()
+// /obj/item/modular_computer/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
+// 	. = ..()
 
-	if(computer_id_slot && isidcard(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Swap ID"
-		. = CONTEXTUAL_SCREENTIP_SET
+// 	if(computer_id_slot && isidcard(held_item))
+// 		context[SCREENTIP_CONTEXT_LMB] = "Swap ID"
+// 		. = CONTEXTUAL_SCREENTIP_SET
 
-	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER && internal_cell)
-		context[SCREENTIP_CONTEXT_RMB] = "Remove Cell"
-		. = CONTEXTUAL_SCREENTIP_SET
-	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
-		. = CONTEXTUAL_SCREENTIP_SET
+// 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER && internal_cell)
+// 		context[SCREENTIP_CONTEXT_RMB] = "Remove Cell"
+// 		. = CONTEXTUAL_SCREENTIP_SET
+// 	if(held_item?.tool_behaviour == TOOL_WRENCH)
+// 		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+// 		. = CONTEXTUAL_SCREENTIP_SET
 
-	if(computer_id_slot) // ID get removed first before pAIs
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove ID"
-		. = CONTEXTUAL_SCREENTIP_SET
-	else if(inserted_pai)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove pAI"
-		. = CONTEXTUAL_SCREENTIP_SET
+// 	if(computer_id_slot) // ID get removed first before pAIs
+// 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove ID"
+// 		. = CONTEXTUAL_SCREENTIP_SET
+// 	else if(inserted_pai)
+// 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove pAI"
+// 		. = CONTEXTUAL_SCREENTIP_SET
 
-	if(inserted_disk)
-		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "Remove Disk"
-		. = CONTEXTUAL_SCREENTIP_SET
-	return . || NONE
+// 	if(inserted_disk)
+// 		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "Remove Disk"
+// 		. = CONTEXTUAL_SCREENTIP_SET
+// 	return . || NONE
 
 /obj/item/modular_computer/update_icon_state()
 	if(!icon_state_powered || !icon_state_unpowered) //no valid icon, don't update.
@@ -449,7 +425,7 @@
 
 	if(enabled)
 		. += active_program ? mutable_appearance(init_icon, active_program.program_open_overlay) : mutable_appearance(init_icon, icon_state_menu)
-	if(atom_integrity <= integrity_failure * max_integrity)
+	if(obj_integrity <= integrity_failure * max_integrity)
 		. += mutable_appearance(init_icon, "bsod")
 		. += mutable_appearance(init_icon, "broken")
 
@@ -483,7 +459,7 @@
 	if(user)
 		issynth = HAS_SILICON_ACCESS(user)
 
-	if(atom_integrity <= integrity_failure * max_integrity)
+	if(obj_integrity <= integrity_failure * max_integrity)
 		if(user)
 			if(issynth)
 				to_chat(user, span_warning("You send an activation signal to \the [src], but it responds with an error code. It must be damaged."))
@@ -518,7 +494,7 @@
 	if(!enabled) // The computer is turned off
 		return
 
-	if(atom_integrity <= integrity_failure * max_integrity)
+	if(obj_integrity <= integrity_failure * max_integrity)
 		shutdown_computer()
 		return
 
@@ -803,7 +779,7 @@
 
 /obj/item/modular_computer/welder_act(mob/living/user, obj/item/tool)
 	. = ..()
-	if(atom_integrity == max_integrity)
+	if(obj_integrity == max_integrity)
 		to_chat(user, span_warning("\The [src] does not require repairs."))
 		return ITEM_INTERACT_SUCCESS
 
@@ -813,7 +789,7 @@
 	to_chat(user, span_notice("You begin repairing damage to \the [src]..."))
 	if(!tool.use_tool(src, user, 20, volume=50))
 		return ITEM_INTERACT_SUCCESS
-	atom_integrity = max_integrity
+	obj_integrity = max_integrity
 	to_chat(user, span_notice("You repair \the [src]."))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -828,7 +804,7 @@
 	if(istype(tool, /obj/item/pai_card))
 		return pai_act(user, tool)
 
-	if(istype(tool, /obj/item/stock_parts/power_store/cell))
+	if(istype(tool, /obj/item/stock_parts/cell))
 		return cell_act(user, tool)
 
 	if(istype(tool, /obj/item/photo))
@@ -868,7 +844,7 @@
 	update_appearance(UPDATE_ICON)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/modular_computer/proc/cell_act(mob/user, obj/item/stock_parts/power_store/cell/new_cell)
+/obj/item/modular_computer/proc/cell_act(mob/user, obj/item/stock_parts/cell/new_cell)
 	if(ismachinery(physical))
 		return ITEM_INTERACT_BLOCKING
 	if(internal_cell)

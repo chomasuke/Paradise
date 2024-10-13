@@ -1,3 +1,6 @@
+GLOBAL_LIST_EMPTY(PDAs)
+
+
 /obj/item/modular_computer/pda
 	name = "pda"
 	icon = 'icons/obj/pda.dmi'
@@ -22,7 +25,6 @@
 	comp_light_luminosity = 2.3 //this is what old PDAs were set to
 	looping_sound = FALSE
 
-	shell_capacity = SHELL_CAPACITY_SMALL
 
 	///The item currently inserted into the PDA, starts with a pen.
 	var/obj/item/inserted_item = /obj/item/pen
@@ -48,6 +50,9 @@
 
 /obj/item/modular_computer/pda/Initialize(mapload)
 	. = ..()
+	GLOB.PDAs += src
+	GLOB.PDAs = sortAtom(GLOB.PDAs)
+
 	if(inserted_item)
 		inserted_item = new inserted_item(src)
 
@@ -162,9 +167,13 @@
 	return ITEM_INTERACT_SUCCESS
 
 
-/obj/item/modular_computer/pda/item_ctrl_click(mob/user)
+/obj/item/modular_computer/pda/CtrlClick(mob/user)
+	..()
+	if(issilicon(user))
+		return
+
 	remove_pen(user)
-	return CLICK_ACTION_SUCCESS
+
 
 ///Finds how hard it is to send a virus to this tablet, checking all programs downloaded.
 /obj/item/modular_computer/pda/proc/get_detomatix_difficulty()
