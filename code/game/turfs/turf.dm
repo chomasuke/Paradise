@@ -525,7 +525,7 @@
 
 /turf/handle_fall(mob/living/carbon/faller)
 	if(has_gravity(src))
-		playsound(src, "bodyfall", 50, TRUE)
+		playsound(src, SFX_BODYFALL, 50, TRUE)
 	faller.drop_from_hands()
 
 

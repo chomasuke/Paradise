@@ -4,8 +4,8 @@
 	damage = 50
 	damage_type = BRUTE
 	flag = "bullet"
-	hitsound = "bullet"
-	hitsound_wall = "ricochet"
+	hitsound = SFX_BULLET
+	hitsound_wall = SFX_RICOCHET
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 
 /obj/item/projectile/bullet/slug

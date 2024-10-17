@@ -129,7 +129,7 @@
 		active_camera?.computers_watched_by -= src
 		active_camera = C
 		active_camera.computers_watched_by += src
-		playsound(src, get_sfx("terminal_type"), 25, FALSE)
+		playsound(src, get_sfx(SFX_TERMINAL_TYPE), 25, FALSE)
 
 		update_camera_view()
 

@@ -222,7 +222,7 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/g
 		if(damtype == "fire")
 			hitsound = 'sound/items/welder.ogg'
 		if(damtype == "brute")
-			hitsound = "swing_hit"
+			hitsound = SFX_SWING_HIT
 	add_eatable_component()
 
 /obj/item/proc/add_eatable_component()

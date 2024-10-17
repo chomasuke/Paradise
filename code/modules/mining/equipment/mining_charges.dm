@@ -177,7 +177,7 @@
 			return
 		charge.override_safety()
 		visible_message(span_warning("Sparks fly out of [src]!"), span_notice("You override [src], disabling its safeties."))
-		playsound(src, "sparks", 50, 1)
+		playsound(src, SFX_SPARKS, 50, 1)
 		charges--
 		if(charges <= 0)
 			to_chat(user ,span_warning("[src]'s internal battery for overriding mining charges has run dry!"))

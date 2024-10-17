@@ -150,7 +150,7 @@
 		else if(curr_page == 0) //We're at the start, get to the middle
 			screen = SCREEN_PAGE_INNER
 		curr_page++
-		playsound(loc, "pageturn", 50, TRUE)
+		playsound(loc, SFX_PAGE_TURN, 50, TRUE)
 		attack_self(usr)
 	else if(href_list["prev_page"])
 		if(curr_page == 0)
@@ -160,7 +160,7 @@
 		else if(curr_page == pages + 1) //we're at the end, let's go back to the middle.
 			screen = SCREEN_PAGE_INNER
 		curr_page--
-		playsound(loc, "pageturn", 50, TRUE)
+		playsound(loc, SFX_PAGE_TURN, 50, TRUE)
 		attack_self(usr)
 
 

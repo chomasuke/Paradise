@@ -1240,7 +1240,7 @@
 	muzzled_noises = list("раздражённые", "утробные")
 	age_based = TRUE
 	volume = 80
-	sound = "growls"	// exists predefined in [/proc/get_sfx()]
+	sound = SFX_GROWLS	// exists predefined in [/proc/get_sfx()]
 
 
 /**

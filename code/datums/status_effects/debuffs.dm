@@ -148,7 +148,7 @@
 		new /obj/effect/temp_visual/bleed/explode(T)
 		for(var/d in GLOB.alldirs)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, d)
-		playsound(T, "desceration", 200, 1, -1)
+		playsound(T, SFX_DESCERATION, 200, 1, -1)
 		owner.adjustBruteLoss(bleed_damage)
 	else
 		new /obj/effect/temp_visual/bleed(get_turf(owner))

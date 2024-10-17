@@ -1665,7 +1665,7 @@
 	force = 5
 	throwforce = 5
 	attack_verb = list("attacked", "bashed", "smashed", "stoned")
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 
 /obj/item/toy/pet_rock/fred
 	name = "fred"
@@ -1776,7 +1776,7 @@
 	item_state = "gun"
 	lefthand_file = 'icons/mob/inhands/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/guns_righthand.dmi'
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 	flags =  CONDUCT
 	slot_flags = ITEM_SLOT_BELT
 	materials = list(MAT_METAL=2000)

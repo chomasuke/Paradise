@@ -35,7 +35,7 @@ Fragile Bones Syndrome
 			if(3,4)
 				switch(rand(1, 3))
 					if(1)
-						playsound(M, "bonebreak", 15, 1)
+						playsound(M, SFX_BONE_BREAK, 15, 1)
 						M.visible_message(span_warning("You seem to hear a crunching sound from [M]"),\
 								span_warning("You hear, that something crunches inside you!"))
 					if(2)
@@ -52,7 +52,7 @@ Fragile Bones Syndrome
 							"You feel terrible pain in your [pick("leg","foot","arm","hand","shoulder","spine","neck")]",\
 							"It's like you're spreading out on the floor")))
 					if(2)
-						playsound(M, "bonebreak", 50, 1)
+						playsound(M, SFX_BONE_BREAK, 50, 1)
 						M.visible_message(span_userdanger(span_italics("CRUNCH")))
 
 				if(!done)

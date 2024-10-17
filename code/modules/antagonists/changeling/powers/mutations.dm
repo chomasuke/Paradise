@@ -37,7 +37,7 @@
 
 	var/obj/item/weapon = new weapon_type(user, silent, src)
 	user.put_in_hands(weapon)
-	playsound(user, "bonebreak", 150, 1)
+	playsound(user, SFX_BONE_BREAK, 150, 1)
 
 	RegisterSignal(user, COMSIG_MOB_KEY_DROP_ITEM_DOWN, PROC_REF(retract), override = TRUE)
 	RegisterSignal(user, COMSIG_MOB_WEAPON_APPEARS, PROC_REF(retract), override = TRUE)
@@ -66,7 +66,7 @@
 	if(done)
 		. = COMPONENT_CANCEL_DROP
 		if(!silent)
-			playsound(user, "bonebreak", 150, TRUE)
+			playsound(user, SFX_BONE_BREAK, 150, TRUE)
 			user.visible_message(span_warning("With a sickening crunch, [user] reforms [user.p_their()] [weapon_name_simple] into an arm!"),
 								span_notice("We assimilate the [weapon_name_simple] back into our body."),
 								span_warning("You hear organic matter ripping and tearing!"))
@@ -182,7 +182,7 @@
 		parent_action.UnregisterSignal(parent_action.owner, COMSIG_MOB_WEAPON_APPEARS)
 		parent_action = null
 	return ..()
-	
+
 
 /obj/item/melee/arm_blade/afterattack(atom/target, mob/user, proximity, params)
 	if(!proximity)
@@ -246,7 +246,7 @@
 	force = 25
 	block_chance = 0
 	armour_penetration = 35
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 	gender = MALE
 	ru_names = list(NOMINATIVE = "молот из плоти", GENITIVE = "молота из плоти", DATIVE = "молоту из плоти", ACCUSATIVE = "молот из плоти", INSTRUMENTAL = "молотом из плоти", PREPOSITIONAL = "молоте из плоти")
 

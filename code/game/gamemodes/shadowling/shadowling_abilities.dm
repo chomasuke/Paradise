@@ -757,7 +757,7 @@
 		thrall.emote("gasp")
 		thrall.visible_message(span_boldannounceic("[thrall] heaves in breath, dim red light shining in [thrall.p_their()] eyes."), \
 								"<span class='shadowling'><b><i>You have returned. One of your masters has brought you from the darkness beyond.</b></i></span>")
-		playsound(thrall, "bodyfall", 50, TRUE)
+		playsound(thrall, SFX_BODYFALL, 50, TRUE)
 
 	else
 		to_chat(user, "<span class='warning'>The target must be awake to empower or dead to revive.</span>")

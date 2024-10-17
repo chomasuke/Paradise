@@ -152,5 +152,29 @@
 #define DROP_SOUND_VOLUME 20
 #define YEET_SOUND_VOLUME 90
 
-/// List of "all" of our sound keys
+/// List of our sound keys
 #define SFX_KEYBOARD_CLICKS "keyboard_clicks"
+#define SFX_SHATTER "shatter"
+#define SFX_EXPLOSION "explosion"
+#define SFX_EXPLOSION_CREAKING "explosion_creaking"
+#define SFX_HULL_CREAKING "hull_creaking"
+#define SFX_SPARKS "sparks"
+#define SFX_RUSTLE "rustle"
+#define SFX_BODYFALL "bodyfall"
+#define SFX_PUNCH "punch"
+#define SFX_SWING_HIT "swing_hit"
+#define SFX_HISS "hiss"
+#define SFX_PAGE_TURN "pageturn"
+#define SFX_GUN_SHOT "gunshot"
+#define SFX_CASING_DROP "casingdrop"
+#define SFX_COMPUTER_AMBIENCE "computer_ambience"
+#define SFX_RICOCHET "ricochet"
+#define SFX_BULLET "bullet"
+#define SFX_BONE_BREAK "bonebreak"
+#define SFX_HONKBOT_E "honkbot_e"
+#define SFX_UNATI_FEMALE_SCREAM "u_fscream"
+#define SFX_UNATI_MALE_SCREAM "u_mscream"
+#define SFX_CLOWN_STEP "clownstep"
+#define SFX_DESCERATION "desceration"
+#define SFX_GROWLS "growls"
+#define SFX_TERMINAL_TYPE "terminal_type"

@@ -944,7 +944,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			span_italics("You hear a sickening crack."),
 		)
 
-		playsound(owner, "bonebreak", 150, TRUE)
+		playsound(owner, SFX_BONE_BREAK, 150, TRUE)
 
 		if(owner.has_pain())
 			INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")

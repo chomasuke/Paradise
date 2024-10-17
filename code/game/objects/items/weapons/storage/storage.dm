@@ -39,7 +39,7 @@
 	///FALSE = pick one at a time, TRUE = pick all on tile
 	var/pickup_all_on_tile = TRUE
 	///Sound played when used. null for no sound.
-	var/use_sound = "rustle"
+	var/use_sound = SFX_RUSTLE
 
 	/// What kind of [/obj/item/stack] can this be folded into. (e.g. Boxes and cardboard)
 	var/foldable = null

@@ -241,7 +241,7 @@
 
 
 /obj/item/twohanded/dualsaber/unwield(obj/item/source, mob/living/carbon/user)
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 	w_class = initial(w_class)
 
 
@@ -526,7 +526,7 @@
 	materials = list(MAT_METAL = 13000)
 	origin_tech = "materials=3;engineering=4;combat=2"
 	attack_verb = list("sawed", "cut", "hacked", "carved", "cleaved", "butchered", "felled", "timbered")
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 	sharp = TRUE
 	embed_chance = 10
 	embedded_ignore_throwspeed_threshold = TRUE
@@ -543,10 +543,10 @@
 	throwforce = on ? force_on : initial(throwforce)
 	icon_state = "gchainsaw_[on ? "on" : "off"]"
 
-	if(hitsound == "swing_hit")
+	if(hitsound == SFX_SWING_HIT)
 		hitsound = 'sound/weapons/chainsaw.ogg'
 	else
-		hitsound = "swing_hit"
+		hitsound = SFX_SWING_HIT
 
 	if(src == user.get_active_hand()) //update inhands
 		user.update_inv_l_hand()

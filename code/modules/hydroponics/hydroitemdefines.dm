@@ -150,7 +150,7 @@
 		var/obj/item/organ/external/affecting = H.get_organ(BODY_ZONE_HEAD)
 		if(affecting)
 			affecting.droplimb(1, DROPLIMB_SHARP)
-			playsound(loc, "desceration", 50, 1, -1)
+			playsound(loc, SFX_DESCERATION, 50, 1, -1)
 	return BRUTELOSS
 
 
@@ -188,7 +188,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	origin_tech = "materials=3;combat=3"
 	attack_verb = list("hit", "poked")
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 
 /obj/item/scythe/tele/attack_self(mob/user)
 	extend = !extend
@@ -207,7 +207,7 @@
 		w_class = WEIGHT_CLASS_SMALL
 		force = 3
 		attack_verb = list("hit", "poked")
-		hitsound = "swing_hit"
+		hitsound = SFX_SWING_HIT
 		//Collapse sound (blade sheath)
 		playsound(src.loc, 'sound/weapons/blade_sheath.ogg', 50, 1)		//Sound credit to Q.K. of Freesound.org
 	set_sharpness(extend)

@@ -237,7 +237,7 @@
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
 	var/camera = tgui_input_list(target, "Choose which camera you want to view", "Cameras", T)
 	var/obj/machinery/camera/final = T[camera]
-	playsound(origin, "terminal_type", 25, 0)
+	playsound(origin, SFX_TERMINAL_TYPE, 25, 0)
 	if(final)
 		playsound(origin, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
 		remote_eye.setLoc(get_turf(final))

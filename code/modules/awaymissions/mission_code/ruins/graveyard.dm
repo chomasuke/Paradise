@@ -101,7 +101,7 @@
 	..()
 
 /obj/item/storage/funeral_urn/Destroy()
-	playsound(src, "shatter", 70, 1)
+	playsound(src, SFX_SHATTER, 70, 1)
 	for(var/obj/O in contents)
 		if(istype(O,/obj/item/ash_holder))
 			var/obj/effect/decal/cleanable/ash/return_ash = new(get_turf(src))

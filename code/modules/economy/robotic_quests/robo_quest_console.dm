@@ -113,7 +113,7 @@
 /obj/machinery/computer/roboquest/emag_act(mob/user)
 	if(!emagged)
 		emagged = TRUE
-		playsound(src, "sparks", 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+		playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 
 /obj/machinery/computer/roboquest/proc/check_pad()

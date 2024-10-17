@@ -122,7 +122,7 @@
 			span_danger("[user] smacks [target]'s lifeless corpse with [src]."),
 			span_warning("You smacks [target]'s lifeless corpse."),
 		)
-		playsound(loc, "punch", 25, TRUE, -1)
+		playsound(loc, SFX_PUNCH, 25, TRUE, -1)
 		return .|ATTACK_CHAIN_SUCCESS
 
 	if(!ishuman(target))
@@ -136,7 +136,7 @@
 			span_danger("[user] heals [target == user ? "[user.p_them()]self" : "[target]"] with the power of [deity_name]!"),
 			span_danger("May the power of [deity_name] compel you to be healed!"),
 		)
-		playsound(loc, "punch", 25, TRUE, -1)
+		playsound(loc, SFX_PUNCH, 25, TRUE, -1)
 	else
 		if(!istype(target.head, /obj/item/clothing/head/helmet))
 			target.apply_damage(10, BRAIN)
@@ -145,7 +145,7 @@
 			span_danger("[user] beats [target == user ? "[user.p_them()]self" : "[target]"] over the head with [src]!"),
 			span_danger("You beat [target == user ? "yourself" : "[target]"] over the head!"),
 		)
-		playsound(src.loc, "punch", 25, TRUE, -1)
+		playsound(src.loc, SFX_PUNCH, 25, TRUE, -1)
 
 	if(target == user)
 		god_punishment++

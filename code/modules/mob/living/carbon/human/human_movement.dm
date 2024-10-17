@@ -40,7 +40,7 @@
 						leg.fracture()
 						break
 			else if(prob(30))
-				playsound(src, "bonebreak", 10, TRUE)
+				playsound(src, SFX_BONE_BREAK, 10, TRUE)
 
 	if(!has_gravity())
 		return .

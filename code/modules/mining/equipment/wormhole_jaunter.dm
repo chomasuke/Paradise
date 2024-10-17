@@ -78,7 +78,7 @@
 			balloon_alert(user, "протоколы защиты сняты!")
 		var/turf/T = get_turf(src)
 		do_sparks(5, 0, T)
-		playsound(T, "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+		playsound(T, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 
 /obj/effect/portal/jaunt_tunnel

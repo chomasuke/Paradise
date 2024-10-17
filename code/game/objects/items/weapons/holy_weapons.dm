@@ -451,7 +451,7 @@
 	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK
 	sharp = FALSE
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
 	icon_state = "bostaff0"
 	item_state = "bostaff0"
@@ -549,7 +549,7 @@
 	)
 
 	praying = TRUE
-	
+
 	if(!do_after(user, 15 SECONDS, target))
 		to_chat(user, span_notice("Your prayer to [SSticker.Bible_deity_name] was interrupted."))
 		praying = FALSE
@@ -564,7 +564,7 @@
 		SSticker.mode.remove_clocker(target.mind)
 		praying = FALSE
 		return .|ATTACK_CHAIN_SUCCESS
-		
+
 	var/datum/antagonist/vampire/vamp = target.mind?.has_antag_datum(/datum/antagonist/vampire)
 	if(vamp && !vamp.get_ability(/datum/vampire_passive/full)) // Getting a full prayer off on a vampire will interrupt their powers for a large duration.
 		switch(vamp.nullification)

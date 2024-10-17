@@ -260,7 +260,7 @@
 	name = "kinetic force"
 	icon_state = null
 	damage = 40
-	hitsound = "bullet"
+	hitsound = SFX_BULLET
 	damage_type = BRUTE
 	flag = "bomb"
 	range = 3

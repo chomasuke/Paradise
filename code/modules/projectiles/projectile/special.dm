@@ -248,7 +248,7 @@
 /obj/item/projectile/beam/wormhole
 	name = "bluespace beam"
 	icon_state = "spark"
-	hitsound = "sparks"
+	hitsound = SFX_SPARKS
 	damage = 0
 	color = "#33CCFF"
 	nodamage = TRUE
@@ -286,7 +286,7 @@
 	icon_state = "plasmacutter"
 	damage_type = BRUTE
 	damage = 5
-	hitsound = "bullet"
+	hitsound = SFX_BULLET
 	range = 3
 	dismemberment = 20
 	dismember_limbs = TRUE

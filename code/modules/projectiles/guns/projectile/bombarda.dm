@@ -130,8 +130,8 @@
 
 /obj/item/projectile/grenade/improvised
 	icon = 'icons/obj/weapons/bombarda.dmi'
-	hitsound = "bullet"
-	hitsound_wall = "ricochet"
+	hitsound = SFX_BULLET
+	hitsound_wall = SFX_RICOCHET
 
 /obj/item/projectile/grenade/improvised/exp_shot
 	icon_state = "exp_shot"
