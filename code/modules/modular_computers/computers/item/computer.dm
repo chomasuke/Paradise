@@ -169,13 +169,13 @@
 	physical = null
 	return ..()
 
-/obj/item/modular_computer/pre_attack_secondary(atom/A, mob/living/user, params)
-	if(active_program?.tap(A, user, params))
-		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
-		playsound(loc, 'sound/items/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
-		addtimer(CALLBACK(src, PROC_REF(play_ping)), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	return ..()
+// /obj/item/modular_computer/pre_attack_secondary(atom/A, mob/living/user, params)
+// 	if(active_program?.tap(A, user, params))
+// 		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
+// 		playsound(loc, 'sound/items/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
+// 		addtimer(CALLBACK(src, PROC_REF(play_ping)), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
+// 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+// 	return ..()
 
 // shameless copy of newscaster photo saving
 
@@ -199,18 +199,18 @@
 /obj/item/modular_computer/get_cell()
 	return internal_cell
 
-/obj/item/modular_computer/click_alt(mob/user)
+/obj/item/modular_computer/AltClick(mob/user)
 	if(issilicon(user))
 		return NONE
 
 	if(RemoveID(user))
-		return CLICK_ACTION_SUCCESS
+		return
 
 	if(istype(inserted_pai)) // Remove pAI
 		remove_pai(user)
-		return CLICK_ACTION_SUCCESS
+		return
 
-	return CLICK_ACTION_BLOCKING
+	return
 
 // Gets IDs/access levels from card slot. Would be useful when/if PDAs would become modular PCs. //guess what
 /obj/item/modular_computer/GetAccess()
@@ -272,7 +272,7 @@
 			human_wearer.sec_hud_set_ID()
 
 	update_appearance()
-	update_slot_icon()
+	update_icon()
 	SEND_SIGNAL(src, COMSIG_MODULAR_COMPUTER_INSERTED_ID, inserting_id, user)
 	return TRUE
 
@@ -436,7 +436,7 @@
 			shutdown_computer()
 	if(computer_id_slot == gone)
 		computer_id_slot = null
-		update_slot_icon()
+		update_icon()
 		if(ishuman(loc))
 			var/mob/living/carbon/human/human_wearer = loc
 			human_wearer.sec_hud_set_ID()
@@ -766,7 +766,7 @@
 		user.balloon_alert(user, "cell removed")
 		internal_cell.forceMove(drop_location())
 		internal_cell = null
-		return ITEM_INTERACT_SUCCESS
+		return
 	else
 		user.balloon_alert(user, "no cell!")
 
@@ -775,24 +775,24 @@
 	tool.play_tool_sound(src, user, 20, volume=20)
 	deconstruct(TRUE)
 	user.balloon_alert(user, "disassembled")
-	return ITEM_INTERACT_SUCCESS
+	return
 
 /obj/item/modular_computer/welder_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(obj_integrity == max_integrity)
 		to_chat(user, span_warning("\The [src] does not require repairs."))
-		return ITEM_INTERACT_SUCCESS
+		return
 
 	if(!tool.tool_start_check(user, amount=1))
-		return ITEM_INTERACT_SUCCESS
+		return
 
 	to_chat(user, span_notice("You begin repairing damage to \the [src]..."))
 	if(!tool.use_tool(src, user, 20, volume=50))
-		return ITEM_INTERACT_SUCCESS
+		return
 	obj_integrity = max_integrity
 	to_chat(user, span_notice("You repair \the [src]."))
 	update_appearance()
-	return ITEM_INTERACT_SUCCESS
+	return
 
 /obj/item/modular_computer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(isidcard(tool))
@@ -829,89 +829,89 @@
 	var/obj/item/card/id/inserted_id = computer_id_slot?.GetID()
 	if(!inserted_id)
 		balloon_alert(user, "no ID!")
-		return ITEM_INTERACT_BLOCKING
+		return
 	return inserted_id.insert_money(money, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
 
 /obj/item/modular_computer/proc/pai_act(mob/user, obj/item/pai_card/card)
 	if(inserted_pai)
-		return ITEM_INTERACT_BLOCKING
+		return
 	if(!user.transferItemToLoc(card, src))
-		return ITEM_INTERACT_BLOCKING
+		return
 	inserted_pai = card
 	balloon_alert(user, "inserted pai")
 	if(inserted_pai.pai)
 		inserted_pai.pai.give_messenger_ability()
 	update_appearance(UPDATE_ICON)
-	return ITEM_INTERACT_SUCCESS
+	return
 
 /obj/item/modular_computer/proc/cell_act(mob/user, obj/item/stock_parts/cell/new_cell)
 	if(ismachinery(physical))
-		return ITEM_INTERACT_BLOCKING
+		return
 	if(internal_cell)
 		to_chat(user, span_warning("You try to connect \the [new_cell] to \the [src], but its connectors are occupied."))
-		return ITEM_INTERACT_BLOCKING
+		return
 	if(!user.transferItemToLoc(new_cell, src))
-		return ITEM_INTERACT_BLOCKING
+		return
 	internal_cell = new_cell
 	to_chat(user, span_notice("You plug \the [new_cell] to \the [src]."))
-	return ITEM_INTERACT_SUCCESS
+	return
 
 /obj/item/modular_computer/proc/photo_act(mob/user, obj/item/photo/scanned_photo)
 	if(!store_file(new /datum/computer_file/picture(scanned_photo.picture)))
 		balloon_alert(user, "no space!")
-		return ITEM_INTERACT_BLOCKING
+		return
 	balloon_alert(user, "photo scanned")
-	return ITEM_INTERACT_SUCCESS
+	return
 
 /obj/item/modular_computer/proc/paper_act(mob/user, obj/item/paper/new_paper)
 	if(stored_paper >= max_paper)
 		balloon_alert(user, "no more room!")
-		return ITEM_INTERACT_BLOCKING
+		return
 	if(!user.temporarilyRemoveItemFromInventory(new_paper))
-		return ITEM_INTERACT_BLOCKING
+		return
 	balloon_alert(user, "inserted paper")
 	qdel(new_paper)
 	stored_paper++
-	return ITEM_INTERACT_SUCCESS
+	return
 
 /obj/item/modular_computer/proc/paper_bin_act(mob/user, obj/item/paper_bin/bin)
 	if(bin.total_paper <= 0)
 		balloon_alert(user, "empty bin!")
-		return ITEM_INTERACT_BLOCKING
+		return
 	var/papers_added //just to keep track
 	while((bin.total_paper > 0) && (stored_paper < max_paper))
 		papers_added++
 		stored_paper++
 		bin.remove_paper()
 	if(!papers_added)
-		return ITEM_INTERACT_BLOCKING
+		return
 	balloon_alert(user, "inserted paper")
 	to_chat(user, span_notice("Added in [papers_added] new sheets. You now have [stored_paper] / [max_paper] printing paper stored."))
 	bin.update_appearance()
-	return ITEM_INTERACT_SUCCESS
+	return
 
 /obj/item/modular_computer/proc/computer_disk_act(mob/user, obj/item/computer_disk/disk)
 	if(!user.transferItemToLoc(disk, src))
-		return ITEM_INTERACT_BLOCKING
+		return
 	if(inserted_disk)
 		user.put_in_hands(inserted_disk)
 		balloon_alert(user, "disks swapped")
 	inserted_disk = disk
 	playsound(src, 'sound/machines/card_slide.ogg', 50)
-	return ITEM_INTERACT_SUCCESS
+	return
 
-/obj/item/modular_computer/atom_deconstruct(disassembled = TRUE)
-	remove_pai()
-	eject_aicard()
-	if (disassembled)
-		internal_cell?.forceMove(drop_location())
-		computer_id_slot?.forceMove(drop_location())
-		inserted_disk?.forceMove(drop_location())
-		new /obj/item/stack/sheet/iron(drop_location(), steel_sheet_cost)
-	else
-		physical.visible_message(span_notice("\The [src] breaks apart!"))
-		new /obj/item/stack/sheet/iron(drop_location(), round(steel_sheet_cost * 0.5))
-	relay_qdel()
+// /obj/item/modular_computer/atom_deconstruct(disassembled = TRUE)
+// 	remove_pai()
+// 	eject_aicard()
+// 	if (disassembled)
+// 		internal_cell?.forceMove(drop_location())
+// 		computer_id_slot?.forceMove(drop_location())
+// 		inserted_disk?.forceMove(drop_location())
+// 		new /obj/item/stack/sheet/iron(drop_location(), steel_sheet_cost)
+// 	else
+// 		physical.visible_message(span_notice("\The [src] breaks apart!"))
+// 		new /obj/item/stack/sheet/iron(drop_location(), round(steel_sheet_cost * 0.5))
+// 	relay_qdel()
 
 // Ejects the inserted intellicard, if one exists. Used when the computer is deconstructed.
 /obj/item/modular_computer/proc/eject_aicard()

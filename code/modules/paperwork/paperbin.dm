@@ -8,23 +8,23 @@
 	throw_speed = 3
 	throw_range = 7
 	pressure_resistance = 8
-	var/amount = 30					//How much paper is in the bin.
-	var/list/papers = list()	//List of papers put in the bin for reference.
+	var/total_paper = 30					//How much paper is in the bin.
+	var/list/paper_stack = list()	//List of paper put in the bin for reference.
 	var/letterhead_type
 	var/purple_bin = FALSE
 
 /obj/item/paper_bin/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume, global_overlay = TRUE)
-	if(amount)
-		amount = 0
+	if(total_paper)
+		total_paper = 0
 		update_icon(UPDATE_ICON_STATE)
 	..()
 
 /obj/item/paper_bin/Destroy()
-	QDEL_LIST(papers)
+	QDEL_LIST(paper_stack)
 	return ..()
 
 /obj/item/paper_bin/burn()
-	amount = 0
+	total_paper = 0
 	extinguish()
 	update_icon(UPDATE_ICON_STATE)
 
@@ -55,15 +55,15 @@
 		if(temp && !temp.is_usable())
 			to_chat(H, "<span class='notice'>You try to move your [temp.name], but cannot!")
 			return
-	if(amount >= 1)
-		amount--
-		if(amount==0)
+	if(total_paper >= 1)
+		total_paper--
+		if(total_paper==0)
 			update_icon(UPDATE_ICON_STATE)
 
 		var/obj/item/paper/P
-		if(papers.len > 0)	//If there's any custom paper on the stack, use that instead of creating a new paper.
-			P = papers[papers.len]
-			papers.Remove(P)
+		if(paper_stack.len > 0)	//If there's any custom paper on the stack, use that instead of creating a new paper.
+			P = paper_stack[paper_stack.len]
+			paper_stack.Remove(P)
 			P.forceMove_turf()
 		else
 			if(letterhead_type && alert("Choose a style",,"Letterhead","Blank")=="Letterhead")
@@ -92,24 +92,29 @@
 		if(!user.drop_transfer_item_to_loc(I, src))
 			return ..()
 		to_chat(user, span_notice("You have put [I] into [src]."))
-		papers.Add(I)
-		amount++
+		paper_stack.Add(I)
+		total_paper++
 		return ATTACK_CHAIN_BLOCKED_ALL
 
 	return ..()
 
+/obj/item/paper_bin/proc/remove_paper(amount = 1)
+	var/obj/item/paper/top_paper = pop(paper_stack)
+	if(top_paper)
+		qdel(top_paper)
+	total_paper -= amount
 
 /obj/item/paper_bin/examine(mob/user)
 	. = ..()
 	if(in_range(user, src))
-		if(amount)
-			. += "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
+		if(total_paper)
+			. += "<span class='notice'>There " + (total_paper > 1 ? "are [total_paper] paper_stack" : "is one paper") + " in the bin.</span>"
 		else
-			. += "<span class='notice'>There are no papers in the bin.</span>"
+			. += "<span class='notice'>There are no paper_stack in the bin.</span>"
 
 
 /obj/item/paper_bin/update_icon_state()
-	if(amount < 1)
+	if(total_paper < 1)
 		icon_state = "paper_bin0"
 	else
 		icon_state = "paper_bin[purple_bin ? "2" : "1"]"
@@ -121,15 +126,15 @@
 	purple_bin = TRUE
 
 /obj/item/paper_bin/carbon/attack_hand(mob/user)
-	if(amount >= 1)
-		amount--
-		if(amount==0)
+	if(total_paper >= 1)
+		total_paper--
+		if(total_paper==0)
 			update_icon(UPDATE_ICON_STATE)
 
 		var/obj/item/paper/carbon/P
-		if(papers.len > 0)	//If there's any custom paper on the stack, use that instead of creating a new paper.
-			P = papers[papers.len]
-			papers.Remove(P)
+		if(paper_stack.len > 0)	//If there's any custom paper on the stack, use that instead of creating a new paper.
+			P = paper_stack[paper_stack.len]
+			paper_stack.Remove(P)
 		else
 			P = new /obj/item/paper/carbon(drop_location())
 		user.put_in_hands(P, ignore_anim = FALSE)

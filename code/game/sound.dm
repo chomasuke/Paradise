@@ -271,6 +271,16 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 				soundin = pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
 			if("desceration")
 				soundin = pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-03.ogg')
+			if(SFX_KEYBOARD_CLICKS)
+				soundin = pick(
+					'sound/machines/computer/keyboard_clicks_1.ogg',
+					'sound/machines/computer/keyboard_clicks_2.ogg',
+					'sound/machines/computer/keyboard_clicks_3.ogg',
+					'sound/machines/computer/keyboard_clicks_4.ogg',
+					'sound/machines/computer/keyboard_clicks_5.ogg',
+					'sound/machines/computer/keyboard_clicks_6.ogg',
+					'sound/machines/computer/keyboard_clicks_7.ogg',
+			)
 			else
 				var/check_sound = FALSE
 				for(var/format in SOUND_ALLOWED_FILE_FORMATS)

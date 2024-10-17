@@ -58,7 +58,7 @@
 			span_notice("[user] throws [paper_bin] into [src]."),
 			span_notice("You add [paper_bin] to [src]."),
 		)
-		adjust_fuel_timer(PAPER_BURN_TIMER * paper_bin.amount)
+		adjust_fuel_timer(PAPER_BURN_TIMER * paper_bin.total_paper)
 		qdel(paper_bin)
 		return ATTACK_CHAIN_BLOCKED_ALL
 

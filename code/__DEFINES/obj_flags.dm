@@ -16,7 +16,7 @@
 #define NODECONSTRUCT (1<<5)
 /// Objects will ignore item attacks
 #define IGNORE_HITS (1<<6)
-
+#define EMAGGED (1<<7)
 
 // Flags for the item_flags var on /obj/item
 

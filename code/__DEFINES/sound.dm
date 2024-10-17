@@ -152,3 +152,5 @@
 #define DROP_SOUND_VOLUME 20
 #define YEET_SOUND_VOLUME 90
 
+/// List of "all" of our sound keys
+#define SFX_KEYBOARD_CLICKS "keyboard_clicks"

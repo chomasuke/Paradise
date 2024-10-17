@@ -89,6 +89,16 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(HAS_TRAIT(src, TRAIT_PDA_MESSAGE_MENU_RIGGED))
 		explode(user, from_message_menu = TRUE)
 
+/obj/item/pda/MouseDrop(atom/over_object, src_location, over_location, src_control, over_control, params)
+	. = ..()
+
+	var/mob/user = usr
+	if(!ishuman(user) || !Adjacent(user) || user.incapacitated() || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
+		return FALSE
+
+	attack_self(user)
+	return TRUE
+
 /obj/item/modular_computer/pda/attack_self(mob/user)
 	// bypass literacy checks to access syndicate uplink
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
@@ -102,7 +112,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	return ..()
 
-/obj/item/modular_computer/pda/pre_attack(atom/target, mob/living/user, params)
+/obj/item/modular_computer/pda/pre_attackby(atom/target, mob/living/user, params)
 	if(!inserted_disk || !ismachinery(target))
 		return ..()
 
