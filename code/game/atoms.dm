@@ -672,6 +672,9 @@
 		reagents.temperature_reagents(exposed_temperature)
 
 /atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
+	var/signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, I)
+	if(signal_result)
+		return TRUE
 	switch(tool_type)
 		if(TOOL_CROWBAR)
 			return crowbar_act(user, I)

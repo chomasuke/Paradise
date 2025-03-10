@@ -2,6 +2,7 @@ import { Button, Stack, Box } from '../../components';
 import { Component, createRef } from 'inferno';
 import { Port } from './Port';
 import { noop } from './constants';
+import { classes } from '../../../common/react';
 
 export class DisplayComponent extends Component {
   constructor() {
@@ -38,24 +39,35 @@ export class DisplayComponent extends Component {
 
   render(props) {
     const { component, fixedSize, ...rest } = props;
+    const categoryClass = `ObjectComponent__Category__${component.category || 'Unassigned'}`;
     return (
       <Box {...rest}>
         <div ref={this.ref}>
           <Box
-            backgroundColor={component.color || 'blue'}
             py={1}
             px={1}
-            className="ObjectComponent__Titlebar"
+            className={classes(['ObjectComponent__Titlebar', categoryClass])}
           >
             <Stack>
               <Stack.Item grow={1} unselectable="on">
                 {component.name}
               </Stack.Item>
+              {!!component.ui_alerts &&
+                Object.keys(component.ui_alerts).map((icon) => (
+                  <Stack.Item key={icon}>
+                    <Button
+                      icon={icon}
+                      className={categoryClass}
+                      compact
+                      tooltip={component.ui_alerts[icon]}
+                    />
+                  </Stack.Item>
+                ))}
               <Stack.Item>
                 <Button
-                  color="transparent"
                   icon="info"
                   compact
+                  className={categoryClass}
                   tooltip={component.description}
                   tooltipPosition="top"
                 />

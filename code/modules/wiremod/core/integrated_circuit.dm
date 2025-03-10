@@ -119,6 +119,9 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 	else
 		. += span_notice("There is no power cell installed.")
 
+/obj/item/integrated_circuit/attack_self(mob/user as mob)
+	ui_interact(user)
+
 /obj/item/integrated_circuit/drop_location()
 	if(shell)
 		return shell.drop_location()

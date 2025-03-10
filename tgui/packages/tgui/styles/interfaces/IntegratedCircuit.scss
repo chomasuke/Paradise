@@ -62,7 +62,7 @@ $fg-map: colors.$fg-map !default;
   }
 }
 
-$border-color: hsl(210, 100%, 73%) !default;
+$border-color: #75baff !default;
 $border-radius: base.$border-radius !default;
 
 .IntegratedCircuit__BlueBorder {
@@ -73,51 +73,51 @@ $border-radius: base.$border-radius !default;
 
 $category-colors: (
   'Utility': (
-    bg: hsl(136, 77%, 23%),
+    bg: #0d6826,
     contrast: white,
   ),
   'Entity': (
-    bg: hsl(288, 60%, 49%),
+    bg: #aa32c8,
     contrast: white,
   ),
   'Sensor': (
-    bg: hsl(337, 67%, 66%),
+    bg: #e26e9b,
     contrast: white,
   ),
   'Math': (
-    bg: hsl(113, 65%, 47%),
+    bg: #3cc62a,
     contrast: black,
   ),
   'Unassigned': (
-    bg: hsl(208, 65%, 47%),
+    bg: #2a7dc6,
     contrast: white,
   ),
   'String': (
-    bg: hsl(24, 84%, 48%),
+    bg: #e16614,
     contrast: white,
   ),
   'List': (
-    bg: hsl(0, 0%, 67%),
+    bg: #ababab,
     contrast: black,
   ),
   'Action': (
-    bg: hsl(178, 59%, 45%),
+    bg: #2fb6b2,
     contrast: black,
   ),
   'ID': (
-    bg: hsl(52, 75%, 48%),
+    bg: #d6be1f,
     contrast: black,
   ),
   'NTNet': (
-    bg: hsl(239, 64%, 44%),
+    bg: #282bb8,
     contrast: white,
   ),
   'Abstract': (
-    bg: hsl(208, 65%, 47%),
+    bg: #2a7dc6,
     contrast: white,
   ),
   'Admin': (
-    bg: hsl(0, 72%, 50%),
+    bg: #db2424,
     contrast: white,
   ),
   'BCI': (
