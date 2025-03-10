@@ -225,7 +225,7 @@
 		source.balloon_alert(user, "it's locked!")
 		return TRUE
 
-	attached_circuit.interact(user)
+	INVOKE_ASYNC(attached_circuit, TYPE_PROC_REF(/datum, ui_interact), user)
 	return TRUE
 
 /**
