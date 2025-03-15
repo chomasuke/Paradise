@@ -3,7 +3,7 @@ import { BasicInput } from './BasicInput';
 import { OPTION_DROPDOWN_LARGE_CHAR_AMOUNT } from './constants';
 
 export const FUNDAMENTAL_DATA_TYPES = {
-  string: (props) => {
+  'string': (props, context) => {
     const { name, value, setValue, color } = props;
     return (
       <BasicInput name={name} setValue={setValue} value={value} defaultValue="">
@@ -16,7 +16,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       </BasicInput>
     );
   },
-  number: (props) => {
+  'number': (props, context) => {
     const { name, value, setValue, color } = props;
     return (
       <BasicInput
@@ -26,16 +26,15 @@ export const FUNDAMENTAL_DATA_TYPES = {
         defaultValue={0}
       >
         <NumberInput
-          step={1}
           value={value}
           color={color}
-          onChange={(val) => setValue(val)}
+          onChange={(e, val) => setValue(val)}
           unit={name}
         />
       </BasicInput>
     );
   },
-  entity: (props) => {
+  'entity': (props, context) => {
     const { name, setValue } = props;
     return (
       <Button
@@ -47,7 +46,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       />
     );
   },
-  datum: (props) => {
+  'datum': (props, context) => {
     const { name, setValue } = props;
     return (
       <Button
@@ -59,7 +58,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       />
     );
   },
-  signal: (props) => {
+  'signal': (props, context) => {
     const { name, setValue } = props;
     return (
       <Button
@@ -70,7 +69,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       />
     );
   },
-  option: (props) => {
+  'option': (props, context) => {
     const { value, setValue } = props;
     let large = false;
     const extraData = props.extraData || [];
@@ -93,7 +92,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       />
     );
   },
-  any: (props) => {
+  'any': (props, context) => {
     const { name, value, setValue, color } = props;
     return (
       <BasicInput

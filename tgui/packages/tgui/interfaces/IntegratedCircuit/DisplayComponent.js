@@ -37,7 +37,7 @@ export class DisplayComponent extends Component {
     return false;
   }
 
-  render(props) {
+  render(props, context) {
     const { component, fixedSize, ...rest } = props;
     const categoryClass = `ObjectComponent__Category__${component.category || 'Unassigned'}`;
     return (
