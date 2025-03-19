@@ -26,6 +26,7 @@ Note: Must be placed west/left of and R&D console to function.
 								"Stock Parts",
 								"Weapons",
 								"ILLEGAL",
+								"Circuitry",
 								)
 
 	reagents = new()

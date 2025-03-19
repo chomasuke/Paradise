@@ -84,8 +84,8 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 	/// The current size of the circuit.
 	var/current_size = 0
 
-	/// The current linked component printer. Lets you remotely print off circuit components and places them in the integrated circuit.
-	var/datum/weakref/linked_component_printer
+	/// The current linked circuit imprinter. Lets you remotely print off circuit components and places them in the integrated circuit.
+	var/datum/weakref/linked_circuit_imprinter
 
 /obj/item/integrated_circuit/Initialize(mapload)
 	. = ..()
@@ -334,10 +334,18 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 	.["screen_x"] = screen_x
 	.["screen_y"] = screen_y
 
-	// var/obj/machinery/component_printer/printer = linked_component_printer?.resolve()
-	// if(!printer)
-	// 	return
-	// .["stored_designs"] = printer.current_unlocked_designs Похуй потом
+	var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
+	if(printer && printer.linked_console)
+		var/list/current_unlocked_designs = list()
+		var/datum/research/research_console = printer.linked_console.files
+		for(var/v in research_console.known_designs)
+			var/datum/design/design = research_console.known_designs[v]
+			if(!(design.build_type & IMPRINTER) || !ispath(design.build_path, /obj/item/circuit_component))
+				continue
+
+			current_unlocked_designs[design.build_path] = design.id
+
+		.["stored_designs"] = current_unlocked_designs
 
 /obj/item/integrated_circuit/ui_data(mob/user)
 	. = list()
@@ -503,9 +511,9 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			var/mob/user = ui.user
 			if(component.loc == src)
 				user.put_in_hands(component)
-			// var/obj/machinery/component_printer/printer = linked_component_printer?.resolve()
+			// var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
 			// if (!isnull(printer))
-			// 	printer.base_item_interaction(user, component) Похуй потом
+			// 	printer.base_item_interaction(user, component)
 			. = TRUE
 		if("set_component_coordinates")
 			var/component_id = text2num(params["component_id"])
@@ -668,7 +676,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			var/component_path = text2path(params["component_to_print"])
 			var/obj/item/circuit_component/component
 			// if((!admin_only && !ui.user.can_advanced_admin_interact()) || !check_rights_for(ui.user.client, R_SPAWN))
-			// 	var/obj/machinery/component_printer/printer = linked_component_printer?.resolve()
+			// 	var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
 			// 	if(!printer)
 			// 		balloon_alert(ui.user, "linked printer not found!")
 			// 		return
@@ -680,7 +688,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			// 	if(!ispath(component_path, /obj/item/circuit_component))
 			// 		return
 			// 	component = new component_path(drop_location())
-			// 	component.datum_flags |= DF_VAR_EDITED Похуй потом
+			// 	component.datum_flags |= DF_VAR_EDITED
 			if(!add_component(component))
 				return
 			component.rel_x = text2num(params["rel_x"])

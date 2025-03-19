@@ -66,7 +66,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_keyboard = "rd_key"
 	light_color = LIGHT_COLOR_LAVENDER
 	circuit = /obj/item/circuitboard/rdconsole
-	var/datum/research/files							//Stores all the collected research data.
+	var/datum/research/files					//Stores all the collected research data.
 	var/obj/item/disk/tech_disk/t_disk = null	//Stores the technology disk.
 	var/obj/item/disk/design_disk/d_disk = null	//Stores the design disk.
 

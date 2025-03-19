@@ -6,6 +6,11 @@
 	  * a hard del by the GC subsystme, or to be autocollected (if it has no references)
 	  */
 	var/gc_destroyed //Time when this object was destroyed.
+
+	/// Open uis owned by this datum
+	/// Lazy, since this case is semi rare
+	var/list/open_uis
+
 	/// Active timers with this datum as the target
 	var/list/active_timers  //for SStimer
 	/// Status traits attached to this datum

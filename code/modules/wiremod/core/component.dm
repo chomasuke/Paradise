@@ -48,7 +48,7 @@
 	var/rel_y = 0
 
 	/// The energy usage whenever this component receives an input.
-	var/energy_usage_per_input = 0.001 * 10 // похуй потом
+	var/energy_usage_per_input = 10
 
 	/// Whether the component is removable or not. Only affects user UI
 	var/removable = TRUE
