@@ -107,6 +107,7 @@
 	. = FALSE
 	if(!signal)
 		return
+
 	if(signal.encryption != round(code.value || 0))
 		return
 

@@ -182,10 +182,10 @@
 	id = "comp_textcase"
 	build_path = /obj/item/circuit_component/textcase
 
-// /datum/design/component/hear
-// 	name = "Voice Activator Component"
-// 	id = "comp_hear"
-// 	build_path = /obj/item/circuit_component/hear
+/datum/design/component/hear
+	name = "Voice Activator Component"
+	id = "comp_hear"
+	build_path = /obj/item/circuit_component/hear
 
 /datum/design/component/contains
 	name = "String Contains Component"
@@ -520,16 +520,16 @@
 // 		"Circuitry"
 // 	)
 
-// /datum/design/scanner_shell
-// 	name = "Scanner Shell"
-// 	desc = "A handheld scanner shell that can scan entities."
-// 	id = "scanner_shell"
-// 	build_path = /obj/item/wiremod_scanner
-// 	build_type = PROTOLATHE
-// 	materials = list(MAT_GLASS = 1000, MAT_METAL = 3500)
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/scanner_shell
+	name = "Scanner Shell"
+	desc = "A handheld scanner shell that can scan entities."
+	id = "scanner_shell"
+	build_path = /obj/item/wiremod_scanner
+	build_type = PROTOLATHE
+	materials = list(MAT_GLASS = 1000, MAT_METAL = 3500)
+	category = list(
+		"Circuitry"
+	)
 
 // /datum/design/keyboard_shell
 // 	name = "Keyboard Shell"

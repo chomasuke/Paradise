@@ -315,7 +315,7 @@
 #undef WITHIN_RANGE
 
 /obj/item/circuit_component/module/ui_perform_action(mob/user, action)
-	interact(user)
+	ui_interact(user)
 
 /obj/item/circuit_component/module/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

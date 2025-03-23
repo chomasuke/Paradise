@@ -201,6 +201,7 @@
 	return
 
 /obj/proc/hear_talk(mob/M, list/message_pieces)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
 	return
 
 /obj/proc/hear_message(mob/M, text)

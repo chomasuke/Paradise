@@ -882,6 +882,8 @@
 // obj/machinery/crematorium
 ///from obj/machinery/crematorium/cremate(): (/mob/living/target)
 #define COMSIG_LIVING_CREMATED "crematorium_cremated_living"
+/// from /obj/machinery/light_switch/set_lights(), sent to every switch in the area: (status)
+#define COMSIG_LIGHT_SWITCH_SET "light_switch_set"
 
 // /obj/item signals
 
@@ -1113,10 +1115,16 @@
 
 // /datum/song signals
 
-///sent to the instrument when a song starts playing
-#define COMSIG_SONG_START	"song_start"
+///sent to the instrument when a song starts playing: (datum/starting_song, atom/player)
+#define COMSIG_INSTRUMENT_START "instrument_start"
 ///sent to the instrument when a song stops playing
-#define COMSIG_SONG_END		"song_end"
+#define COMSIG_INSTRUMENT_END "instrument_end"
+///sent to the instrument on /should_stop_playing(): (atom/player). Return values can be found in DEFINES/song.dm
+#define COMSIG_INSTRUMENT_SHOULD_STOP_PLAYING "instrument_should_stop_playing"
+///sent to the instrument (and player if available) when a song repeats (datum/song)
+#define COMSIG_INSTRUMENT_REPEAT "instrument_repeat"
+///sent to the instrument when tempo changes, skipped on new. (datum/song)
+#define COMSIG_INSTRUMENT_TEMPO_CHANGE "instrument_tempo_change"
 
 /*******Component Specific Signals*******/
 //Janitor

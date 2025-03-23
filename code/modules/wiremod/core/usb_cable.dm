@@ -35,8 +35,8 @@
 
 /obj/item/usb_cable/pre_attackby(atom/target, mob/living/user, params)
 	. = ..()
-	if (.)
-		return .|ATTACK_CHAIN_BLOCKED
+	if(ATTACK_CHAIN_CANCEL_CHECK(.))
+		return .
 
 	if (prob(1))
 		balloon_alert(user, "wrong way, god damnit")

@@ -1,5 +1,5 @@
-import { Box, Stack, Button } from '../../components';
 import { Component } from 'inferno';
+import { Box, Stack, Button } from '../../components';
 import { classes, shallowDiffers } from '../../../common/react';
 import { ABSOLUTE_Y_OFFSET, noop } from './constants';
 import { Port } from './Port';
@@ -209,7 +209,7 @@ export class ObjectComponent extends Component {
           px={1}
         >
           <Stack>
-            <Stack.Item>
+            <Stack.Item grow={1}>
               <Stack vertical fill>
                 {input_ports.map((port, portIndex) => (
                   <Stack.Item key={portIndex}>

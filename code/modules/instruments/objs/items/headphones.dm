@@ -15,8 +15,8 @@
 	song.instrument_range = 0
 	song.allowed_instrument_ids = SSinstruments.synthesizer_instrument_ids
 	// To update the icon
-	RegisterSignal(src, COMSIG_SONG_START, PROC_REF(start_playing))
-	RegisterSignal(src, COMSIG_SONG_END, PROC_REF(stop_playing))
+	RegisterSignal(src, COMSIG_INSTRUMENT_START, PROC_REF(start_playing))
+	RegisterSignal(src, COMSIG_INSTRUMENT_END, PROC_REF(stop_playing))
 
 
 /obj/item/clothing/ears/headphones/Destroy()

@@ -685,10 +685,10 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			// 		balloon_alert(ui.user, "failed to make the component!")
 			// 		return
 			// else
-			// 	if(!ispath(component_path, /obj/item/circuit_component))
-			// 		return
-			// 	component = new component_path(drop_location())
-			// 	component.datum_flags |= DF_VAR_EDITED
+			if(!ispath(component_path, /obj/item/circuit_component))
+				return
+			component = new component_path(drop_location())
+			component.datum_flags |= DF_VAR_EDITED
 			if(!add_component(component))
 				return
 			component.rel_x = text2num(params["rel_x"])
