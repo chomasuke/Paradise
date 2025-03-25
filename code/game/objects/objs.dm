@@ -200,8 +200,8 @@
 /obj/proc/hide(h)
 	return
 
-/obj/proc/hear_talk(mob/M, list/message_pieces)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
+/obj/proc/hear_talk(mob/speaker, list/message_pieces)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, speaker, message_pieces)
 	return
 
 /obj/proc/hear_message(mob/M, text)

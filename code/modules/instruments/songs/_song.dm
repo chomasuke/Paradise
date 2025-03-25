@@ -251,7 +251,7 @@
  * Processes our song.
  */
 /datum/song/proc/process_song(wait)
-	if(!length(compiled_chords) || should_stop_playing(music_player))
+	if(!length(compiled_chords) || should_stop_playing(music_player) == STOP_PLAYING)
 		stop_playing()
 		return
 	if(++elapsed_delay >= delay_by)
@@ -404,30 +404,30 @@
 // subtype for handheld instruments, like violin
 /datum/song/handheld
 
-/datum/song/handheld/should_stop_playing(mob/user)
+/datum/song/handheld/should_stop_playing(atom/player)
 	. = ..()
-	if(.)
-		return TRUE
+	if(. == STOP_PLAYING || . == IGNORE_INSTRUMENT_CHECKS)
+		return
 	var/obj/item/instrument/I = parent
-	return I.should_stop_playing(user)
+	return I.should_stop_playing(player)
 
 // subtype for stationary structures, like pianos
 /datum/song/stationary
 
-/datum/song/stationary/should_stop_playing(mob/user)
+/datum/song/stationary/should_stop_playing(atom/player)
 	. = ..()
-	if(.)
+	if(. == STOP_PLAYING || . == IGNORE_INSTRUMENT_CHECKS)
 		return TRUE
 	var/obj/structure/musician/M = parent
-	return M.should_stop_playing(user)
+	return M.should_stop_playing(player)
 
 
 // Subtype for thermal drills.
 /datum/song/thermal_drill
 
-/datum/song/thermal_drill/should_stop_playing(mob/user)
+/datum/song/thermal_drill/should_stop_playing(atom/player)
 	. = ..()
 	if(.)
 		return TRUE
 	var/obj/item/thermal_drill/D = parent
-	return D.should_stop_playing(user)
+	return D.should_stop_playing(player)

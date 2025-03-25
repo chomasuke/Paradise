@@ -244,7 +244,7 @@
 
 	switch(action)
 		if("open_internal_circuit")
-			internal_circuit.interact(usr)
+			internal_circuit.ui_interact(usr)
 			. = TRUE
 		if("add_input_port")
 			if(length(input_ports) > port_limit)

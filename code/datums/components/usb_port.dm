@@ -165,7 +165,7 @@
 	usb_cable_ref = WEAKREF(connecting_cable)
 	attached_circuit = connecting_cable.attached_circuit
 
-	connecting_cable.forceMove(attached_circuit)
+	user.transfer_item_to_loc(connecting_cable, attached_circuit)
 	attach_circuit_components(attached_circuit)
 	if(user)
 		attached_circuit.interact(user)

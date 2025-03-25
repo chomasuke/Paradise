@@ -88,10 +88,10 @@
 /datum/song/headphones
 
 
-/datum/song/headphones/should_stop_playing(mob/user)
+/datum/song/headphones/should_stop_playing(atom/player)
 	. = ..()
 	if(.)
 		return TRUE
 	var/obj/item/clothing/ears/headphones/I = parent
-	return I.should_stop_playing(user)
+	return I.should_stop_playing(player)
 

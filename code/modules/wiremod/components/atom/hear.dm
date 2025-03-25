@@ -37,16 +37,15 @@
 /obj/item/circuit_component/hear/unregister_shell(atom/movable/shell)
 	UnregisterSignal(shell, COMSIG_MOVABLE_HEAR)
 
-/obj/item/circuit_component/hear/proc/on_shell_hear(datum/source, list/arguments)
+/obj/item/circuit_component/hear/proc/on_shell_hear(datum/source, mob/speaker, list/message_pieces)
 	SIGNAL_HANDLER
-	return Hear(arglist(arguments))
+	return Hear(speaker, message_pieces)
 
 /obj/item/circuit_component/hear/proc/Hear(mob/speaker, list/message_pieces)
 	if(!on.value)
 		return FALSE
 	if(speaker == parent?.shell)
 		return FALSE
-	multilingual_to_message(message_pieces)
 	message_port.set_output(multilingual_to_message(message_pieces))
 	// if(message_language)
 	// 	language_port.set_output(initial(message_language.name))

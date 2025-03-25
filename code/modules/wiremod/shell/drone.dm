@@ -7,8 +7,8 @@
 	name = "drone"
 	icon = 'icons/obj/circuits.dmi'
 	icon_state = "setup_medium_med"
-	maxHealth = 300
-	health = 300
+	health = 20
+	maxHealth = 20
 	status_flags = NONE
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
@@ -18,6 +18,11 @@
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/bot_circuit(),
 	), SHELL_CAPACITY_LARGE)
+
+/mob/living/circuit_drone/hear_say(list/message_pieces, verb = "says", italics = FALSE, mob/speaker = null, sound/speech_sound, sound_vol, sound_frequency, use_voice = TRUE, is_whisper = FALSE)
+	if(speaker == src)
+		return ..()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, speaker, message_pieces)
 
 /mob/living/circuit_drone/examine(mob/user)
 	. = ..()
@@ -39,7 +44,7 @@
 	if(health == maxHealth)
 		balloon_alert(user, "already at maximum integrity!")
 		return TRUE
-	if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
+	if(tool.use_tool(src, user, 1 SECONDS, volume = tool.tool_volume))
 		heal_overall_damage(50, 50)
 	return TRUE
 

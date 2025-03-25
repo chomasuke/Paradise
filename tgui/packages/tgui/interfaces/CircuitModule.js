@@ -1,6 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, Dropdown, Input, Section, Stack } from '../../components';
-import { Window } from '../../layouts';
+import { useBackend } from '../backend';
+import { Button, Dropdown, Input, Section, Stack } from '../components';
+import { Window } from '../layouts';
 
 export const CircuitModule = (props, context) => {
   const { act, data } = useBackend(context);
