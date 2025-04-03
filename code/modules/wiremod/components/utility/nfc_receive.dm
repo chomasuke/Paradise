@@ -31,10 +31,14 @@
 
 /obj/item/circuit_component/nfc_receive/register_shell(atom/movable/shell)
 	RegisterSignal(shell, COMSIG_CIRCUIT_NFC_DATA_SENT, PROC_REF(nfc_receive))
+	RegisterSignal(shell, COMSIG_ORGAN_IMPLANTED, PROC_REF(on_organ_implanted))
+	RegisterSignal(shell, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removed))
 
 /obj/item/circuit_component/nfc_receive/unregister_shell(atom/movable/shell)
 	UnregisterSignal(shell, list(
 		COMSIG_CIRCUIT_NFC_DATA_SENT,
+		COMSIG_ORGAN_IMPLANTED,
+		COMSIG_ORGAN_REMOVED,
 	))
 
 /obj/item/circuit_component/nfc_receive/proc/on_organ_implanted(datum/source, mob/living/carbon/owner)

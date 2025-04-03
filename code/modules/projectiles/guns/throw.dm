@@ -73,7 +73,7 @@
 	return ..()
 
 
-/obj/item/gun/throw/process_chamber()
+/obj/item/gun/throw/handle_chamber()
 	if(!to_launch && loaded_projectiles.len)
 		to_launch = loaded_projectiles[1]
 		loaded_projectiles -= to_launch

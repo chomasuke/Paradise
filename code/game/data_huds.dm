@@ -7,10 +7,12 @@
 /* DATA HUD DATUMS */
 
 /atom/proc/add_to_all_human_data_huds()
-	for(var/datum/atom_hud/data/human/hud in GLOB.huds) hud.add_to_hud(src)
+	for(var/datum/atom_hud/data/human/hud in GLOB.huds)
+		hud.add_atom_to_hud(src)
 
 /atom/proc/remove_from_all_data_huds()
-	for(var/datum/atom_hud/data/hud in GLOB.huds) hud.remove_from_hud(src)
+	for(var/datum/atom_hud/data/hud in GLOB.huds)
+		hud.remove_atom_from_hud(src)
 
 /datum/atom_hud/data
 
@@ -26,12 +28,12 @@
 	if(U.sensor_mode <= 2) return 0
 	return 1
 
-/datum/atom_hud/data/human/medical/basic/add_to_single_hud(mob/M, mob/living/carbon/H)
+/datum/atom_hud/data/human/medical/basic/add_atom_to_single_mob_hud(mob/M, mob/living/carbon/H)
 	if(check_sensors(H) || istype(M,/mob/dead/observer) )
 		..()
 
 /datum/atom_hud/data/human/medical/basic/proc/update_suit_sensors(mob/living/carbon/H)
-	check_sensors(H) ? add_to_hud(H) : remove_from_hud(H)
+	check_sensors(H) ? add_atom_to_hud(H) : remove_atom_from_hud(H)
 
 /datum/atom_hud/data/human/medical/advanced
 
@@ -44,10 +46,10 @@
 	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPMINDSHIELD_HUD, IMPCHEM_HUD, WANTED_HUD)
 
 /datum/atom_hud/data/diagnostic
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD)
 
 /datum/atom_hud/data/diagnostic/advanced
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_PATH_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_PATH_HUD)
 
 /datum/atom_hud/data/bot_path
 	hud_icons = list(DIAG_PATH_HUD)
@@ -310,17 +312,24 @@
 	for(var/i in list(IMPTRACK_HUD, IMPMINDSHIELD_HUD, IMPCHEM_HUD))
 		holder = hud_list[i]
 		holder.icon_state = null
+		set_hud_image_inactive(i)
+
 	for(var/obj/item/implant/I in src)
 		if(I.implanted)
 			if(istype(I,/obj/item/implant/tracking))
 				holder = hud_list[IMPTRACK_HUD]
 				holder.icon_state = "hud_imp_tracking"
+				set_hud_image_active(IMPTRACK_HUD)
+
 			else if(istype(I,/obj/item/implant/mindshield))
 				holder = hud_list[IMPMINDSHIELD_HUD]
 				holder.icon_state = "hud_imp_loyal"
+				set_hud_image_active(IMPMINDSHIELD_HUD)
+
 			else if(istype(I,/obj/item/implant/chem))
 				holder = hud_list[IMPCHEM_HUD]
 				holder.icon_state = "hud_imp_chem"
+				set_hud_image_active(IMPTRACK_HUD)
 
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
@@ -328,34 +337,35 @@
 	var/perpname = get_visible_name(add_id_name = FALSE) //gets the name of the perp, works if they have an id or if their face is uncovered
 	if(!SSticker) return //wait till the game starts or the monkeys runtime....
 	if(perpname)
-		var/datum/data/record/record = find_record("name", perpname, GLOB.data_core.security)
+		var/datum/data/record/record  = find_record("name", perpname, GLOB.data_core.security)
 		if(record)
+			var/has_criminal_entry = TRUE
 			switch(record.fields["criminal"])
 				if(SEC_RECORD_STATUS_EXECUTE)
 					holder.icon_state = "hudexecute"
-					return
 				if(SEC_RECORD_STATUS_ARREST)
 					holder.icon_state = "hudwanted"
-					return
 				if(SEC_RECORD_STATUS_SEARCH)
 					holder.icon_state = "hudsearch"
-					return
 				if(SEC_RECORD_STATUS_MONITOR)
 					holder.icon_state = "hudmonitor"
-					return
 				if(SEC_RECORD_STATUS_DEMOTE)
 					holder.icon_state = "huddemote"
-					return
 				if(SEC_RECORD_STATUS_INCARCERATED)
 					holder.icon_state = "hudprisoner"
-					return
 				if(SEC_RECORD_STATUS_PAROLLED)
 					holder.icon_state = "hudparolled"
-					return
 				if(SEC_RECORD_STATUS_RELEASED)
 					holder.icon_state = "hudreleased"
-					return
+				else
+					has_criminal_entry = FALSE
+
+			if(has_criminal_entry)
+				set_hud_image_active(WANTED_HUD)
+				return
+
 	holder.icon_state = null
+	set_hud_image_inactive(WANTED_HUD)
 
 /***********************************************
 	Diagnostic HUDs!
@@ -428,8 +438,12 @@
 	holder.icon_state = null
 	if(internal_damage)
 		holder.icon_state = "hudwarn"
+		set_hud_image_active(DIAG_STAT_HUD)
+	holder.icon_state = null
+	set_hud_image_inactive(DIAG_STAT_HUD)
 
-/obj/mecha/proc/diag_hud_set_mechtracking() //Shows tracking beacons on the mech
+///Shows tracking beacons on the mech
+/obj/mecha/proc/diag_hud_set_mechtracking()
 	var/image/holder = hud_list[DIAG_TRACK_HUD]
 	var/new_icon_state //This var exists so that the holder's icon state is set only once in the event of multiple mech beacons.
 	for(var/obj/item/mecha_parts/mecha_tracking/T in trackers)
@@ -578,12 +592,24 @@
 	if(!user)
 		return
 	user.thoughtsHUD += perception
-	if(user.thoughtsHUD && !(user in hudusers))
-		add_hud_to(user)
-		add_to_hud(user)
-	else if(!user.thoughtsHUD && (user in hudusers))
-		remove_hud_from(user)
-		remove_from_hud(user)
+	if(user.thoughtsHUD && !(user in hud_users))
+		show_to(user)
+		add_atom_to_hud(user)
+	else if(!user.thoughtsHUD && (user in hud_users))
+		hide_from(user)
+		remove_atom_from_hud(user)
+
+/*~~~~~~~~~~~~
+	Airlocks!
+~~~~~~~~~~~~~*/
+/obj/machinery/door/airlock/proc/diag_hud_set_electrified()
+	if(!electrified_until)
+		set_hud_image_inactive(DIAG_AIRLOCK_HUD)
+		return
+
+	var/image/holder = hud_list[DIAG_AIRLOCK_HUD]
+	holder.icon_state = "electrified"
+	set_hud_image_active(DIAG_AIRLOCK_HUD)
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	I'll just put this somewhere near the end...

@@ -125,7 +125,7 @@
 		/mob/living/carbon/human/verb/emote_glare))
 	// HUD for detecting pheromones
 	var/datum/atom_hud/kidan_hud = GLOB.huds[DATA_HUD_KIDAN_PHEROMONES]
-	kidan_hud.add_hud_to(H)
+	kidan_hud.show_to(H)
 
 	// Action for creating pheromones
 	var/datum/action/innate/produce_pheromones/produce_pheromones = locate() in H.actions
@@ -157,7 +157,7 @@
 
 	// Removing the HUD for detecting pheromones
 	var/datum/atom_hud/kidan_hud = GLOB.huds[DATA_HUD_KIDAN_PHEROMONES]
-	kidan_hud.remove_hud_from(H)
+	kidan_hud.hide_from(H)
 
 	// Removing the action for creating pheromones
 	var/datum/action/innate/produce_pheromones/produce_pheromones = locate() in H.actions
@@ -187,7 +187,7 @@
 	// Add itself to the kidan hud
 	prepare_huds()
 	for(var/datum/atom_hud/kidan_pheromones/kidan_hud in GLOB.huds)
-		kidan_hud.add_to_hud(src)
+		kidan_hud.add_atom_to_hud(src)
 	var/image/holder = hud_list[KIDAN_PHEROMONES_HUD]
 	holder.icon = icon
 	holder.icon_state = icon_state

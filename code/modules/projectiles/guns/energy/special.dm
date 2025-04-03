@@ -356,7 +356,7 @@
 	item_state = icon_state
 
 
-/obj/item/gun/energy/wormhole_projector/process_chamber()
+/obj/item/gun/energy/wormhole_projector/handle_chamber()
 	..()
 	select_fire(usr)
 
@@ -888,7 +888,7 @@
 		return
 	return ..()
 
-/obj/item/gun/energy/plasma_pistol/process_chamber()
+/obj/item/gun/energy/plasma_pistol/handle_chamber()
 	if(overloaded)
 		do_sparks(2, TRUE, src)
 		reset_overloaded()

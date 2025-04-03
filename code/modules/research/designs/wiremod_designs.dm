@@ -333,15 +333,15 @@
 	id = "comp_module"
 	build_path = /obj/item/circuit_component/module
 
-// /datum/design/component/ntnet_receive
-// 	name = "NTNet Receiver"
-// 	id = "comp_ntnet_receive"
-// 	build_path = /obj/item/circuit_component/ntnet_receive
+/datum/design/component/ntnet_receive
+	name = "NTNet Receiver"
+	id = "comp_ntnet_receive"
+	build_path = /obj/item/circuit_component/ntnet_receive
 
-// /datum/design/component/ntnet_send
-// 	name = "NTNet Transmitter"
-// 	id = "comp_ntnet_send"
-// 	build_path = /obj/item/circuit_component/ntnet_send
+/datum/design/component/ntnet_send
+	name = "NTNet Transmitter"
+	id = "comp_ntnet_send"
+	build_path = /obj/item/circuit_component/ntnet_send
 
 /datum/design/component/nfc_send
 	name = "NFC Transmitter"
@@ -353,10 +353,10 @@
 	id = "comp_nfc_receive"
 	build_path = /obj/item/circuit_component/nfc_receive
 
-// /datum/design/component/list_literal/ntnet_send
-// 	name = "NTNet Transmitter List Literal"
-// 	id = "comp_ntnet_send_list_literal"
-// 	build_path = /obj/item/circuit_component/list_literal/ntnet_send
+/datum/design/component/list_literal/ntnet_send
+	name = "NTNet Transmitter List Literal"
+	id = "comp_ntnet_send_list_literal"
+	build_path = /obj/item/circuit_component/list_literal/ntnet_send
 
 /datum/design/component/list_literal
 	name = "List Literal Component"
@@ -378,50 +378,50 @@
 	id = "comp_pinpointer"
 	build_path = /obj/item/circuit_component/pinpointer
 
-// /datum/design/component/equipment_action
-// 	name = "Equipment Action Component"
-// 	id = "comp_equip_action"
-// 	build_path = /obj/item/circuit_component/equipment_action
+/datum/design/component/equipment_action
+	name = "Equipment Action Component"
+	id = "comp_equip_action"
+	build_path = /obj/item/circuit_component/equipment_action
 
-// /datum/design/component/bci/object_overlay
-// 	name = "Object Overlay Component"
-// 	id = "comp_object_overlay"
-// 	build_path = /obj/item/circuit_component/object_overlay
+/datum/design/component/bci/object_overlay
+	name = "Object Overlay Component"
+	id = "comp_object_overlay"
+	build_path = /obj/item/circuit_component/object_overlay
 
-// /datum/design/component/bci/bar_overlay
-// 	name = "Bar Overlay Component"
-// 	id = "comp_bar_overlay"
-// 	build_path = /obj/item/circuit_component/object_overlay/bar
+/datum/design/component/bci/bar_overlay
+	name = "Bar Overlay Component"
+	id = "comp_bar_overlay"
+	build_path = /obj/item/circuit_component/object_overlay/bar
 
-// /datum/design/component/bci/vox
-// 	name = "VOX Announcement Component"
-// 	id = "comp_vox"
-// 	build_path = /obj/item/circuit_component/vox
+/datum/design/component/bci/vox
+	name = "VOX Announcement Component"
+	id = "comp_vox"
+	build_path = /obj/item/circuit_component/vox
 
-// /datum/design/component/bci/thought_listener
-// 	name = "Thought Listener Component"
-// 	id = "comp_thought_listener"
-// 	build_path = /obj/item/circuit_component/thought_listener
+/datum/design/component/bci/thought_listener
+	name = "Thought Listener Component"
+	id = "comp_thought_listener"
+	build_path = /obj/item/circuit_component/thought_listener
 
-// /datum/design/component/bci/target_intercept
-// 	name = "BCI Target Interceptor"
-// 	id = "comp_target_intercept"
-// 	build_path = /obj/item/circuit_component/target_intercept
+/datum/design/component/bci/target_intercept
+	name = "BCI Target Interceptor"
+	id = "comp_target_intercept"
+	build_path = /obj/item/circuit_component/target_intercept
 
-// /datum/design/component/bci/counter_overlay
-// 	name = "Counter Overlay Component"
-// 	id = "comp_counter_overlay"
-// 	build_path = /obj/item/circuit_component/counter_overlay
+/datum/design/component/bci/counter_overlay
+	name = "Counter Overlay Component"
+	id = "comp_counter_overlay"
+	build_path = /obj/item/circuit_component/counter_overlay
 
 // /datum/design/component/bci/reagent_injector
 // 	name = "Reagent Injector Component"
 // 	id = "comp_reagent_injector"
 // 	build_path = /obj/item/circuit_component/reagent_injector
 
-// /datum/design/component/bci/install_detector
-// 	name = "Install Detector Component"
-// 	id = "comp_install_detector"
-// 	build_path = /obj/item/circuit_component/install_detector
+/datum/design/component/bci/install_detector
+	name = "Install Detector Component"
+	id = "comp_install_detector"
+	build_path = /obj/item/circuit_component/install_detector
 
 /datum/design/component/foreach
 	name = "For Each Component"
@@ -633,19 +633,19 @@
 // 		"Circuitry"
 // 	)
 
-// /datum/design/bci_shell
-// 	name = "Brain-Computer Interface Shell"
-// 	desc = "An implant that can be placed in a user's head to control circuits using their brain."
-// 	id = "bci_shell"
-// 	materials = list(
-// 		MAT_GLASS = 1000,
-// 		MAT_METAL = 4000,
-// 	)
-// 	build_path = /obj/item/shell/bci
-// 	build_type = PROTOLATHE
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/bci_shell
+	name = "Brain-Computer Interface Shell"
+	desc = "An implant that can be placed in a user's head to control circuits using their brain."
+	id = "bci_shell"
+	materials = list(
+		MAT_GLASS = 1000,
+		MAT_METAL = 4000,
+	)
+	build_path = /obj/item/shell/bci
+	build_type = PROTOLATHE
+	category = list(
+		"Circuitry"
+	)
 
 // /datum/design/scanner_gate_shell
 // 	name = "Scanner Gate Shell"

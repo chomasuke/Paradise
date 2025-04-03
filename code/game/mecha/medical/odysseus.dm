@@ -23,7 +23,7 @@
 			occupant_message("<span class='warning'>[H.glasses] prevent you from using the built-in medical hud.</span>")
 		else
 			var/datum/atom_hud/data/human/medical/advanced/A = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-			A.add_hud_to(H)
+			A.show_to(H)
 			builtin_hud_user = 1
 
 /obj/mecha/medical/odysseus/mmi_moved_inside(obj/item/mmi/mmi_as_oc, mob/user)
@@ -31,19 +31,19 @@
 	if(.)
 		if(occupant.client)
 			var/datum/atom_hud/A = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-			A.add_hud_to(occupant)
+			A.show_to(occupant)
 			builtin_hud_user = 1
 
 /obj/mecha/medical/odysseus/go_out()
 	if(ishuman(occupant) && builtin_hud_user)
 		var/mob/living/carbon/human/H = occupant
 		var/datum/atom_hud/data/human/medical/advanced/A = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-		A.remove_hud_from(H)
+		A.hide_from(H)
 		builtin_hud_user = 0
 	else if((isbrain(occupant) || pilot_is_mmi()) && builtin_hud_user)
 		var/mob/living/carbon/brain/H = occupant
 		var/datum/atom_hud/A = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-		A.remove_hud_from(H)
+		A.hide_from(H)
 		builtin_hud_user = 0
 
 	. = ..()

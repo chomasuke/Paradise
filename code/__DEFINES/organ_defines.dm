@@ -41,6 +41,7 @@
 #define INTERNAL_ORGAN_BRAIN_ANTISLEEP "brain_antisleep"
 #define INTERNAL_ORGAN_BRAIN_CLOWNVOICE "brain_clownvoice"
 #define INTERNAL_ORGAN_BRAIN_SPEECHTRANSLATOR "brain_speechtranslator"
+#define INTERNAL_ORGAN_BRAIN_COMPUTER_INTERFACE "brain_computer_interface"
 
 #define INTERNAL_ORGAN_VOCALCORDS "vocal_cords"
 #define INTERNAL_ORGAN_HIVECORE "hivecore"
@@ -60,6 +61,6 @@
 /// used for species that can see without eyes
 #define NO_VISION_ORGAN "no_vision_organ"
 
-/// Species organs 
+/// Species organs
 #define DRASK_LUNGS_COOLING_START_TEMP      280
 #define DRASK_LUNGS_COOLING_STOP_TEMP       400

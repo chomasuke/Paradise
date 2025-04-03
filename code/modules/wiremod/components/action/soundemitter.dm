@@ -62,7 +62,7 @@
 		"Whip" = 'sound/weapons/whip.ogg',
 		"Laugh Track" = 'sound/items/sitcomLaugh1.ogg',
 		"Gavel" = 'sound/items/gavel.ogg',
-		"Fart" = 'sound/effects/mob_effects/fart6.ogg',
+		"Fart" = "fart",
 	)
 	sound_file = add_option_port("Sound Option", component_options)
 	options_map = component_options

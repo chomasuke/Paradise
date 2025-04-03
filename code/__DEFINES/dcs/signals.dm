@@ -224,7 +224,8 @@
 ///from internal loop in atom/movable/proc/CanReach(): (list/next)
 #define COMSIG_ATOM_CANREACH "atom_can_reach"
 	#define COMPONENT_BLOCK_REACH (1<<0)
-#define COMSIG_ATOM_TOOL_ACT(tooltype) "tool_act_[tooltype]" // похуй потом
+/// from base of atom/proc/tool_act(): (mob/living/user, obj/item/I)
+#define COMSIG_ATOM_TOOL_ACT(tooltype) "tool_act_[tooltype]"
 ///from base of atom/screwdriver_act(): (mob/living/user, obj/item/I)
 #define COMSIG_ATOM_SCREWDRIVER_ACT "atom_screwdriver_act"
 ///from base of atom/wrench_act(): (mob/living/user, obj/item/I)
@@ -938,6 +939,8 @@
 #define COMSIG_ITEM_DISABLE_EMBED "item_disable_embed"
 ///from [/obj/effect/mine/proc/triggermine]:
 #define COMSIG_MINE_TRIGGERED "minegoboom"
+///from [/obj/item/organ/internal/insert]:
+#define COMSIG_ORGAN_IMPLANTED "organ_implanted"
 ///from [/obj/item/organ/internal/remove]:
 #define COMSIG_ORGAN_REMOVED "organ_removed"
 ///from [/obj/item/organ/internal/cyberimp/mouth/translator/check_lang]

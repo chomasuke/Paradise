@@ -224,15 +224,15 @@
 
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
-		diag_hud.add_hud_to(src)
+		diag_hud.add_atom_to_hud(src)
+		diag_hud.show_to(src)
 	diag_hud_set_bothealth()
 	diag_hud_set_botstat()
 	diag_hud_set_botmode()
 	// give us the hud too!
 	if(path_hud)
-		path_hud.add_to_hud(src)
-		path_hud.add_hud_to(src)
+		path_hud.add_atom_to_hud(src)
+		path_hud.show_to(src)
 
 
 
@@ -1233,7 +1233,7 @@ Pass the desired type path itself, declaring a temporary var beforehand is not r
 
 	var/datum/atom_hud/data_hud = GLOB.huds[data_hud_type]
 	if(data_hud)
-		data_hud.add_hud_to(src)
+		data_hud.show_to(src)
 
 	diag_hud_set_botmode()
 	show_laws()
@@ -1323,7 +1323,7 @@ Pass the desired type path itself, declaring a temporary var beforehand is not r
 		path_huds_watching_me += path_hud
 	for(var/V in path_huds_watching_me)
 		var/datum/atom_hud/H = V
-		H.remove_from_hud(src)
+		H.remove_atom_from_hud(src)
 
 	var/list/path_images = hud_list[DIAG_PATH_HUD]
 	QDEL_LIST(path_images)
@@ -1365,7 +1365,7 @@ Pass the desired type path itself, declaring a temporary var beforehand is not r
 
 	for(var/V in path_huds_watching_me)
 		var/datum/atom_hud/H = V
-		H.add_to_hud(src)
+		H.add_atom_to_hud(src)
 
 
 /mob/living/simple_animal/bot/proc/increment_path()
