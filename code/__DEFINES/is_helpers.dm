@@ -105,7 +105,7 @@
 
 #define is_pda(W) (istype(W, /obj/item/pda))
 
-#define is_id_card(W) (istype(W, /obj/item/card/id))
+#define isidcard(I) (istype(I, /obj/item/card/id))
 
 #define isradio(A) istype(A, /obj/item/radio)
 
@@ -122,6 +122,10 @@
 #define issyringe(A) istype(A, /obj/item/reagent_containers/syringe)
 
 #define isglassreagentcontainer(A) istype(A, /obj/item/reagent_containers/glass)
+
+#define iscash(A) (istype(A, /obj/item/coin) || istype(A, /obj/item/stack/spacecash))
+
+#define is_circuit(A) (istype(A, /obj/item/circuit_component/module) || istype(A, /obj/item/integrated_circuit))
 
 GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 	/obj/item/pen,

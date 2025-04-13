@@ -88,9 +88,10 @@
 
 	add_click_catcher()
 
-	if(viewing_alternate_appearances && viewing_alternate_appearances.len)
-		for(var/datum/alternate_appearance/AA in viewing_alternate_appearances)
-			AA.display_to(list(src))
+	//Reload alternate appearances
+	for(var/datum/atom_hud/alternate_appearance/alt_hud as anything in GLOB.active_alternate_appearances)
+		if(!alt_hud.apply_to_new_mob(src))
+			alt_hud.hide_from(src, absolute = TRUE)
 
 	update_client_colour(0)
 	update_morgue()

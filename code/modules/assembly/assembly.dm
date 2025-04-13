@@ -63,6 +63,7 @@
 		activate()
 	if(radio && (wires & WIRE_RADIO_RECEIVE))
 		activate()
+	SEND_SIGNAL(src, COMSIG_ASSEMBLY_PULSED)
 	return TRUE
 
 

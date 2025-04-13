@@ -127,7 +127,7 @@
 	to_chat(user, "<span class='notice'>You unload [S] from \the [src]!</span>")
 	return TRUE
 
-/obj/item/gun/pneumatic_rifle/process_chamber()
+/obj/item/gun/pneumatic_rifle/handle_chamber()
 	if(!length(syringes) || chambered.BB)
 		return
 

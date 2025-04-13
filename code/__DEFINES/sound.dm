@@ -328,3 +328,4 @@ GLOBAL_LIST_EMPTY(sfx_datum_by_key)
 #define SFX_DROPPERPOUR "dropperpour"
 #define SFX_SYRINGEPOUR "syringepour"
 #define SFX_LIQUID_SPLASH "liquid_splash"
+#define SFX_FART "fart"
