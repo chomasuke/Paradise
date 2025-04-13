@@ -172,6 +172,18 @@
 /// Takes precedence over all traits above
 #define TRAIT_VENTCRAWLER_ITEM_BASED "ventcrawler_item"
 
+/// Trait applied when the MMI component is added to an [/obj/item/integrated_circuit]
+#define TRAIT_COMPONENT_MMI "component_mmi"
+
+/// Trait applied when an integrated circuit/module becomes undupable
+#define TRAIT_CIRCUIT_UNDUPABLE "circuit_undupable"
+
+/// Trait applied when an integrated circuit opens a UI on a player (see list pick component)
+#define TRAIT_CIRCUIT_UI_OPEN "circuit_ui_open"
+
+/// Trait applied when the wire bundle component is added to an [/obj/item/integrated_circuit]
+#define TRAIT_COMPONENT_WIRE_BUNDLE "component_wire_bundle"
+
 /// Negates our gravity, letting us move normally on floors in 0-g
 #define TRAIT_NEGATES_GRAVITY "negates_gravity"
 /// We are ignoring gravity

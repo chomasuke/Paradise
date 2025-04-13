@@ -59,3 +59,6 @@
 	if(!.)
 		. = B[STAT_ENTRY_COUNT] - A[STAT_ENTRY_COUNT]
 
+/// Orders by integrated circuit weight
+/proc/cmp_port_order_asc(datum/port/compare1, datum/port/compare2)
+	return compare1.order - compare2.order

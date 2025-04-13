@@ -101,7 +101,7 @@
 
 #define is_pda(W) (istype(W, /obj/item/pda))
 
-#define is_id_card(W) (istype(W, /obj/item/card/id))
+#define isidcard(I) (istype(I, /obj/item/card/id))
 
 #define isradio(A) istype(A, /obj/item/radio)
 
