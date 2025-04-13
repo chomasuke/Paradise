@@ -74,7 +74,7 @@
 
 	var/datum/atom_hud/alternate_appearance/basic/one_person/alt_appearance = owner.add_alt_appearance(
 		/datum/atom_hud/alternate_appearance/basic/one_person,
-		"counter_overlay_[REF(src)]",
+		"counter_overlay_[UID()]",
 		counter,
 		null,
 		owner,
@@ -100,7 +100,7 @@
 
 		var/datum/atom_hud/alternate_appearance/basic/one_person/number_alt_appearance = owner.add_alt_appearance(
 			/datum/atom_hud/alternate_appearance/basic/one_person,
-			"counter_overlay_[REF(src)]_[i]",
+			"counter_overlay_[UID()]_[i]",
 			number,
 			null,
 			owner,

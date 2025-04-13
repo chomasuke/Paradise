@@ -381,18 +381,22 @@
 		strain_choices = list()
 
 		var/list/new_strains = GLOB.valid_blobstrains.Copy() - blobstrain.type
-		for (var/unused in 1 to BLOB_POWER_REROLL_CHOICES)
+		for(var/unused in 1 to BLOB_POWER_REROLL_CHOICES)
 			var/datum/blobstrain/strain = pick_n_take(new_strains)
 
 			var/image/strain_icon = image('icons/mob/blob.dmi', "blob_core")
 			strain_icon.color = initial(strain.color)
 
-			//var/info_text = span_boldnotice("[initial(strain.name)]")
-			//info_text += "<br>[span_notice("[initial(strain.analyzerdescdamage)]")]"
-			//if(!isnull(initial(strain.analyzerdesceffect)))
-				//info_text += "<br>[span_notice("[initial(strain.analyzerdesceffect)]")]"
+			var/info_text = span_boldnotice("[initial(strain.name)]")
+			info_text += "<br>[span_notice("[initial(strain.analyzerdescdamage)]")]"
+			if(!isnull(initial(strain.analyzerdesceffect)))
+				info_text += "<br>[span_notice("[initial(strain.analyzerdesceffect)]")]"
 
-			strain_choices[initial(strain.name)] = strain_icon
+			var/datum/radial_menu_choice/choice = new
+			choice.image = strain_icon
+			choice.info = info_text
+
+			strain_choices[initial(strain.name)] = choice
 
 	var/strain_result = show_radial_menu(src, src, strain_choices, radius = BLOB_REROLL_RADIUS)
 	if(isnull(strain_result))
@@ -401,7 +405,7 @@
 	if(!free_strain_rerolls && !can_buy(BLOB_POWER_REROLL_COST))
 		return
 
-	for (var/_other_strain in GLOB.valid_blobstrains)
+	for(var/_other_strain in GLOB.valid_blobstrains)
 		var/datum/blobstrain/other_strain = _other_strain
 		if(initial(other_strain.name) == strain_result)
 			set_strain(other_strain)

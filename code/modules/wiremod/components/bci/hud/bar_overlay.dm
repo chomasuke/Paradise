@@ -56,7 +56,7 @@
 
 	var/datum/atom_hud/alternate_appearance/basic/one_person/alt_appearance = target_atom.add_alt_appearance(
 		/datum/atom_hud/alternate_appearance/basic/one_person,
-		"bar_overlay_[REF(src)]",
+		"bar_overlay_[UID()]",
 		cool_overlay,
 		null,
 		owner,

@@ -11,9 +11,6 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	base_icon_state = "circuit_imprinter"
 	container_type = OPENCONTAINER
 
-	/// The current unlocked circuit component designs. Used by integrated circuits to print off circuit components remotely.
-	var/list/current_unlocked_circuits_designs = list()
-
 	categories = list(
 								"AI Modules",
 								"Computer Boards",
@@ -93,29 +90,6 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 	return round(A / max(1, (all_materials[M] * efficiency_coeff)))
 
-
-// /obj/machinery/r_n_d/circuit_imprinter/proc/on_sync()
-
-
-// /obj/machinery/r_n_d/circuit_imprinter/proc/on_reset()
-
-
-// /obj/machinery/r_n_d/circuit_imprinter/proc/print_component(typepath)
-// 	var/design_id = current_unlocked_circuits_designs[typepath]
-
-// 	var/datum/design/design = linked_console.files.known_designs[design_id]
-// 	if (!((design.build_type & IMPRINTER)||("Circuit Components" in design.category)))
-// 		return
-
-// 	if (materials.on_hold())
-// 		return
-
-// 	if (!materials.mat_container.has_materials(design.materials, efficiency_coeff))
-// 		return
-
-// 	materials.use_materials(design.materials, efficiency_coeff, 1, "printed", "[design.name]")
-// 	return new design.build_path(drop_location())
-
 /obj/machinery/r_n_d/circuit_imprinter/attackby(obj/item/I, mob/user, params)
 	if(shocked && shock(user, 50))
 		add_fingerprint(user)
@@ -140,18 +114,18 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	if(istype(I, /obj/item/integrated_circuit))
 		circuit = I
 
-	else if (istype(I, /obj/item/circuit_component/module))
+	else if(istype(I, /obj/item/circuit_component/module))
 		var/obj/item/circuit_component/module/module = I
 		circuit = module.internal_circuit
 
-	if (isnull(circuit))
+	if(isnull(circuit))
 		return ..()
 
 	circuit.linked_circuit_imprinter = WEAKREF(src)
 	circuit.update_static_data_for_all_viewers()
 	balloon_alert(user, "successfully linked to the integrated circuit")
 
-	return ..()
+	return ATTACK_CHAIN_PROCEED_SUCCESS
 
 
 /obj/machinery/r_n_d/circuit_imprinter/screwdriver_act(mob/living/user, obj/item/I)

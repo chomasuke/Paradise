@@ -15,7 +15,7 @@
 	/// Called when the user presses the button
 	var/datum/port/output/signal
 
-	/// An assoc list of datum REF()s, linked to the actions granted.
+	/// An assoc list of datum UID()s, linked to the actions granted.
 	var/list/granted_to = list()
 
 /obj/item/circuit_component/equipment_action/Initialize(mapload, default_icon)

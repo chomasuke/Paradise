@@ -87,16 +87,16 @@
 	if(COMPONENT_TRIGGERED_BY(signal_on, port))
 		show_to_owner(target_atom, owner)
 
-	var/datum/atom_hud/existing_overlay = active_overlays[REF(target_atom)]
+	var/datum/atom_hud/existing_overlay = active_overlays[target_atom.UID()]
 	if(COMPONENT_TRIGGERED_BY(signal_off, port) && !isnull(existing_overlay))
 		qdel(existing_overlay)
-		active_overlays -= REF(target_atom)
+		active_overlays -= target_atom.UID()
 
 /obj/item/circuit_component/object_overlay/proc/show_to_owner(atom/target_atom, mob/living/owner)
 	if(length(active_overlays) >= OBJECT_OVERLAY_LIMIT)
 		return
 
-	var/datum/atom_hud/existing_overlay = active_overlays[REF(target_atom)]
+	var/datum/atom_hud/existing_overlay = active_overlays[target_atom.UID()]
 	if(!isnull(existing_overlay))
 		qdel(existing_overlay)
 
@@ -116,14 +116,14 @@
 
 	var/datum/atom_hud/alternate_appearance/basic/one_person/alt_appearance = target_atom.add_alt_appearance(
 		/datum/atom_hud/alternate_appearance/basic/one_person,
-		"object_overlay_[REF(src)]",
+		"object_overlay_[UID()]",
 		cool_overlay,
 		null,
 		owner,
 	)
 	alt_appearance.show_to(owner)
 
-	active_overlays[REF(target_atom)] = alt_appearance
+	active_overlays[target_atom.UID()] = alt_appearance
 
 /obj/item/circuit_component/object_overlay/proc/on_organ_removed(datum/source, mob/living/carbon/owner)
 	SIGNAL_HANDLER

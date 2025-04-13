@@ -61,8 +61,21 @@
 		return
 
 	var/list/selectable_targets = list()
+	var/datum/radial_menu_choice/mob_choice = new
+	mob_choice.image = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_mob")
+	mob_choice.name = target.name
+	selectable_targets[target.UID()] = mob_choice
+
 	for(var/obj/item/item as anything in visible_items)
-		selectable_targets["[item.name]"] = image(icon = item.icon, icon_state = item.icon_state)
+		var/datum/radial_menu_choice/item_choice = new
+
+		var/mutable_appearance/item_appearance = new(item)
+		item_appearance.layer = FLOAT_LAYER
+		item_appearance.plane = FLOAT_PLANE
+
+		item_choice.name = item.name
+		item_choice.image = item_appearance
+		selectable_targets[item.UID()] = item_choice
 
 	var/picked_ref = show_radial_menu(user, src, selectable_targets, radius = 38, custom_check = CALLBACK(src, PROC_REF(check_menu), user, target), require_near = TRUE)
 	if(!picked_ref)

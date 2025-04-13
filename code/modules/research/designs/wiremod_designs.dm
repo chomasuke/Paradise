@@ -413,10 +413,10 @@
 	id = "comp_counter_overlay"
 	build_path = /obj/item/circuit_component/counter_overlay
 
-// /datum/design/component/bci/reagent_injector
-// 	name = "Reagent Injector Component"
-// 	id = "comp_reagent_injector"
-// 	build_path = /obj/item/circuit_component/reagent_injector
+/datum/design/component/bci/reagent_injector
+	name = "Reagent Injector Component"
+	id = "comp_reagent_injector"
+	build_path = /obj/item/circuit_component/reagent_injector
 
 /datum/design/component/bci/install_detector
 	name = "Install Detector Component"
@@ -661,15 +661,15 @@
 // 		"Circuitry"
 // 	)
 
-// /datum/design/board/bci_implanter
-// 	name = "Brain-Computer Interface Manipulation Chamber"
-// 	desc = "A machine that, when given a brain-computer interface, will implant it into an occupant. Otherwise, will remove any brain-computer interfaces they already have."
-// 	id = "bci_implanter"
-// 	build_path = /obj/item/circuitboard/machine/bci_implanter
-// 	build_type = PROTOLATHE
-// 	category = list(
-// 		"Circuitry", "Core"
-// 	)
+/datum/design/board/bci_implanter
+	name = "Brain-Computer Interface Manipulation Chamber"
+	desc = "A machine that, when given a brain-computer interface, will implant it into an occupant. Otherwise, will remove any brain-computer interfaces they already have."
+	id = "bci_implanter"
+	build_path = /obj/item/circuitboard/machine/bci_implanter
+	build_type = IMPRINTER
+	category = list(
+		"Medical Machinery"
+	)
 
 // /datum/design/assembly_shell
 // 	name = "Assembly Shell"

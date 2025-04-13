@@ -30,7 +30,7 @@
 	/// Called when the MMI clicks.
 	var/datum/port/output/attack
 	/// Called when the MMI right clicks.
-	var/datum/port/output/secondary_attack
+	var/datum/port/output/alt_attack
 
 	/// The current MMI card
 	var/obj/item/mmi/brain
@@ -49,7 +49,7 @@
 	west = add_output_port("West", PORT_TYPE_SIGNAL)
 
 	attack = add_output_port("Attack", PORT_TYPE_SIGNAL)
-	secondary_attack = add_output_port("Secondary Attack", PORT_TYPE_SIGNAL)
+	alt_attack = add_output_port("Alt Attack", PORT_TYPE_SIGNAL)
 	clicked_atom = add_output_port("Target Entity", PORT_TYPE_ATOM)
 
 /obj/item/circuit_component/mmi/Destroy()
@@ -151,11 +151,11 @@
 
 /obj/item/circuit_component/mmi/proc/handle_mmi_attack(mob/living/source, atom/target, list/modifiers)
 	SIGNAL_HANDLER
-	if(modifiers[RIGHT_CLICK])
+	if(modifiers[ALT_CLICK])
 		clicked_atom.set_output(target)
-		secondary_attack.set_output(COMPONENT_SIGNAL)
+		alt_attack.set_output(COMPONENT_SIGNAL)
 		. = COMSIG_MOB_CANCEL_CLICKON
-	else if(modifiers[LEFT_CLICK] && !modifiers[SHIFT_CLICK] && !modifiers[ALT_CLICK] && !modifiers[CTRL_CLICK])
+	else if(modifiers[LEFT_CLICK] && !modifiers[SHIFT_CLICK] && !modifiers[CTRL_CLICK])
 		clicked_atom.set_output(target)
 		attack.set_output(COMPONENT_SIGNAL)
 		. = COMSIG_MOB_CANCEL_CLICKON
@@ -164,9 +164,9 @@
 	. = ..()
 	if(HAS_TRAIT(add_to, TRAIT_COMPONENT_MMI))
 		return FALSE
-	ADD_TRAIT(add_to, TRAIT_COMPONENT_MMI, REF(src))
+	ADD_TRAIT(add_to, TRAIT_COMPONENT_MMI, UNIQUE_TRAIT_SOURCE(src))
 
 /obj/item/circuit_component/mmi/removed_from(obj/item/integrated_circuit/removed_from)
-	REMOVE_TRAIT(removed_from, TRAIT_COMPONENT_MMI, REF(src))
+	REMOVE_TRAIT(removed_from, TRAIT_COMPONENT_MMI, UNIQUE_TRAIT_SOURCE(src))
 	remove_current_brain()
 	return ..()

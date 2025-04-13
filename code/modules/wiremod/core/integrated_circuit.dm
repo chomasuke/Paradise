@@ -363,11 +363,11 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 				current_data = null
 			var/list/connected_to = list()
 			for(var/datum/port/output/output as anything in port.connected_ports)
-				connected_to += REF(output)
+				connected_to += output.UID()
 			component_data["input_ports"] += list(list(
 				"name" = port.name,
 				"type" = port.datatype,
-				"ref" = REF(port), // The ref is the identifier to work out what it is connected to
+				"ref" = port.UID(), // The ref is the identifier to work out what it is connected to
 				"connected_to" = connected_to,
 				"color" = port.color,
 				"current_data" = current_data,
@@ -378,7 +378,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			component_data["output_ports"] += list(list(
 				"name" = port.name,
 				"type" = port.datatype,
-				"ref" = REF(port),
+				"ref" = port.UID(),
 				"color" = port.color,
 				"datatype_data" = port.datatype_ui_data(user)
 			))
@@ -511,7 +511,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			var/mob/user = ui.user
 			if(component.loc == src)
 				user.put_in_hands(component)
-			// var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
+			// var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve() Всё будет, но не сразу
 			// if (!isnull(printer))
 			// 	printer.base_item_interaction(user, component)
 			. = TRUE
@@ -675,7 +675,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 		if("print_component")
 			var/component_path = text2path(params["component_to_print"])
 			var/obj/item/circuit_component/component
-			// if((!admin_only && !ui.user.can_advanced_admin_interact()) || !check_rights_for(ui.user.client, R_SPAWN))
+			// if((!admin_only && !ui.user.can_advanced_admin_interact()) || !check_rights_for(ui.user.client, R_SPAWN)) Всё будет, но не сразу
 			// 	var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
 			// 	if(!printer)
 			// 		balloon_alert(ui.user, "linked printer not found!")
