@@ -4,7 +4,7 @@ import {
   FUNDAMENTAL_DATA_TYPES,
 } from './FundamentalTypes';
 
-export const DisplayName = (props, context) => {
+export const DisplayName = (props) => {
   const { port, isOutput, componentId, portIndex, act, ...rest } = props;
 
   const InputComponent = FUNDAMENTAL_DATA_TYPES[port.type || 'unknown'];
@@ -57,7 +57,7 @@ export const DisplayName = (props, context) => {
         <Flex.Item>
           <Box
             fontSize={0.75}
-            opacity={0.25}
+            opacity={0.5}
             textAlign={isOutput ? 'right' : 'left'}
           >
             {displayType || 'unknown'}

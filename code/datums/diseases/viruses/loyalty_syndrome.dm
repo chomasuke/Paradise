@@ -12,7 +12,7 @@
 	cures = list("haloperidol")
 	cure_prob = 8
 	visibility_flags = HIDDEN_HUD
-	severity = DANGEROUS
+	severity = DISEASE_SEVERITY_BIOHAZARD
 	var/is_master = FALSE
 	var/mob/living/carbon/human/master
 	var/timer = 0

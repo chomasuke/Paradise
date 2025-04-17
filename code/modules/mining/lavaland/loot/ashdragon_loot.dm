@@ -227,7 +227,7 @@
 	agent = "Кровь дракона"
 	desc = "Какое отношение драконы имеют к Космической Станции 13?"
 	stage_prob = 20
-	severity = BIOHAZARD
+	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = VISIBLE
 	stage1	= list("Ваши кости ноют.")
 	stage2	= list("Ваша кожа кажется чешуйчатой.")

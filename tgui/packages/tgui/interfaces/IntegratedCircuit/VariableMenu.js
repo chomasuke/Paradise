@@ -8,6 +8,7 @@ import {
   Icon,
 } from '../../components';
 import { Component } from 'inferno';
+import { multiline } from 'common/string';
 import { shallowDiffers } from 'common/react';
 import {
   VARIABLE_ASSOC_LIST,
@@ -219,7 +220,7 @@ export class VariableMenu extends Component {
   }
 }
 
-const IconButton = (props, context) => {
+const IconButton = (props) => {
   return (
     <Stack fill align="center">
       <Stack.Item grow basis="content">

@@ -137,7 +137,7 @@ export class IntegratedCircuit extends Component {
   // mouse up called whilst over a port. This means we can check if selectedPort
   // exists and do perform some actions if it does.
   handlePortUp(portIndex, componentId, port, isOutput, event) {
-    const { act, data: uiData } = useBackend(this.context);
+    const { act, data: uiData } = useBackend();
     const { selectedPort } = this.state;
     if (!selectedPort) {
       return;
@@ -188,7 +188,7 @@ export class IntegratedCircuit extends Component {
   }
 
   handleDragging(event) {
-    const { data } = useBackend(this.context);
+    const { data } = useBackend();
     const { screen_x, screen_y } = data;
     this.setState((state) => ({
       mouseX: event.clientX - (state.backgroundX || screen_x),
@@ -214,7 +214,7 @@ export class IntegratedCircuit extends Component {
   }
 
   handlePortRightClick(portIndex, componentId, port, isOutput, event) {
-    const { act } = useBackend(this.context);
+    const { act } = useBackend();
 
     event.preventDefault();
     act('remove_connection', {
@@ -248,7 +248,7 @@ export class IntegratedCircuit extends Component {
   }
 
   handleMouseDown(event) {
-    const { act, data } = useBackend(this.context);
+    const { act, data } = useBackend();
     const { examined_name } = data;
     if (examined_name) {
       act('remove_examined_component');
@@ -260,7 +260,7 @@ export class IntegratedCircuit extends Component {
   }
 
   handleMouseUp(event) {
-    const { act } = useBackend(this.context);
+    const { act } = useBackend();
     const { backgroundX, backgroundY } = this.state;
     if (backgroundX && backgroundY) {
       act('move_screen', {
@@ -318,7 +318,7 @@ export class IntegratedCircuit extends Component {
   }
 
   handleVarDropped(event) {
-    const { data, act } = useBackend(this.context);
+    const { data, act } = useBackend();
     const {
       draggingVariable,
       variableIsSetter,
@@ -364,7 +364,7 @@ export class IntegratedCircuit extends Component {
   }
 
   handleComponentDropped(event) {
-    const { act } = useBackend(this.context);
+    const { act } = useBackend();
     const { draggingComponent, zoom, draggingComponentPos, mouseX, mouseY } =
       this.state;
 
@@ -389,7 +389,7 @@ export class IntegratedCircuit extends Component {
   }
 
   render() {
-    const { act, data } = useBackend(this.context);
+    const { act, data } = useBackend();
     const {
       components,
       display_name,
@@ -456,72 +456,61 @@ export class IntegratedCircuit extends Component {
         width={1200}
         height={800}
         buttons={
-          <Box width="160px" position="absolute" top="5px" height="22px">
-            <Stack>
-              <Stack.Item grow>
-                <Input
-                  fluid
-                  placeholder="Name"
-                  value={display_name}
-                  onChange={(e, value) =>
-                    act('set_display_name', { display_name: value })
-                  }
-                />
-              </Stack.Item>
-              <Stack.Item basis="24px">
+          <Stack>
+            <Stack.Item>
+              <Input
+                placeholder="Name"
+                value={display_name}
+                onChange={(e, value) =>
+                  act('set_display_name', { display_name: value })
+                }
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                color="transparent"
+                tooltip="Show Variables Menu"
+                icon="cog"
+                selected={variableMenuOpen}
+                onClick={() =>
+                  this.setState((state) => ({
+                    variableMenuOpen: !state.variableMenuOpen,
+                  }))
+                }
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                color="transparent"
+                tooltip="Show Components Menu"
+                icon="plus"
+                selected={componentMenuOpen}
+                onClick={() =>
+                  this.setState((state) => ({
+                    componentMenuOpen: !state.componentMenuOpen,
+                  }))
+                }
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                color="transparent"
+                tooltip="Enable Grid Aligning"
+                icon="th-large"
+                selected={grid_mode}
+                onClick={() => act('toggle_grid_mode')}
+              />
+            </Stack.Item>
+            {!!is_admin && (
+              <Stack.Item>
                 <Button
-                  position="absolute"
-                  top={0}
                   color="transparent"
-                  tooltip="Show Variables Menu"
-                  icon="cog"
-                  selected={variableMenuOpen}
-                  onClick={() =>
-                    this.setState((state) => ({
-                      variableMenuOpen: !state.variableMenuOpen,
-                    }))
-                  }
+                  onClick={() => act('save_circuit')}
+                  icon="save"
                 />
               </Stack.Item>
-              <Stack.Item basis="24px">
-                <Button
-                  position="absolute"
-                  top={0}
-                  color="transparent"
-                  tooltip="Show Components Menu"
-                  icon="plus"
-                  selected={componentMenuOpen}
-                  onClick={() =>
-                    this.setState((state) => ({
-                      componentMenuOpen: !state.componentMenuOpen,
-                    }))
-                  }
-                />
-              </Stack.Item>
-              <Stack.Item basis="24px">
-                <Button
-                  position="absolute"
-                  top={0}
-                  color="transparent"
-                  tooltip="Enable Grid Aligning"
-                  icon="th-large"
-                  selected={grid_mode}
-                  onClick={() => act('toggle_grid_mode')}
-                />
-              </Stack.Item>
-              {!!is_admin && (
-                <Stack.Item>
-                  <Button
-                    position="absolute"
-                    top={0}
-                    color="transparent"
-                    onClick={() => act('save_circuit')}
-                    icon="save"
-                  />
-                </Stack.Item>
-              )}
-            </Stack>
-          </Box>
+            )}
+          </Stack>
         }
       >
         <Window.Content

@@ -3,7 +3,7 @@
 	stage_prob = 10
 	max_stages = 5
 	spread_flags = NON_CONTAGIOUS
-	severity = DANGEROUS
+	severity = DISEASE_SEVERITY_DANGEROUS
 	can_immunity = FALSE
 	infectable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/alien)
 	var/list/stage1
@@ -89,7 +89,7 @@
 	cures = list("banana")
 	spread_flags = BITES
 	infectable_mobtypes = list(/mob/living/carbon/human)
-	severity = BIOHAZARD
+	severity = DISEASE_SEVERITY_BIOHAZARD
 	cure_after_transform = FALSE
 	stage1	= null
 	stage2	= null
@@ -135,6 +135,7 @@
 	agent = "R2D2 Наномашины"
 	desc = "Эта болезнь, на самом деле острая инфекция наномашин, превращает жертву в киборга."
 	cures = list("copper")
+	severity = DISEASE_SEVERITY_BIOHAZARD
 	cure_prob = 5
 	is_new_mind = TRUE
 	stage1 = null
@@ -165,6 +166,7 @@
 	agent = "Чужеродные микробы рип-ЛИ"
 	desc = "Эта болезнь превращает жертву в ксеноморфа."
 	cures = list("spaceacillin", "glycerol")
+	severity = DISEASE_SEVERITY_BIOHAZARD
 	cure_prob = 5
 	stage1 = null
 	stage2 = list("Ваше горло першит.", span_danger("Убить..."))
@@ -243,6 +245,7 @@
 	desc = "Эта болезнь превращает жертву в корги."
 	cure_text = "Смерть"
 	cures = list("adminordrazine")
+	severity = DISEASE_SEVERITY_UNCURABLE
 	stage1 = list(span_notice("ГАВ."))
 	stage2 = list(span_notice("Вам хочется надеть глупую шляпу."))
 	stage3 = list(span_danger("Нужно... съесть... шоколад...."), span_danger("ТЯФ"))
@@ -268,6 +271,7 @@
 	desc = "\"Дар\" из какого-то ужасного места."
 	cure_text = "Ничего"
 	cures = list("adminordrazine")
+	severity = DISEASE_SEVERITY_UNCURABLE
 	stage_prob = 20
 	stage1 = list(span_notice("Ваш желудок урчит."))
 	stage2 = list(span_notice("Ваша кожа кажется обвисшей."))

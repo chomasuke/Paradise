@@ -1,6 +1,6 @@
 import { Box, Button, Stack } from '../../components';
 
-export const CircuitInfo = (props, context) => {
+export const CircuitInfo = (props) => {
   const { name, desc, notices, ...rest } = props;
   return (
     <Box {...rest}>
