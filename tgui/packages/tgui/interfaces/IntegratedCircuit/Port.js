@@ -101,6 +101,7 @@ export class Port extends Component {
                 width: '100%',
                 height: '100%',
                 position: 'absolute',
+                overflow: 'visible',
               }}
               viewBox="0, 0, 100, 100"
             >

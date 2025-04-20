@@ -1380,6 +1380,8 @@ GLOBAL_LIST_EMPTY(airlock_emissive_underlays)
 	if(killthis)
 		killthis.ex_act(EXPLODE_HEAVY)//Smashin windows
 
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_CLOSE, forced)
+
 	operating = DOOR_CLOSING
 	update_icon(AIRLOCK_CLOSING, TRUE)
 	layer = CLOSED_DOOR_LAYER
@@ -1409,10 +1411,18 @@ GLOBAL_LIST_EMPTY(airlock_emissive_underlays)
 	if(operating && !forced)
 		return FALSE
 
-	locked = TRUE
+	set_bolt(TRUE)
 	playsound(src, boltDown, 30, FALSE, 3)
 	update_icon()
 	return TRUE
+
+
+/obj/machinery/door/airlock/proc/set_bolt(should_bolt)
+	if(locked == should_bolt)
+		return
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_SET_BOLT, should_bolt)
+	. = locked
+	locked = should_bolt
 
 
 /obj/machinery/door/airlock/unlock(forced = FALSE)
@@ -1422,7 +1432,7 @@ GLOBAL_LIST_EMPTY(airlock_emissive_underlays)
 	if(!forced && (operating || !arePowerSystemsOn() || wires.is_cut(WIRE_DOOR_BOLTS)))
 		return FALSE
 
-	locked = FALSE
+	set_bolt(FALSE)
 	playsound(src, boltUp, 30, FALSE, 3)
 	update_icon()
 	return TRUE

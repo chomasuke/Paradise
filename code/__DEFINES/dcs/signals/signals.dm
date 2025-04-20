@@ -1444,9 +1444,6 @@
 /// from base of atom/on_teleported(): ()
 #define COMSIG_ATOM_TELEPORT_ACT "atom_teleport_act"
 
-//from /obj/machinery/door/airlock/open(): (forced)
-#define COMSIG_AIRLOCK_OPEN "airlock_open"
-
 //from base of atom/attack_basic_mob(): (/mob/user)
 #define COMSIG_ATOM_ATTACK_BASIC_MOB "attack_basic_mob"
 

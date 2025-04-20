@@ -147,10 +147,10 @@
 	id = "comp_speech"
 	build_path = /obj/item/circuit_component/speech
 
-// /datum/design/component/laserpointer
-// 	name = "Laser Pointer Component"
-// 	id = "comp_laserpointer"
-// 	build_path = /obj/item/circuit_component/laserpointer
+/datum/design/component/laserpointer
+	name = "Laser Pointer Component"
+	id = "comp_laserpointer"
+	build_path = /obj/item/circuit_component/laserpointer
 
 /datum/design/component/timepiece
 	name = "Timepiece Component"
@@ -433,20 +433,20 @@
 	id = "comp_filter_list"
 	build_path = /obj/item/circuit_component/filter_list
 
-// /datum/design/component/id_getter
-// 	name = "ID Getter Component"
-// 	id = "comp_id_getter"
-// 	build_path = /obj/item/circuit_component/id_getter
+/datum/design/component/id_getter
+	name = "ID Getter Component"
+	id = "comp_id_getter"
+	build_path = /obj/item/circuit_component/id_getter
 
-// /datum/design/component/id_info_reader
-// 	name = "ID Info Reader Component"
-// 	id = "comp_id_info_reader"
-// 	build_path = /obj/item/circuit_component/id_info_reader
+/datum/design/component/id_info_reader
+	name = "ID Info Reader Component"
+	id = "comp_id_info_reader"
+	build_path = /obj/item/circuit_component/id_info_reader
 
-// /datum/design/component/id_access_reader
-// 	name = "ID Access Reader Component"
-// 	id = "comp_id_access_reader"
-// 	build_path = /obj/item/circuit_component/id_access_reader
+/datum/design/component/id_access_reader
+	name = "ID Access Reader Component"
+	id = "comp_id_access_reader"
+	build_path = /obj/item/circuit_component/id_access_reader
 
 /datum/design/component/setter_trigger
 	name = "Set Variable Trigger"
@@ -458,10 +458,10 @@
 	id = "comp_view_sensor"
 	build_path = /obj/item/circuit_component/view_sensor
 
-// /datum/design/component/access_checker
-// 	name = "Access Checker Component"
-// 	id = "comp_access_checker"
-// 	build_path = /obj/item/circuit_component/compare/access
+/datum/design/component/access_checker
+	name = "Access Checker Component"
+	id = "comp_access_checker"
+	build_path = /obj/item/circuit_component/compare/access
 
 /datum/design/component/list_pick
 	name = "List Pick Component"
@@ -509,16 +509,16 @@
 		"Circuitry"
 	)
 
-// /datum/design/controller_shell
-// 	name = "Controller Shell"
-// 	desc = "A handheld shell with several buttons."
-// 	id = "controller_shell"
-// 	build_path = /obj/item/controller
-// 	build_type = PROTOLATHE
-// 	materials = list(MAT_GLASS = 1000, MAT_METAL = 3500)
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/controller_shell
+	name = "Controller Shell"
+	desc = "A handheld shell with several buttons."
+	id = "controller_shell"
+	build_path = /obj/item/controller
+	build_type = PROTOLATHE
+	materials = list(MAT_GLASS = 1000, MAT_METAL = 3500)
+	category = list(
+		"Circuitry"
+	)
 
 /datum/design/scanner_shell
 	name = "Scanner Shell"
@@ -531,16 +531,16 @@
 		"Circuitry"
 	)
 
-// /datum/design/keyboard_shell
-// 	name = "Keyboard Shell"
-// 	desc = "A handheld shell that allows the user to input a string"
-// 	id = "keyboard_shell"
-// 	build_path = /obj/item/keyboard_shell
-// 	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000)
-// 	build_type = PROTOLATHE
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/keyboard_shell
+	name = "Keyboard Shell"
+	desc = "A handheld shell that allows the user to input a string"
+	id = "keyboard_shell"
+	build_path = /obj/item/keyboard_shell
+	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000)
+	build_type = PROTOLATHE
+	category = list(
+		"Circuitry"
+	)
 
 // /datum/design/gun_shell
 // 	name = "Gun Shell"
@@ -564,16 +564,16 @@
 		"Circuitry"
 	)
 
-// /datum/design/money_bot_shell
-// 	name = "Money Bot Shell"
-// 	desc = "An immobile shell that is similar to a regular bot shell, but accepts monetary inputs and can also dispense money."
-// 	id = "money_bot_shell"
-// 	build_path = /obj/item/shell/money_bot
-// 	build_type = PROTOLATHE
-// 	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_GOLD = 50)
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/money_bot_shell
+	name = "Money Bot Shell"
+	desc = "An immobile shell that is similar to a regular bot shell, but accepts monetary inputs and can also dispense money."
+	id = "money_bot_shell"
+	build_path = /obj/item/shell/money_bot
+	build_type = PROTOLATHE
+	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_GOLD = 50)
+	category = list(
+		"Circuitry"
+	)
 
 /datum/design/drone_shell
 	name = "Drone Shell"
@@ -590,48 +590,48 @@
 		"Circuitry"
 	)
 
-// /datum/design/server_shell
-// 	name = "Server Shell"
-// 	desc = "A very large shell that cannot be moved around. Stores the most components."
-// 	id = "server_shell"
-// 	materials = list(
-// 		MAT_GLASS = 2500,
-// 		MAT_METAL = 7500,
-// 		MAT_GOLD = 500 * 1.5,
-// 	)
-// 	build_path = /obj/item/shell/server
-// 	build_type = PROTOLATHE
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/server_shell
+	name = "Server Shell"
+	desc = "A very large shell that cannot be moved around. Stores the most components."
+	id = "server_shell"
+	materials = list(
+		MAT_GLASS = 2500,
+		MAT_METAL = 7500,
+		MAT_GOLD = 500 * 1.5,
+	)
+	build_path = /obj/item/shell/server
+	build_type = PROTOLATHE
+	category = list(
+		"Circuitry"
+	)
 
-// /datum/design/airlock_shell
-// 	name = "Airlock Shell"
-// 	desc = "A door shell that cannot be moved around when assembled."
-// 	id = "door_shell"
-// 	materials = list(
-// 		MAT_GLASS = 2500,
-// 		MAT_METAL = 7500,
-// 	)
-// 	build_path = /obj/item/shell/airlock
-// 	build_type = PROTOLATHE
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/airlock_shell
+	name = "Airlock Shell"
+	desc = "A door shell that cannot be moved around when assembled."
+	id = "door_shell"
+	materials = list(
+		MAT_GLASS = 2500,
+		MAT_METAL = 7500,
+	)
+	build_path = /obj/item/shell/airlock
+	build_type = PROTOLATHE
+	category = list(
+		"Circuitry"
+	)
 
-// /datum/design/dispenser_shell
-// 	name = "Dispenser Shell"
-// 	desc = "A dispenser shell that can dispense items."
-// 	id = "dispenser_shell"
-// 	materials = list(
-// 		MAT_GLASS = 2500,
-// 		MAT_METAL = 7500,
-// 	)
-// 	build_path = /obj/item/shell/dispenser
-// 	build_type = PROTOLATHE
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/dispenser_shell
+	name = "Dispenser Shell"
+	desc = "A dispenser shell that can dispense items."
+	id = "dispenser_shell"
+	materials = list(
+		MAT_GLASS = 2500,
+		MAT_METAL = 7500,
+	)
+	build_path = /obj/item/shell/dispenser
+	build_type = PROTOLATHE
+	category = list(
+		"Circuitry"
+	)
 
 /datum/design/bci_shell
 	name = "Brain-Computer Interface Shell"

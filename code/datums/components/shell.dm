@@ -164,6 +164,9 @@
  */
 /datum/component/shell/proc/on_attack_by(atom/source, obj/item/item, mob/living/attacker)
 	SIGNAL_HANDLER
+	if(attacker.a_intent == INTENT_HARM)
+		return
+
 	if(!is_authorized(attacker))
 		return
 
@@ -175,21 +178,21 @@
 		if(attached_circuit.owner_id && item == attached_circuit.owner_id.resolve())
 			set_locked(!locked)
 			source.balloon_alert(attacker, "[locked ? "locked" : "unlocked"] [source]")
-			return COMPONENT_NO_AFTERATTACK
+			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 		if(!attached_circuit.owner_id && isidcard(item))
 			source.balloon_alert(attacker, "owner id set for [item]")
 			attached_circuit.owner_id = WEAKREF(item)
-			return COMPONENT_NO_AFTERATTACK
+			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 		if(istype(item, /obj/item/circuit_component))
 			attached_circuit.add_component_manually(item, attacker)
-			return COMPONENT_NO_AFTERATTACK
+			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!istype(item, /obj/item/integrated_circuit))
 		return
 	var/obj/item/integrated_circuit/logic_board = item
-	. = COMPONENT_NO_AFTERATTACK
+	. = COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(logic_board.shell) // I'll be surprised if this ever happens
 		return

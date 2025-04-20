@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(huds, list( \
 
 		if(next_time_allowed[new_viewer] > world.time)
 			if(!queued_to_see[new_viewer])
-				addtimer(CALLBACK(src, .proc/show_hud_images_after_cooldown, new_viewer), next_time_allowed[new_viewer] - world.time)
+				addtimer(CALLBACK(src, PROC_REF(show_hud_images_after_cooldown), new_viewer), next_time_allowed[new_viewer] - world.time)
 				queued_to_see[new_viewer] = TRUE
 
 		else

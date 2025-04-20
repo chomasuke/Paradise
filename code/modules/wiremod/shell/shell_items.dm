@@ -30,10 +30,10 @@
 	icon_state = "setup_medium_box-open"
 	shell_to_spawn = /obj/structure/bot
 
-// /obj/item/shell/money_bot
-// 	name = "money bot assembly"
-// 	icon_state = "setup_large-open"
-// 	shell_to_spawn = /obj/structure/money_bot
+/obj/item/shell/money_bot
+	name = "money bot assembly"
+	icon_state = "setup_large-open"
+	shell_to_spawn = /obj/structure/money_bot
 
 /obj/item/shell/drone
 	name = "drone assembly"
@@ -41,24 +41,24 @@
 	shell_to_spawn = /mob/living/circuit_drone
 	w_class = WEIGHT_CLASS_SMALL
 
-// /obj/item/shell/server
-// 	name = "server assembly"
-// 	icon_state = "setup_stationary-open"
-// 	shell_to_spawn = /obj/structure/server
-// 	screw_delay = 10 SECONDS
+/obj/item/shell/server
+	name = "server assembly"
+	icon_state = "setup_stationary-open"
+	shell_to_spawn = /obj/structure/server
+	screw_delay = 10 SECONDS
 
-// /obj/item/shell/airlock
-// 	name = "circuit airlock assembly"
-// 	icon = 'icons/obj/doors/airlocks/station/public.dmi'
-// 	icon_state = "construction"
-// 	shell_to_spawn = /obj/machinery/door/airlock/shell
-// 	screw_delay = 10 SECONDS
-// 	w_class = WEIGHT_CLASS_BULKY
+/obj/item/shell/airlock
+	name = "circuit airlock assembly"
+	icon = 'icons/obj/doors/airlocks/station/public.dmi'
+	icon_state = "construction"
+	shell_to_spawn = /obj/machinery/door/airlock/shell
+	screw_delay = 10 SECONDS
+	w_class = WEIGHT_CLASS_BULKY
 
-// /obj/item/shell/dispenser
-// 	name = "circuit dispenser assembly"
-// 	icon_state = "setup_drone_arms-open"
-// 	shell_to_spawn = /obj/structure/dispenser_bot
+/obj/item/shell/dispenser
+	name = "circuit dispenser assembly"
+	icon_state = "setup_drone_arms-open"
+	shell_to_spawn = /obj/structure/dispenser_bot
 
 /obj/item/shell/bci
 	name = "brain-computer interface assembly"

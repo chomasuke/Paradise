@@ -336,6 +336,9 @@
 
 
 /obj/machinery/bci_implanter/attackby(obj/item/weapon, mob/user, params)
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+
 	var/obj/item/organ/internal/cyberimp/brain/bci/new_bci = weapon
 	if(istype(new_bci))
 		if(!(locate(/obj/item/integrated_circuit) in new_bci))

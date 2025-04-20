@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../colors.scss';
 @use '../base.scss';
 
@@ -10,6 +11,10 @@ $fg-map: colors.$fg-map !default;
 
   user-select: none;
   pointer-events: none;
+}
+
+.ObjectComponent {
+  pointer-events: auto;
 }
 
 .ObjectComponent__Titlebar {
@@ -46,10 +51,7 @@ $fg-map: colors.$fg-map !default;
 
 .ObjectComponent__PortPos {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
 }
 
 @each $color-name, $color-value in $fg-map {
@@ -128,7 +130,7 @@ $category-colors: (
 
 @each $category-name, $values in $category-colors {
   .ObjectComponent__Category__#{$category-name} {
-    background-color: map-get($values, bg);
-    color: map-get($values, contrast);
+    background-color: map.get($values, bg);
+    color: map.get($values, contrast);
   }
 }

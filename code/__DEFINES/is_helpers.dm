@@ -119,6 +119,8 @@
 
 #define isglassreagentcontainer(A) istype(A, /obj/item/reagent_containers/glass)
 
+#define iscash(A) (istype(A, /obj/item/coin) || istype(A, /obj/item/stack/spacecash))
+
 GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 	/obj/item/pen,
 	/obj/item/screwdriver,
