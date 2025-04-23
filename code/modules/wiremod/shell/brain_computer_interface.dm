@@ -20,6 +20,11 @@
 		new /obj/item/circuit_component/bci_core,
 	), SHELL_CAPACITY_SMALL, starting_circuit = circuit)
 
+/obj/item/organ/internal/cyberimp/brain/bci/insert(mob/living/carbon/target, special = ORGAN_MANIPULATION_DEFAULT)
+	. = ..()
+	// Organs are put in nullspace, but this breaks circuit interactions
+	forceMove(target)
+
 /obj/item/organ/internal/cyberimp/brain/bci/atom_say(message)
 	if(owner)
 		// Otherwise say_dead will be called.
