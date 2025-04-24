@@ -94,7 +94,7 @@
 		if(!QDELETED(parent_shell))
 			loggable_strings += "<B>:</B> The last fingerprints on the containing shell was [parent_shell.fingerprintslast]."
 
-		var/loggable_string = loggable_strings.Join(" ")
+		// var/loggable_string = loggable_strings.Join(" ")
 		// add_to_signaler_investigate_log(loggable_string)
 		TIMER_COOLDOWN_START(parent, COOLDOWN_SIGNALLER_SEND, signal_cooldown_time)
 

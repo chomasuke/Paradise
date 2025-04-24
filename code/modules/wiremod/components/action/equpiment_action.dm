@@ -21,7 +21,7 @@
 /obj/item/circuit_component/equipment_action/Initialize(mapload, default_icon)
 	. = ..()
 
-	if (!isnull(default_icon))
+	if(!isnull(default_icon))
 		icon_options.set_input(default_icon)
 
 	button_name = add_input_port("Name", PORT_TYPE_STRING)

@@ -42,6 +42,7 @@
 
 /obj/item/organ/internal/cyberimp/brain/bci/proc/action_comp_unregistered(datum/source, obj/item/circuit_component/equipment_action/action_comp)
 	SIGNAL_HANDLER
+
 	var/datum/action/innate/bci_action/action = action_comp.granted_to[UID()]
 	if(!istype(action))
 		return
@@ -108,13 +109,13 @@
 		charge_action = new(src)
 		if(bci.owner)
 			charge_action.Grant(bci.owner)
-		bci.actions += charge_action
+		LAZYADD(bci.actions, charge_action)
 	else
 		if(!charge_action)
 			return
 		if(bci.owner)
 			charge_action.Remove(bci.owner)
-		bci.actions -= charge_action
+		LAZYREMOVE(bci.actions, charge_action)
 		QDEL_NULL(charge_action)
 
 /obj/item/circuit_component/bci_core/register_shell(atom/movable/shell)
@@ -131,7 +132,7 @@
 	if(charge_action)
 		if(bci.owner)
 			charge_action.Remove(bci.owner)
-		bci.actions -= charge_action
+		LAZYREMOVE(bci.actions, charge_action)
 		QDEL_NULL(charge_action)
 
 	UnregisterSignal(shell, list(
@@ -169,6 +170,12 @@
 /obj/item/circuit_component/bci_core/proc/on_organ_removed(datum/source, mob/living/carbon/owner)
 	SIGNAL_HANDLER
 
+	if(charge_action)
+		if(owner)
+			charge_action.Remove(owner)
+		bci.actions -= charge_action
+		QDEL_NULL(charge_action)
+
 	user_port.set_output(null)
 
 	UnregisterSignal(owner, list(
@@ -177,13 +184,13 @@
 		COMSIG_LIVING_ELECTROCUTE_ACT,
 	))
 
-/obj/item/circuit_component/bci_core/proc/on_borg_charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
+/obj/item/circuit_component/bci_core/proc/on_borg_charge(datum/source, recharge_speed)
 	SIGNAL_HANDLER
 
 	if(isnull(parent.cell))
 		return
 
-	charge_cell.Invoke(parent.cell, seconds_per_tick)
+	parent.cell.charge = min(parent.cell.charge + recharge_speed, parent.cell.maxcharge)
 
 /obj/item/circuit_component/bci_core/proc/on_electrocute(datum/source, shock_damage, shock_source, siemens_coefficient, flags)
 	SIGNAL_HANDLER
@@ -254,7 +261,7 @@
 
 /datum/action/innate/bci_charge_action/proc/update_maptext()
 	var/obj/item/stock_parts/cell/cell = circuit_component.parent.cell
-	button.maptext = cell ? MAPTEXT("[cell.percent()]%") : ""
+	button.maptext = cell ? MAPTEXT("[round(cell.percent(), 3)]%") : ""
 
 /obj/machinery/bci_implanter
 	name = "brain-computer interface manipulation chamber"

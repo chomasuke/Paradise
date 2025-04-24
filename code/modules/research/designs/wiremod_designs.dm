@@ -353,6 +353,12 @@
 	id = "comp_nfc_receive"
 	build_path = /obj/item/circuit_component/nfc_receive
 
+
+/datum/design/component/list_literal/nfc_send
+	name = "NFC Transmitter List Literal"
+	id = "comp_nfc_send_list_literal"
+	build_path = /obj/item/circuit_component/list_literal/nfc_send
+
 /datum/design/component/list_literal/ntnet_send
 	name = "NTNet Transmitter List Literal"
 	id = "comp_ntnet_send_list_literal"
@@ -493,10 +499,10 @@
 // 	id = "comp_wirenet_send_literal"
 // 	build_path = /obj/item/circuit_component/list_literal/wirenet_send
 
-// /datum/design/component/bci/bci_camera
-// 	name = "BCI Camera"
-// 	id = "comp_camera_bci"
-// 	build_path = /obj/item/circuit_component/remotecam/bci
+/datum/design/component/bci/bci_camera
+	name = "BCI Camera"
+	id = "comp_camera_bci"
+	build_path = /obj/item/circuit_component/remotecam/bci
 
 /datum/design/compact_remote_shell
 	name = "Compact Remote Shell"
@@ -548,7 +554,7 @@
 // 	id = "gun_shell"
 // 	build_path = /obj/item/gun/energy/wiremod_gun
 // 	build_type = PROTOLATHE
-// 	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_PLASMA = 100)
+// 	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_PLASMA = 500)
 // 	category = list(
 // 		"Circuitry"
 // 	)
@@ -570,7 +576,7 @@
 	id = "money_bot_shell"
 	build_path = /obj/item/shell/money_bot
 	build_type = PROTOLATHE
-	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_GOLD = 50)
+	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_GOLD = 200)
 	category = list(
 		"Circuitry"
 	)
@@ -597,7 +603,7 @@
 	materials = list(
 		MAT_GLASS = 2500,
 		MAT_METAL = 7500,
-		MAT_GOLD = 500 * 1.5,
+		MAT_GOLD = 1000,
 	)
 	build_path = /obj/item/shell/server
 	build_type = PROTOLATHE
@@ -610,8 +616,8 @@
 	desc = "A door shell that cannot be moved around when assembled."
 	id = "door_shell"
 	materials = list(
-		MAT_GLASS = 2500,
-		MAT_METAL = 7500,
+		MAT_GLASS = 5000,
+		MAT_METAL = 10000,
 	)
 	build_path = /obj/item/shell/airlock
 	build_type = PROTOLATHE

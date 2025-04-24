@@ -17,6 +17,7 @@
 	. = ..()
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/bot_circuit(),
+		new /obj/item/circuit_component/remotecam/drone()
 	), SHELL_CAPACITY_LARGE)
 
 /mob/living/circuit_drone/hear_say(list/message_pieces, verb = "says", italics = FALSE, mob/speaker = null, sound/speech_sound, sound_vol, sound_frequency, use_voice = TRUE, is_whisper = FALSE)
@@ -77,11 +78,12 @@
 	UnregisterSignal(shell, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
 	return ..()
 
-/obj/item/circuit_component/bot_circuit/proc/on_borg_charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
+/obj/item/circuit_component/bot_circuit/proc/on_borg_charge(datum/source, recharge_speed)
 	SIGNAL_HANDLER
-	if (isnull(parent.cell))
+	if(isnull(parent.cell))
 		return
-	charge_cell.Invoke(parent.cell, seconds_per_tick)
+
+	parent.cell.charge = min(parent.cell.charge + recharge_speed, parent.cell.maxcharge)
 
 /obj/item/circuit_component/bot_circuit/populate_ports()
 	north = add_input_port("Move North", PORT_TYPE_SIGNAL)

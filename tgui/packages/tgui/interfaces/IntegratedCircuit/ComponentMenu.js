@@ -96,7 +96,7 @@ export class ComponentMenu extends Component {
     shownComponents.length = currentLimit;
     return (
       <Section
-        title="Component Menu"
+        title="Меню компонентов"
         {...rest}
         fill
         buttons={
@@ -127,7 +127,7 @@ export class ComponentMenu extends Component {
           </Stack.Item>
           <Stack.Item>
             <Input
-              placeholder="Search.."
+              placeholder="Поиск."
               value={currentSearch}
               fluid
               onInput={(e, val) =>
@@ -144,9 +144,9 @@ export class ComponentMenu extends Component {
               {trueLength === 0 && (
                 <Stack.Item mt={1} fontSize={1}>
                   <NoticeBox info>
-                    You can hit this integrated circuit onto a component printer
-                    to link it so that you&apos;re able to remotely create and
-                    add components to this circuit.
+                    Вы можете подключить эту интегральную схему к принтеру плат,
+                    что позволит вам удаленно создавать и добавлять компоненты в
+                    схему.
                   </NoticeBox>
                 </Stack.Item>
               )}
@@ -166,7 +166,7 @@ export class ComponentMenu extends Component {
                     textAlign="center"
                     py={1}
                     mb={1}
-                    content="Show More"
+                    content="Показать больше"
                     onClick={() =>
                       this.setState({
                         currentLimit: currentLimit + 5,

@@ -706,16 +706,6 @@
 	)
 	return max(scale_list) - min(scale_list)
 
-/atom/proc/adjust_hud_position(image/holder, animate_time = null)
-	if(!icon || !holder)
-		return
-
-	if(animate_time)
-		animate(holder, pixel_x = -(get_cached_width() - world.icon_size) / 2, pixel_y = get_cached_height() - world.icon_size, time = animate_time)
-		return
-
-	holder.pixel_x = -(get_cached_width() - world.icon_size) / 2
-	holder.pixel_y = get_cached_height() - world.icon_size
 
 /atom/proc/set_hud_image_state(hud_type, hud_state, x_offset = 0, y_offset = 0)
 	if(!hud_list) // Still initializing
@@ -726,7 +716,6 @@
 	if(!istype(holder)) // Can contain lists for HUD_LIST_LIST hinted HUDs, if someone fucks up and passes this here we wanna know about it
 		CRASH("[src] ([type]) had a HUD_LIST_LIST hud_type [hud_type] passed into set_hud_image_state!")
 	holder.icon_state = hud_state
-	adjust_hud_position(holder)
 	if(x_offset || y_offset)
 		holder.pixel_x += x_offset
 		holder.pixel_y += y_offset

@@ -13,8 +13,6 @@
 
 	/// The message heard
 	var/datum/port/output/message_port
-	/// The language heard
-	var/datum/port/output/language_port
 	/// The speaker name port, usually the name of the person who spoke.
 	var/datum/port/output/speaker_name
 	/// The speaker entity that is currently speaking. Not necessarily the person who is speaking.
@@ -25,7 +23,6 @@
 /obj/item/circuit_component/hear/populate_ports()
 	on = add_input_port("On", PORT_TYPE_NUMBER, default = 1)
 	message_port = add_output_port("Message", PORT_TYPE_STRING)
-	language_port = add_output_port("Language", PORT_TYPE_STRING)
 	speaker_port = add_output_port("Speaker", PORT_TYPE_ATOM)
 	speaker_name = add_output_port("Speaker Name", PORT_TYPE_STRING)
 	trigger_port = add_output_port("Triggered", PORT_TYPE_SIGNAL)
@@ -47,8 +44,6 @@
 	if(speaker == parent?.shell)
 		return FALSE
 	message_port.set_output(multilingual_to_message(message_pieces))
-	// if(message_language)
-	// 	language_port.set_output(initial(message_language.name))
 	speaker_port.set_output(speaker)
 	speaker_name.set_output(speaker.GetVoice())
 	trigger_port.set_output(COMPONENT_SIGNAL)

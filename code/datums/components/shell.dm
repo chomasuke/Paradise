@@ -222,6 +222,10 @@
 	if(!attached_circuit)
 		return
 
+	if(!istype(tool, /obj/item/multitool/circuit))
+		source.balloon_alert(user, "this is not a circuit multitool!")
+		return
+
 	if(locked)
 		if(shell_flags & SHELL_FLAG_ALLOW_FAILURE_ACTION)
 			return
