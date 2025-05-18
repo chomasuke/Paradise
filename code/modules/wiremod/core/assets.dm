@@ -4,7 +4,7 @@
 /datum/asset/json/circuit_components/generate()
 	var/list/circuit_data = list()
 
-	for (var/component_type in subtypesof(/obj/item/circuit_component))
+	for(var/component_type in subtypesof(/obj/item/circuit_component))
 		var/obj/item/circuit_component/circuit_info = new component_type()
 		var/list/component_data = list()
 

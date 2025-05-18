@@ -335,17 +335,10 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 	.["screen_y"] = screen_y
 
 	var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
-	if(printer && printer.linked_console)
-		var/list/current_unlocked_designs = list()
-		var/datum/research/research_console = printer.linked_console.files
-		for(var/v in research_console.known_designs)
-			var/datum/design/design = research_console.known_designs[v]
-			if(!(design.build_type & IMPRINTER) || !ispath(design.build_path, /obj/item/circuit_component))
-				continue
+	if(!printer)
+		return
+	.["stored_designs"] = printer.current_unlocked_designs
 
-			current_unlocked_designs[design.build_path] = design.id
-
-		.["stored_designs"] = current_unlocked_designs
 
 /obj/item/integrated_circuit/ui_data(mob/user)
 	. = list()
@@ -675,20 +668,20 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 		if("print_component")
 			var/component_path = text2path(params["component_to_print"])
 			var/obj/item/circuit_component/component
-			// if((!admin_only && !ui.user.can_advanced_admin_interact()) || !check_rights_for(ui.user.client, R_SPAWN)) Всё будет, но не сразу
-			// 	var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
-			// 	if(!printer)
-			// 		balloon_alert(ui.user, "linked printer not found!")
-			// 		return
-			// 	component = printer.print_component(component_path)
-			// 	if(!component)
-			// 		balloon_alert(ui.user, "failed to make the component!")
-			// 		return
-			// else
-			if(!ispath(component_path, /obj/item/circuit_component))
-				return
-			component = new component_path(drop_location())
-			component.datum_flags |= DF_VAR_EDITED
+			if((!admin_only && !ui.user.can_advanced_admin_interact()) || !check_rights_for(ui.user.client, R_SPAWN))
+				var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
+				if(!printer)
+					balloon_alert(ui.user, "linked printer not found!")
+					return
+				component = printer.print_component(component_path)
+				if(!component)
+					balloon_alert(ui.user, "failed to make the component!")
+					return
+			else
+				if(!ispath(component_path, /obj/item/circuit_component))
+					return
+				component = new component_path(drop_location())
+				component.datum_flags |= DF_VAR_EDITED
 			if(!add_component(component))
 				return
 			component.rel_x = text2num(params["rel_x"])

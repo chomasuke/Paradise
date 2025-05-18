@@ -121,6 +121,8 @@
 
 #define iscash(A) (istype(A, /obj/item/coin) || istype(A, /obj/item/stack/spacecash))
 
+#define is_circuit(A) (istype(A, /obj/item/circuit_component/module) || istype(A, /obj/item/integrated_circuit))
+
 GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 	/obj/item/pen,
 	/obj/item/screwdriver,

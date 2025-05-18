@@ -11,6 +11,13 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	base_icon_state = "circuit_imprinter"
 	container_type = OPENCONTAINER
 
+	///List of designs scanned and saved
+	var/list/scanned_designs = list()
+	/// The current unlocked circuit component designs. Used by integrated circuits to print off circuit components remotely.
+	var/list/current_unlocked_designs = list()
+	///Constant material cost per component
+	var/cost_per_component = 500
+
 	categories = list(
 								"AI Modules",
 								"Computer Boards",
@@ -90,6 +97,37 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 	return round(A / max(1, (all_materials[M] * efficiency_coeff)))
 
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/update_components_list()
+	if(!linked_console)
+		return
+	LAZYCLEARLIST(current_unlocked_designs)
+	var/datum/research/research_console = linked_console.files
+	for(var/v in research_console.known_designs)
+		var/datum/design/design = research_console.known_designs[v]
+		if(!(design.build_type & IMPRINTER) || !ispath(design.build_path, /obj/item/circuit_component))
+			continue
+		LAZYADDASSOC(current_unlocked_designs, design.build_path, design.id)
+
+
+/obj/machinery/r_n_d/circuit_imprinter/attack_hand(mob/user)
+	if(..(user, 0))
+		return
+	interact(user)
+
+/obj/machinery/r_n_d/circuit_imprinter/attack_ghost(mob/user)
+	return interact(user)
+
+/obj/machinery/r_n_d/circuit_imprinter/interact(mob/user)
+	if(!disabled)
+		ui_interact(user)
+
+/obj/machinery/r_n_d/circuit_imprinter/ui_interact(mob/user, datum/tgui/ui = null)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ComponentPrinter", name)
+		ui.open()
+
 /obj/machinery/r_n_d/circuit_imprinter/attackby(obj/item/I, mob/user, params)
 	if(shocked && shock(user, 50))
 		add_fingerprint(user)
@@ -110,22 +148,234 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 			return ATTACK_CHAIN_PROCEED|ATTACK_CHAIN_NO_AFTERATTACK
 		return ATTACK_CHAIN_PROCEED	// afterattack will handle this
 
+	if(circuit_iteract(user, I))
+		return ATTACK_CHAIN_PROCEED_SUCCESS
+
+	return ..()
+
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/circuit_iteract(mob/user, obj/item/circuit)
+	if(!is_circuit(circuit))
+		return FALSE
+
+	var/image/save_icon = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_save1")
+	var/image/link_icon = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_link")
+	var/choices = list(
+		"Link Circuit" = link_icon,
+		"Save Circuit" = save_icon,
+	)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user, circuit), require_near = TRUE)
+	if(!check_menu(user, circuit))
+		return FALSE
+	switch(choice)
+		if("Link Circuit")
+			link_circuit(user, circuit)
+			return TRUE
+
+		if("Save Circuit")
+			save_circuit(user, circuit)
+			return TRUE
+
+	return TRUE
+
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/check_menu(mob/living/user, obj/item/circuit)
+	if(!istype(user))
+		return FALSE
+	if(panel_open)
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(circuit))
+		return FALSE
+
+	return TRUE
+
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/link_circuit(mob/living/user, obj/item/I)
+	if(!is_circuit(I))
+		return FALSE
+
 	var/obj/item/integrated_circuit/circuit
+
 	if(istype(I, /obj/item/integrated_circuit))
 		circuit = I
-
 	else if(istype(I, /obj/item/circuit_component/module))
 		var/obj/item/circuit_component/module/module = I
 		circuit = module.internal_circuit
 
-	if(isnull(circuit))
-		return ..()
-
 	circuit.linked_circuit_imprinter = WEAKREF(src)
 	circuit.update_static_data_for_all_viewers()
-	balloon_alert(user, "successfully linked to the integrated circuit")
+	balloon_alert(user, "схема подключена")
 
-	return ATTACK_CHAIN_PROCEED_SUCCESS
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/save_circuit(mob/living/user, obj/item/circuit)
+	var/list/data = list()
+	if(!is_circuit(circuit))
+		return
+	if(!linked_console)
+		balloon_alert(user, "консоль исследований не привязана!")
+		return
+
+	if(istype(circuit, /obj/item/circuit_component/module))
+		var/obj/item/circuit_component/module/module = circuit
+		if(HAS_TRAIT(module, TRAIT_CIRCUIT_UNDUPABLE))
+			balloon_alert(user, "интегральная схема не может быть сохранена!")
+			return
+
+		data["dupe_data"] = list()
+		module.save_data_to_list(data["dupe_data"])
+
+		data["name"] = module.display_name
+		data["desc"] = "A module that has been loaded in by [user]."
+		data["materials"] = list(MAT_GLASS = module.circuit_size * cost_per_component)
+
+	else if(istype(circuit, /obj/item/integrated_circuit))
+		var/obj/item/integrated_circuit/integrated_circuit = circuit
+		if(HAS_TRAIT(integrated_circuit, TRAIT_CIRCUIT_UNDUPABLE))
+			balloon_alert(user, "интегральная схема не может быть сохранена!")
+			return
+		data["dupe_data"] = integrated_circuit.convert_to_json()
+
+		data["name"] = integrated_circuit.display_name
+		data["desc"] = "An integrated circuit that has been loaded in by [user]."
+
+		var/datum/design/integrated_circuit/circuit_design = linked_console.files.known_designs["integrated_circuit"]
+		var/materials = list(MAT_GLASS = integrated_circuit.current_size * cost_per_component)
+		for(var/material_type in circuit_design.materials)
+			materials[material_type] += circuit_design.materials[material_type]
+
+		data["materials"] = materials
+		data["integrated_circuit"] = TRUE
+
+	data["Icon"] = circuit.icon
+	data["IconState"] = circuit.icon_state
+
+	if(!length(data))
+		return
+
+	if(!data["name"])
+		balloon_alert(user, "требуется название!")
+		return
+
+	for(var/list/component_data as anything in scanned_designs)
+		if(component_data["name"] == data["name"])
+			balloon_alert(user, "название занято!")
+			return
+
+	LAZYADD(scanned_designs, list(data))
+
+	balloon_alert(user, "схема сохранена")
+	playsound(src, 'sound/machines/ping.ogg', 50)
+
+	update_static_data_for_all_viewers()
+
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/print_module(list/design)
+	flick("[base_icon_state]_ani", src)
+
+	addtimer(CALLBACK(src, PROC_REF(finish_module_print), design), 1.6 SECONDS)
+
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/finish_module_print(list/design)
+	var/atom/movable/created_atom
+	if(design["integrated_circuit"])
+		var/obj/item/integrated_circuit/circuit = new(drop_location())
+		var/list/errors = list()
+		circuit.load_circuit_data(design["dupe_data"], errors)
+		if(length(errors))
+			stack_trace("Error loading user saved circuit [errors.Join(", ")].")
+		created_atom = circuit
+	else
+		var/obj/item/circuit_component/module/module = new(drop_location())
+		module.load_data_from_list(design["dupe_data"])
+		created_atom = module
+
+	balloon_alert_to_viewers("напечатано: [design["name"]]")
+	created_atom.pixel_x = created_atom.base_pixel_x + rand(-5, 5)
+	created_atom.pixel_y = created_atom.base_pixel_y + rand(-5, 5)
+
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/print_component(typepath)
+	var/design_id = current_unlocked_designs[typepath]
+	var/datum/design/design = linked_console.files.known_designs[design_id]
+
+	if(!(design.build_type & IMPRINTER))
+		return
+
+	if(try_use_materials(design.materials))
+		flick("[base_icon_state]_ani", src)
+
+		return new design.build_path(drop_location())
+
+
+/obj/machinery/r_n_d/circuit_imprinter/proc/try_use_materials(list/design_materials)
+	return materials.use_amount(design_materials, efficiency_coeff)
+
+
+/obj/machinery/r_n_d/circuit_imprinter/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("print")
+			var/design_id = text2num(params["designId"])
+
+			if(design_id < 1 || design_id > length(scanned_designs))
+				return TRUE
+
+			var/list/design = LAZYACCESS(scanned_designs, design_id)
+			var/list/design_materials = design["materials"]
+
+			try_use_materials(design_materials) ? print_module(design) : atom_say("Недостаточно материалов.")
+
+		if("del_design")
+			var/design_id = text2num(params["designId"])
+
+			if(design_id < 1 || design_id > length(scanned_designs))
+				return TRUE
+
+			var/list/design = list(LAZYACCESS(scanned_designs, design_id))
+
+			LAZYREMOVE(scanned_designs, design)
+
+			update_static_data_for_all_viewers()
+
+	return TRUE
+
+
+/obj/machinery/r_n_d/circuit_imprinter/ui_data(mob/user)
+	var/list/data = list()
+	data["materials"] = materials.ui_data()
+	return data
+
+
+/obj/machinery/r_n_d/circuit_imprinter/ui_static_data(mob/user)
+	var/list/data = materials.ui_static_data()
+
+	var/list/designs = list()
+
+	var/index = 1
+	for (var/list/design as anything in scanned_designs)
+
+		var/list/cost = list()
+		var/list/materials = design["materials"]
+		for(var/MAT in materials)
+			cost[MAT] = max(1, round(materials[MAT] * efficiency_coeff))
+
+		designs["[index]"] = list(
+			"name" = design["name"],
+			"desc" = design["desc"],
+			"cost" = cost,
+			"id" = "[index]",
+			"icon" = design["Icon"],
+			"IconState" = design["IconState"],
+			"categories" = list("/Saved Circuits"),
+		)
+		index++
+
+	data["designs"] = designs
+
+	return data
 
 
 /obj/machinery/r_n_d/circuit_imprinter/screwdriver_act(mob/living/user, obj/item/I)

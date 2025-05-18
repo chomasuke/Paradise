@@ -298,6 +298,7 @@
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stack/cable_coil(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
+	update_icon()
 
 /obj/machinery/bci_implanter/on_deconstruction(disassembled)
 	drop_stored_bci()

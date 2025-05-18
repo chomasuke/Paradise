@@ -456,7 +456,7 @@ export class IntegratedCircuit extends Component {
         width={1200}
         height={800}
         buttons={
-          <Stack>
+          <Stack position="absolute" top={0} fill horizontal>
             <Stack.Item>
               <Input
                 placeholder="Name"

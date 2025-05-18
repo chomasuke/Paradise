@@ -667,10 +667,12 @@
 // 		"Circuitry"
 // 	)
 
-/datum/design/board/bci_implanter
+/datum/design/bci_implanter
 	name = "Brain-Computer Interface Manipulation Chamber"
 	desc = "A machine that, when given a brain-computer interface, will implant it into an occupant. Otherwise, will remove any brain-computer interfaces they already have."
 	id = "bci_implanter"
+	req_tech = list("programming" = 4, "biotech" = 3, "engineering" = 3)
+	materials = list(MAT_GLASS = 1000)
 	build_path = /obj/item/circuitboard/machine/bci_implanter
 	build_type = IMPRINTER
 	category = list(
