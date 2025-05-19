@@ -99,9 +99,11 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/update_components_list()
+	LAZYCLEARLIST(current_unlocked_designs)
+
 	if(!linked_console)
 		return
-	LAZYCLEARLIST(current_unlocked_designs)
+
 	var/datum/research/research_console = linked_console.files
 	for(var/v in research_console.known_designs)
 		var/datum/design/design = research_console.known_designs[v]
@@ -148,7 +150,8 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 			return ATTACK_CHAIN_PROCEED|ATTACK_CHAIN_NO_AFTERATTACK
 		return ATTACK_CHAIN_PROCEED	// afterattack will handle this
 
-	if(circuit_iteract(user, I))
+	if(is_circuit(I))
+		circuit_iteract(user, I)
 		return ATTACK_CHAIN_PROCEED_SUCCESS
 
 	return ..()
@@ -184,7 +187,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		return FALSE
 	if(panel_open)
 		return FALSE
-	if(user.incapacitated() || !user.Adjacent(circuit))
+	if(user.incapacitated() || (user.get_active_hand() != circuit))
 		return FALSE
 
 	return TRUE

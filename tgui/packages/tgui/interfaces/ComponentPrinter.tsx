@@ -23,7 +23,7 @@ type ComponentPrinterData = {
   designs: Record<string, Design>;
   materials: Material[];
 };
-// Это плохо, это недоделанно, это похуй, это потом.
+// Это плохо, это недоделано, это похуй, это потом.
 export const ComponentPrinter = (props) => {
   const { act, data } = useBackend<ComponentPrinterData>();
   const { designs } = data;
