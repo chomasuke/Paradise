@@ -13,6 +13,9 @@
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
 
+// гибсы, худы, взрывы, возможность повесить карту, толкучка
+
+
 /mob/living/circuit_drone/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/shell, list(
@@ -20,10 +23,6 @@
 		new /obj/item/circuit_component/remotecam/drone()
 	), SHELL_CAPACITY_LARGE)
 
-/mob/living/circuit_drone/hear_say(list/message_pieces, verb = "says", italics = FALSE, mob/speaker = null, sound/speech_sound, sound_vol, sound_frequency, use_voice = TRUE, is_whisper = FALSE)
-	if(speaker == src)
-		return ..()
-	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, speaker, message_pieces)
 
 /mob/living/circuit_drone/examine(mob/user)
 	. = ..()
@@ -37,8 +36,9 @@
 
 /mob/living/circuit_drone/updatehealth()
 	. = ..()
-	if(health < 0)
+	if(health <= 0)
 		gib()
+
 
 /mob/living/circuit_drone/welder_act(mob/living/user, obj/item/tool)
 	. = ..()

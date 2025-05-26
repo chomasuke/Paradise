@@ -679,16 +679,16 @@
 		"Medical Machinery"
 	)
 
-// /datum/design/assembly_shell
-// 	name = "Assembly Shell"
-// 	desc = "An assembly shell that can be attached to wires and other assemblies."
-// 	id = "assembly_shell"
-// 	materials = list(MAT_GLASS = 1000, MAT_METAL = 2500)
-// 	build_path = /obj/item/assembly/wiremod
-// 	build_type = PROTOLATHE
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/assembly_shell
+	name = "Assembly Shell"
+	desc = "An assembly shell that can be attached to wires and other assemblies."
+	id = "assembly_shell"
+	materials = list(MAT_GLASS = 1000, MAT_METAL = 2500)
+	build_path = /obj/item/assembly/wiremod
+	build_type = PROTOLATHE
+	category = list(
+		"Circuitry"
+	)
 
 // /datum/design/mod_module_shell
 // 	name = "MOD Module Shell"

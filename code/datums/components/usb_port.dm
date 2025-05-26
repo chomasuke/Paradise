@@ -19,7 +19,7 @@
 	var/atom/movable/physical_object
 
 /datum/component/usb_port/Initialize(list/circuit_component_types)
-	if (!isatom(parent))
+	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	circuit_components = list()
@@ -99,7 +99,7 @@
 	return ..()
 
 /datum/component/usb_port/proc/unregister_circuit_signals()
-	if (isnull(attached_circuit))
+	if(isnull(attached_circuit))
 		return
 
 	UnregisterSignal(attached_circuit, list(
@@ -109,7 +109,7 @@
 	))
 
 /datum/component/usb_port/proc/unregister_physical_signals()
-	if (isnull(physical_object))
+	if(isnull(physical_object))
 		return
 
 	UnregisterSignal(physical_object, list(
@@ -125,7 +125,7 @@
 /datum/component/usb_port/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
-	if (isnull(attached_circuit))
+	if(isnull(attached_circuit))
 		examine_text += span_notice("There is a USB port on the front.")
 	else
 		examine_text += span_notice("[attached_circuit.shell || attached_circuit] is connected to [parent.p_them()] by a USB port.")
@@ -138,27 +138,27 @@
 /datum/component/usb_port/proc/on_atom_usb_cable_try_attach(datum/source, obj/item/usb_cable/connecting_cable, mob/user)
 	SIGNAL_HANDLER
 
-	if (!length(circuit_components))
+	if(!length(circuit_components))
 		set_circuit_components(circuit_component_types)
 
 	var/atom/atom_parent = parent
 
-	if (!isnull(attached_circuit))
+	if(!isnull(attached_circuit))
 		if(user)
 			atom_parent.balloon_alert(user, "usb already connected")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
-	if (isnull(connecting_cable.attached_circuit))
+	if(isnull(connecting_cable.attached_circuit))
 		if(user)
 			connecting_cable.balloon_alert(user, "connect to a shell first")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
-	if (!IN_GIVEN_RANGE(connecting_cable.attached_circuit, parent, USB_CABLE_MAX_RANGE))
+	if(!IN_GIVEN_RANGE(connecting_cable.attached_circuit, parent, USB_CABLE_MAX_RANGE))
 		if(user)
 			connecting_cable.balloon_alert(user, "too far away")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
-	if (connecting_cable.attached_circuit.locked)
+	if(connecting_cable.attached_circuit.locked)
 		connecting_cable.balloon_alert(user, "shell is locked!")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
@@ -202,10 +202,10 @@
 /datum/component/usb_port/proc/on_moved()
 	SIGNAL_HANDLER
 
-	if (isnull(attached_circuit))
+	if(isnull(attached_circuit))
 		return
 
-	if (IN_GIVEN_RANGE(attached_circuit, parent, USB_CABLE_MAX_RANGE))
+	if(IN_GIVEN_RANGE(attached_circuit, parent, USB_CABLE_MAX_RANGE))
 		return
 
 	detach()
@@ -225,7 +225,7 @@
 
 /datum/component/usb_port/proc/detach()
 	var/obj/item/usb_cable/usb_cable = usb_cable_ref?.resolve()
-	if (isnull(usb_cable))
+	if(isnull(usb_cable))
 		return
 
 	for(var/obj/item/circuit_component/component as anything in circuit_components)

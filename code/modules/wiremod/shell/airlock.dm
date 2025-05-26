@@ -37,7 +37,7 @@
 
 /obj/item/circuit_component/airlock
 	display_name = "Airlock"
-	desc = "The general interface with an airlock. Includes general statuses of the airlock."
+	desc = "Общий интерфейс шлюза. Включает в себя общие статусы шлюза."
 
 	/// The shell, if it is an airlock.
 	var/obj/machinery/door/airlock/attached_airlock

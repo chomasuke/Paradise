@@ -1,6 +1,6 @@
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Box, Section, DmIcon, Button } from '../components';
+import { Box, Section, DmIcon, Button, Stack, NoticeBox } from '../components';
 import { toTitleCase } from 'common/string';
 
 type Design = {
@@ -32,6 +32,11 @@ export const ComponentPrinter = (props) => {
     <Window title={'Хуй'} width={670} height={600}>
       <Window.Content>
         <Box>
+          {Object.values(designs).length === 0 && (
+            <Stack.Item mt={1} fontSize={1}>
+              <NoticeBox info>Туда сбда</NoticeBox>
+            </Stack.Item>
+          )}
           {Object.values(designs).map((design) => (
             <Section key={design.id}>
               <DmIcon

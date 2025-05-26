@@ -80,3 +80,6 @@
 
 ///from /obj/item/camera/captureimage(): (atom/target, mob/user)
 #define COMSIG_CAMERA_IMAGE_CAPTURED "camera_image_captured"
+
+/// from /obj/item/assembly/proc/pulsed(mob/pulser)
+#define COMSIG_ASSEMBLY_PULSED "assembly_pulsed"
