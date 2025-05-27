@@ -29,7 +29,7 @@ export const ComponentPrinter = (props) => {
   const { designs } = data;
 
   return (
-    <Window title={'Хуй'} width={670} height={600}>
+    <Window title={'Хуйq'} width={670} height={600}>
       <Window.Content>
         <Box>
           {Object.values(designs).length === 0 && (
@@ -43,10 +43,10 @@ export const ComponentPrinter = (props) => {
                 icon={design.icon}
                 icon_state={design.IconState}
                 style={{
-                  'vertical-align': 'middle',
+                  verticalAlign: 'middle',
                   width: '32px',
                   margin: '0px',
-                  'margin-left': '0px',
+                  marginLeft: '0px',
                 }}
               />
               <Button

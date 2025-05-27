@@ -1,7 +1,7 @@
 import { useBackend } from '../backend';
 import { Button, Dropdown, Input, Section, Stack } from '../components';
 import { Window } from '../layouts';
-
+// Хуй
 export const CircuitModule = (props) => {
   const { act, data } = useBackend();
   const { input_ports, output_ports, global_port_types } = data;

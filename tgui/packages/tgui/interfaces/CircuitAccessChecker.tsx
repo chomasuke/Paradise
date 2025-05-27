@@ -3,17 +3,17 @@ import { BooleanLike } from 'common/react';
 import { useBackend } from '../backend';
 import { Button, LabeledList } from '../components';
 import { Window } from '../layouts';
-import { AccessList } from './common/AccessList';
+import { Access, AccessList } from './common/AccessList';
 
 type Data = {
   oneAccess: BooleanLike;
-  regions: string[];
-  accesses: string[];
+  regions: Access[];
+  accesses: number[];
 };
 
 export const CircuitAccessChecker = (props) => {
   const { act, data } = useBackend<Data>();
-  const { oneAccess, regions = [], accesses = [] } = data;
+  const { oneAccess, regions, accesses } = data;
 
   return (
     <Window width={420} height={360}>

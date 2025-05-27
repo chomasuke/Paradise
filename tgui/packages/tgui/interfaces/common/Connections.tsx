@@ -44,9 +44,9 @@ export const Connections = (props: {
       width="100%"
       height="100%"
       style={{
-        'position': 'absolute',
-        'pointer-events': 'none',
-        'z-index': zLayer,
+        position: 'absolute',
+        pointerEvents: 'none',
+        zIndex: zLayer,
         overflow: 'visible',
       }}
     >

@@ -1,13 +1,13 @@
-import { Component, createRef } from 'inferno';
+import { Component, createRef } from 'react';
 import { Button, Stack, Box } from '../../components';
-import { classes } from '../../../common/react';
+import { classes } from 'common/react';
 
 import { noop } from './constants';
 import { Port } from './Port';
 
 export class DisplayComponent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.ref = createRef();
   }
 
@@ -38,8 +38,8 @@ export class DisplayComponent extends Component {
     return false;
   }
 
-  render(props) {
-    const { component, fixedSize, ...rest } = props;
+  render() {
+    const { component, fixedSize, ...rest } = this.props;
     const categoryClass = `ObjectComponent__Category__${component.category || 'Unassigned'}`;
     return (
       <Box {...rest}>

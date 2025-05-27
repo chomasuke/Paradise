@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
 import { Input, InfinitePlane, Stack, Box, Button } from '../../components';
-import { Component } from 'inferno';
+import { Component } from 'react';
 import { Window } from '../../layouts';
 import { resolveAsset } from '../../assets';
 import { CircuitInfo } from './CircuitInfo';
@@ -18,8 +18,8 @@ import { VariableMenu } from './VariableMenu';
 import { ComponentMenu } from './ComponentMenu';
 
 export class IntegratedCircuit extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       locations: {},
       selectedPort: null,
@@ -456,11 +456,12 @@ export class IntegratedCircuit extends Component {
         width={1200}
         height={800}
         buttons={
-          <Stack position="absolute" top={0} fill horizontal>
+          <Stack>
             <Stack.Item>
               <Input
                 placeholder="Name"
                 value={display_name}
+                expensive
                 onChange={(e, value) =>
                   act('set_display_name', { display_name: value })
                 }
