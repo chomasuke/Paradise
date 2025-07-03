@@ -3,8 +3,10 @@ import { Component, createRef } from 'react';
 import { DisplayName } from './DisplayName';
 import { classes } from 'common/react';
 import { noop } from './constants';
+import { PortProps } from './types';
 
-export class Port extends Component {
+export class Port extends Component<PortProps> {
+  iconRef: any;
   constructor(props) {
     super(props);
     this.iconRef = createRef();

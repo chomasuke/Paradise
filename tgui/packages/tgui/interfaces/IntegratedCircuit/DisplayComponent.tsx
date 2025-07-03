@@ -1,11 +1,13 @@
-import { Component, createRef } from 'react';
+import { Component, createRef, CSSProperties, RefObject } from 'react';
 import { Button, Stack, Box } from '../../components';
 import { classes } from 'common/react';
 
 import { noop } from './constants';
 import { Port } from './Port';
+import { DisplayComponentProps } from './types';
 
-export class DisplayComponent extends Component {
+export class DisplayComponent extends Component<DisplayComponentProps> {
+  ref: RefObject<HTMLDivElement>;
   constructor(props) {
     super(props);
     this.ref = createRef();
@@ -50,9 +52,7 @@ export class DisplayComponent extends Component {
             className={classes(['ObjectComponent__Titlebar', categoryClass])}
           >
             <Stack>
-              <Stack.Item grow={1} unselectable="on">
-                {component.name}
-              </Stack.Item>
+              <Stack.Item grow={1}>{component.name}</Stack.Item>
               {!!component.ui_alerts &&
                 Object.keys(component.ui_alerts).map((icon) => (
                   <Stack.Item key={icon}>
@@ -75,12 +75,7 @@ export class DisplayComponent extends Component {
               </Stack.Item>
             </Stack>
           </Box>
-          <Box
-            className="ObjectComponent__Content"
-            unselectable="on"
-            py={1}
-            px={1}
-          >
+          <Box className="ObjectComponent__Content" py={1} px={1}>
             <Stack>
               <Stack.Item grow={fixedSize}>
                 <Stack vertical fill>

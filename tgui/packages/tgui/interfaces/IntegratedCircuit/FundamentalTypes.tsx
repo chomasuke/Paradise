@@ -3,7 +3,7 @@ import { BasicInput } from './BasicInput';
 import { OPTION_DROPDOWN_LARGE_CHAR_AMOUNT } from './constants';
 
 export const FUNDAMENTAL_DATA_TYPES = {
-  'string': (props) => {
+  string: (props) => {
     const { name, value, setValue, color } = props;
     return (
       <BasicInput name={name} setValue={setValue} value={value} defaultValue="">
@@ -16,7 +16,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       </BasicInput>
     );
   },
-  'number': (props) => {
+  number: (props) => {
     const { name, value, setValue, color } = props;
     return (
       <BasicInput
@@ -27,14 +27,16 @@ export const FUNDAMENTAL_DATA_TYPES = {
       >
         <NumberInput
           value={value}
-          color={color}
-          onChange={(e, val) => setValue(val)}
+          onChange={(val) => setValue(val)}
           unit={name}
+          maxValue={Infinity}
+          minValue={-Infinity}
+          step={1}
         />
       </BasicInput>
     );
   },
-  'entity': (props) => {
+  entity: (props) => {
     const { name, setValue } = props;
     return (
       <Button
@@ -46,7 +48,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       />
     );
   },
-  'datum': (props) => {
+  datum: (props) => {
     const { name, setValue } = props;
     return (
       <Button
@@ -58,7 +60,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       />
     );
   },
-  'signal': (props) => {
+  signal: (props) => {
     const { name, setValue } = props;
     return (
       <Button
@@ -69,7 +71,7 @@ export const FUNDAMENTAL_DATA_TYPES = {
       />
     );
   },
-  'option': (props) => {
+  option: (props) => {
     const { value, setValue } = props;
     let large = false;
     const extraData = props.extraData || [];
@@ -88,11 +90,12 @@ export const FUNDAMENTAL_DATA_TYPES = {
         options={data}
         onSelected={setValue}
         selected={value}
+        width="100%"
         menuWidth={large ? '200px' : undefined}
       />
     );
   },
-  'any': (props) => {
+  any: (props) => {
     const { name, value, setValue, color } = props;
     return (
       <BasicInput

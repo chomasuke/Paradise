@@ -16,8 +16,11 @@ import { ObjectComponent } from './ObjectComponent';
 import { DisplayComponent } from './DisplayComponent';
 import { VariableMenu } from './VariableMenu';
 import { ComponentMenu } from './ComponentMenu';
+import { IntegratedCircuitState, IntegratedCircuitData } from './types';
 
-export class IntegratedCircuit extends Component {
+export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
+  timeUntilPortReleaseTimesOut: number = 0;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -53,7 +56,7 @@ export class IntegratedCircuit extends Component {
   }
 
   // Helper function to get an element's exact position
-  getPosition(el) {
+  getPosition(el): { x: number; y: number; color?: string } {
     let xPos = 0;
     let yPos = 0;
 
@@ -137,7 +140,7 @@ export class IntegratedCircuit extends Component {
   // mouse up called whilst over a port. This means we can check if selectedPort
   // exists and do perform some actions if it does.
   handlePortUp(portIndex, componentId, port, isOutput, event) {
-    const { act, data: uiData } = useBackend();
+    const { act, data: uiData } = useBackend<IntegratedCircuitData>();
     const { selectedPort } = this.state;
     if (!selectedPort) {
       return;
@@ -188,7 +191,7 @@ export class IntegratedCircuit extends Component {
   }
 
   handleDragging(event) {
-    const { data } = useBackend();
+    const { data } = useBackend<IntegratedCircuitData>();
     const { screen_x, screen_y } = data;
     this.setState((state) => ({
       mouseX: event.clientX - (state.backgroundX || screen_x),
@@ -248,7 +251,7 @@ export class IntegratedCircuit extends Component {
   }
 
   handleMouseDown(event) {
-    const { act, data } = useBackend();
+    const { act, data } = useBackend<IntegratedCircuitData>();
     const { examined_name } = data;
     if (examined_name) {
       act('remove_examined_component');
@@ -389,7 +392,7 @@ export class IntegratedCircuit extends Component {
   }
 
   render() {
-    const { act, data } = useBackend();
+    const { act, data } = useBackend<IntegratedCircuitData>();
     const {
       components,
       display_name,
@@ -461,8 +464,9 @@ export class IntegratedCircuit extends Component {
               <Input
                 placeholder="Name"
                 value={display_name}
+                maxLength={24}
                 expensive
-                onChange={(e, value) =>
+                onInput={(e, value) =>
                   act('set_display_name', { display_name: value })
                 }
               />
@@ -470,7 +474,7 @@ export class IntegratedCircuit extends Component {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Show Variables Menu"
+                tooltip="Показать меню переменных"
                 icon="cog"
                 selected={variableMenuOpen}
                 onClick={() =>
@@ -483,7 +487,7 @@ export class IntegratedCircuit extends Component {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Show Components Menu"
+                tooltip="Показать меню компонентов"
                 icon="plus"
                 selected={componentMenuOpen}
                 onClick={() =>
@@ -496,7 +500,7 @@ export class IntegratedCircuit extends Component {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Enable Grid Aligning"
+                tooltip="Привязка к сетке"
                 icon="th-large"
                 selected={grid_mode}
                 onClick={() => act('toggle_grid_mode')}
@@ -516,7 +520,7 @@ export class IntegratedCircuit extends Component {
       >
         <Window.Content
           style={{
-            'background-image': 'none',
+            backgroundImage: 'none',
           }}
         >
           <InfinitePlane
@@ -524,7 +528,6 @@ export class IntegratedCircuit extends Component {
             height="100%"
             backgroundImage={resolveAsset('grid_background.png')}
             imageWidth={900}
-            scalePadding={componentMenuOpen ? '300px' : '0'}
             onZoomChange={this.handleZoomChange}
             onBackgroundMoved={this.handleBackgroundMoved}
             initialLeft={screen_x}
@@ -550,11 +553,13 @@ export class IntegratedCircuit extends Component {
             {!!draggingComponent && (
               <DisplayComponent
                 component={draggingComponent}
-                position="absolute"
                 left={`${mouseX - draggingOffsetX}px`}
                 top={`${mouseY - draggingOffsetY}px`}
                 onDisplayUpdated={this.handleDisplayLocation}
                 onDisplayLoaded={this.handleDisplayLocation}
+                style={{
+                  position: 'absolute',
+                }}
               />
             )}
             <Connections connections={connections} />
@@ -580,11 +585,10 @@ export class IntegratedCircuit extends Component {
               minWidth="600px"
               width="50%"
               style={{
-                'border-radius': '0px 32px 0px 0px',
-                'background-color': 'rgba(0, 0, 0, 0.3)',
-                '-ms-user-select': 'none',
+                borderRadius: '0px 32px 0px 0px',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                userSelect: 'none',
               }}
-              unselectable="on"
             >
               <VariableMenu
                 variables={variables}
@@ -598,16 +602,13 @@ export class IntegratedCircuit extends Component {
                     is_assoc_list: listType === VARIABLE_ASSOC_LIST,
                   })
                 }
-                onRemoveVariable={(name, event) =>
+                onRemoveVariable={(name) =>
                   act('remove_variable', {
                     variable_name: name,
                   })
                 }
                 handleMouseDownSetter={this.onVarClickedSetter}
                 handleMouseDownGetter={this.onVarClickedGetter}
-                style={{
-                  'border-radius': '0px 32px 0px 0px',
-                }}
               />
             </Box>
           )}
@@ -619,10 +620,9 @@ export class IntegratedCircuit extends Component {
               height="100%"
               width="300px"
               style={{
-                'background-color': 'rgba(0, 0, 0, 0.3)',
-                '-ms-user-select': 'none',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                userSelect: 'none',
               }}
-              unselectable="on"
             >
               <ComponentMenu
                 components={

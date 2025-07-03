@@ -23,18 +23,18 @@ type ComponentPrinterData = {
   designs: Record<string, Design>;
   materials: Material[];
 };
-// Это плохо, это недоделано, это похуй, это потом.
+
 export const ComponentPrinter = (props) => {
   const { act, data } = useBackend<ComponentPrinterData>();
   const { designs } = data;
 
   return (
-    <Window title={'Хуйq'} width={670} height={600}>
+    <Window title={'Circuit duplicator'} width={670} height={600}>
       <Window.Content>
         <Box>
           {Object.values(designs).length === 0 && (
             <Stack.Item mt={1} fontSize={1}>
-              <NoticeBox info>Туда сбда</NoticeBox>
+              <NoticeBox info>Сохранённые схемы отсутствуют.</NoticeBox>
             </Stack.Item>
           )}
           {Object.values(designs).map((design) => (

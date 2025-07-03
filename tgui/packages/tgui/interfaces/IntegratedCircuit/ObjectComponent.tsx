@@ -3,8 +3,16 @@ import { Box, Stack, Button } from '../../components';
 import { classes, shallowDiffers } from 'common/react';
 import { ABSOLUTE_Y_OFFSET, noop } from './constants';
 import { Port } from './Port';
+import {
+  ComponentType,
+  ObjectComponentProps,
+  ObjectComponentState,
+} from './types';
 
-export class ObjectComponent extends Component {
+export class ObjectComponent extends Component<
+  ObjectComponentProps & ComponentType,
+  ObjectComponentState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +42,7 @@ export class ObjectComponent extends Component {
 
   handleStopDrag(e) {
     const { dragPos } = this.state;
-    const { index, act = () => _ } = this.props;
+    const { index, act = noop } = this.props;
     if (dragPos) {
       act('set_component_coordinates', {
         component_id: index,
@@ -133,7 +141,9 @@ export class ObjectComponent extends Component {
         top={`${y_pos}px`}
         onMouseDown={this.handleStartDrag}
         onMouseUp={this.handleStopDrag}
-        onComponentWillUnmount={this.handleDrag}
+        style={{
+          userSelect: 'none',
+        }}
         {...rest}
       >
         <Box
@@ -145,9 +155,7 @@ export class ObjectComponent extends Component {
           ])}
         >
           <Stack>
-            <Stack.Item grow={1} unselectable="on">
-              {name}
-            </Stack.Item>
+            <Stack.Item grow={1}>{name}</Stack.Item>
             {!!ui_buttons &&
               Object.keys(ui_buttons).map((icon) => (
                 <Stack.Item key={icon}>
@@ -195,20 +203,18 @@ export class ObjectComponent extends Component {
                   icon="times"
                   compact
                   className={`ObjectComponent__Category__${category}`}
-                  onClick={() =>
-                    act('detach_component', { component_id: index })
+                  onClick={(event) =>
+                    act('detach_component', {
+                      component_id: index,
+                      ctrl: !!event.ctrlKey,
+                    })
                   }
                 />
               </Stack.Item>
             )}
           </Stack>
         </Box>
-        <Box
-          className="ObjectComponent__Content"
-          unselectable="on"
-          py={1}
-          px={1}
-        >
+        <Box className="ObjectComponent__Content" py={1} px={1}>
           <Stack>
             <Stack.Item grow={1}>
               <Stack vertical fill>

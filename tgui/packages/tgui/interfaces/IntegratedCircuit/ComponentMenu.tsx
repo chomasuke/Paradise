@@ -12,11 +12,15 @@ import { fetchRetry } from 'common/https';
 import { resolveAsset } from '../../assets';
 import { DisplayComponent } from './DisplayComponent';
 import { DEFAULT_COMPONENT_MENU_LIMIT } from './constants';
+import { ComponentMenuProps, ComponentMenuState } from './types';
 
 // Cache response so it's only sent once
 let fetchServerData;
 
-export class ComponentMenu extends Component {
+export class ComponentMenu extends Component<
+  ComponentMenuProps,
+  ComponentMenuState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -129,6 +133,7 @@ export class ComponentMenu extends Component {
             <Input
               placeholder="Поиск."
               value={currentSearch}
+              width="100%"
               fluid
               onInput={(e, val) =>
                 this.setState({

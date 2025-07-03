@@ -1,9 +1,10 @@
 import { useBackend } from '../backend';
 import { Button, Dropdown, Input, Section, Stack } from '../components';
 import { Window } from '../layouts';
-// Хуй
+import { CircuitModuleData } from './IntegratedCircuit/types';
+
 export const CircuitModule = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<CircuitModuleData>();
   const { input_ports, output_ports, global_port_types } = data;
   return (
     <Window width={600} height={300}>
@@ -126,13 +127,14 @@ const PortEntry = (props) => {
     <Stack.Item {...rest}>
       <Stack>
         <Stack.Item grow>
-          <Input placeholder="Name" value={name} onChange={onEnter} fluid />
+          <Input placeholder="Name" value={name} onChange={onEnter} />
         </Stack.Item>
         <Stack.Item>
           <Dropdown
             selected={datatype}
             options={datatypeOptions}
             onSelected={onSetType}
+            width="100%"
           />
         </Stack.Item>
         <Stack.Item>

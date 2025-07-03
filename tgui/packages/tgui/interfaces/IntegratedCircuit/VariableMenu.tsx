@@ -14,8 +14,12 @@ import {
   VARIABLE_LIST,
   VARIABLE_NOT_A_LIST,
 } from './constants';
+import { VariableMenuState, VariableMenuProps } from './types';
 
-export class VariableMenu extends Component {
+export class VariableMenu extends Component<
+  VariableMenuProps,
+  VariableMenuState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,10 +57,11 @@ export class VariableMenu extends Component {
       ...rest
     } = this.props;
     const { variable_name, variable_type } = this.state;
+    let curType: string;
 
     return (
       <Section
-        title="Variable Options"
+        title="Меню переменных"
         {...rest}
         fill
         buttons={
@@ -64,6 +69,9 @@ export class VariableMenu extends Component {
         }
         onMouseUp={(event) => {
           event.preventDefault();
+        }}
+        style={{
+          borderRadius: '0px 32px 0px 0px',
         }}
       >
         <Stack height="100%">
@@ -96,8 +104,9 @@ export class VariableMenu extends Component {
                             color={val.color}
                             disabled={!!val.is_list}
                             tooltip={`
-                            Drag me onto the circuit's grid
-                            to make a setter for this variable`}
+                              Перетащите меня на схему,
+                              чтобы создать сеттер для этой переменной.
+                            `}
                             icon="pen"
                           />
                         </Stack.Item>
@@ -105,8 +114,9 @@ export class VariableMenu extends Component {
                           <Button
                             fluid
                             tooltip={`
-                            Drag me onto the circuit's grid
-                            to make a getter for this variable`}
+                              Перетащите меня на схему,
+                              чтобы создать геттер для этой переменной.
+                            `}
                             color={val.color}
                             onMouseDown={(e) => handleMouseDownGetter(e, val)}
                             icon="book-open"
@@ -116,7 +126,7 @@ export class VariableMenu extends Component {
                           <Button
                             icon="times"
                             color="bad"
-                            onClick={(e) => onRemoveVariable(val.name, e)}
+                            onClick={() => onRemoveVariable(val.name)}
                           />
                         </Stack.Item>
                       </Stack>
@@ -132,6 +142,7 @@ export class VariableMenu extends Component {
                 <Stack.Item>
                   <Input
                     placeholder="Name"
+                    width="100%"
                     fluid
                     onChange={(e, nameVal) =>
                       this.setState({
@@ -144,6 +155,7 @@ export class VariableMenu extends Component {
                   <Dropdown
                     options={types}
                     displayText={variable_type}
+                    selected={curType}
                     className="IntegratedCircuit__BlueBorder"
                     color="black"
                     width="100%"
