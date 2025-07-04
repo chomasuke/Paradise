@@ -84,6 +84,7 @@
 		name = "[LOWER_TEXT(display_name)] [COMPONENT_DEFAULT_NAME]"
 	populate_options()
 	populate_ports()
+	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
 	if((circuit_flags & CIRCUIT_FLAG_INPUT_SIGNAL) && !trigger_input)
 		trigger_input = add_input_port("Trigger", PORT_TYPE_SIGNAL, order = 2)
 	if((circuit_flags & CIRCUIT_FLAG_OUTPUT_SIGNAL) && !trigger_output)

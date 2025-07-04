@@ -13,6 +13,7 @@
 
 /obj/item/wiremod_scanner/Initialize(mapload)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/wiremod_scanner()
 	), SHELL_CAPACITY_SMALL)

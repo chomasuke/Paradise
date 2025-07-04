@@ -135,7 +135,7 @@ export class ComponentMenu extends Component<
               value={currentSearch}
               width="100%"
               fluid
-              onInput={(e, val) =>
+              onChange={(val) =>
                 this.setState({
                   currentSearch: val,
                   selectedTab: 'All',

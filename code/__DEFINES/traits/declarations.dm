@@ -209,6 +209,8 @@
 #define TRAIT_NODROP "nodrop"
 /// Applied with attachment to the cyberimplant when it is inserted in mob with TRAIT_ADVANCED_CYBERIMPLANTS
 #define TRAIT_CYBERIMP_IMPROVED "cyberimp_improved"
+/// This item will not be cloned in the experimentator
+#define TRAIT_NO_CLONE_IN_EXPERIMENTATOR "no_clone_in_experimentator"
 
 #define TRAIT_SHRAPNEL "shrapnel"
 

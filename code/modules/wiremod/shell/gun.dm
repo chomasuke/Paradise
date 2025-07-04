@@ -35,6 +35,7 @@
 
 /obj/item/gun/energy/wiremod_gun/Initialize(mapload)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/wiremod_gun()
 	), SHELL_CAPACITY_MEDIUM)

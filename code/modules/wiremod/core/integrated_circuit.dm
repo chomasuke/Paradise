@@ -92,6 +92,8 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 
 	GLOB.integrated_circuits += src
 
+	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
+
 	RegisterSignal(src, COMSIG_ATOM_USB_CABLE_TRY_ATTACH, PROC_REF(on_atom_usb_cable_try_attach))
 
 /obj/item/integrated_circuit/loaded/Initialize(mapload)

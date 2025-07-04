@@ -13,6 +13,7 @@
 
 /obj/item/compact_remote/Initialize(mapload)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/compact_remote()
 	), SHELL_CAPACITY_SMALL)

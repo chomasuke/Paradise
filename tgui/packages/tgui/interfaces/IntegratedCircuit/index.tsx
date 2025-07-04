@@ -466,7 +466,7 @@ export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
                 value={display_name}
                 maxLength={24}
                 expensive
-                onInput={(e, value) =>
+                onChange={(value) =>
                   act('set_display_name', { display_name: value })
                 }
               />

@@ -14,14 +14,15 @@
 	/// The currently connected circuit
 	var/obj/item/integrated_circuit/attached_circuit
 
+/obj/item/usb_cable/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+
 /obj/item/usb_cable/Destroy()
 	attached_circuit = null
 	STOP_PROCESSING(SSobj, src)
 	return ..()
-
-/obj/item/usb_cable/Initialize(mapload)
-	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 
 /obj/item/usb_cable/examine(mob/user)
 	. = ..()

@@ -9,6 +9,10 @@
 	/// The marked atom of this multitool
 	var/atom/marked_atom
 
+/obj/item/multitool/circuit/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
+
 /obj/item/multitool/circuit/Destroy()
 	marked_atom = null
 	return ..()

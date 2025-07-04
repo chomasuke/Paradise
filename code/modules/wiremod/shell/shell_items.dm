@@ -10,6 +10,10 @@
 	var/shell_to_spawn
 	var/screw_delay = 3 SECONDS
 
+/obj/item/shell/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
+
 /obj/item/shell/screwdriver_act(mob/living/user, obj/item/tool)
 	user.visible_message(span_notice("[user] begins finishing [src]."), span_notice("You begin finishing [src]."))
 	tool.play_tool_sound(src)
