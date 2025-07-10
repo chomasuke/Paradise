@@ -3,56 +3,73 @@
  *
  * A movable mob that can be fed inputs on which direction to travel.
  */
-/mob/living/circuit_drone
+/mob/living/simple_animal/circuit_drone
 	name = "drone"
+	ru_names = list(
+		NOMINATIVE = "программируемый дрон",
+		GENITIVE = "программируемого дрона",
+		DATIVE = "программируемому дрону",
+		ACCUSATIVE = "программируемый дрон",
+		INSTRUMENTAL = "программируемым дроном",
+		PREPOSITIONAL = "программируемом дроне"
+	)
 	icon = 'icons/obj/circuits.dmi'
 	icon_state = "setup_medium_med"
-	health = 20
-	maxHealth = 20
-	status_flags = NONE
+	health = 25
+	maxHealth = 25
+	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	mob_size = MOB_SIZE_SMALL
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
+	pass_flags = PASSTABLE
 	light_on = FALSE
+	AIStatus = AI_OFF
+	can_collar = TRUE
+	del_on_death = TRUE
 
-// гибсы, худы, взрывы, возможность повесить карту, толкучка
 
+/mob/living/simple_animal/circuit_drone/Destroy()
+	visible_message(span_userdanger("[capitalize(declent_ru(NOMINATIVE))] разлетается на части!"))
+	do_sparks(3, TRUE, src)
+	new /obj/effect/decal/cleanable/blood/oil(loc)
+	return ..()
 
-/mob/living/circuit_drone/Initialize(mapload)
-	. = ..()
+/mob/living/simple_animal/circuit_drone/ComponentInitialize()
+	AddComponent( \
+		/datum/component/animal_temperature, \
+		maxbodytemp = 500, \
+		minbodytemp = 0, \
+	)
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/bot_circuit(),
 		new /obj/item/circuit_component/remotecam/drone()
 	), SHELL_CAPACITY_LARGE)
 
-
-/mob/living/circuit_drone/examine(mob/user)
+/mob/living/simple_animal/circuit_drone/examine(mob/user)
 	. = ..()
 	if(health < maxHealth)
 		if(health > maxHealth/3)
-			. += "[src]'s parts look loose."
+			. += span_notice("[capitalize(declent_ru(NOMINATIVE))] выглядит слегка повреждённым.")
 		else
-			. += "[src]'s parts look very loose!"
+			. += span_warning("[capitalize(declent_ru(NOMINATIVE))] выглядит сильно повреждённым!")
 	else
-		. += "[src] is in pristine condition."
+		. += span_notice("[capitalize(declent_ru(NOMINATIVE))] в отличном состоянии.")
 
-/mob/living/circuit_drone/updatehealth()
+/mob/living/simple_animal/circuit_drone/welder_act(mob/living/user, obj/item/tool)
 	. = ..()
-	if(health <= 0)
-		gib()
-
-
-/mob/living/circuit_drone/welder_act(mob/living/user, obj/item/tool)
-	. = ..()
+	if(user.a_intent != INTENT_HELP)
+		return FALSE
 	if(health == maxHealth)
-		balloon_alert(user, "already at maximum integrity!")
+		balloon_alert(user, "ремонт не требуется")
 		return TRUE
 	if(tool.use_tool(src, user, 1 SECONDS, volume = tool.tool_volume))
-		heal_overall_damage(50, 50)
+		adjustHealth(-5)
 	return TRUE
 
 
 /obj/item/circuit_component/bot_circuit
 	display_name = "Drone"
-	desc = "Used to send movement output signals to the drone shell."
+	desc = "Используется для отправки сигналов движения на оболочку дрона."
 
 	/// The inputs to allow for the drone to move
 	var/datum/port/input/north
@@ -93,7 +110,7 @@
 
 /obj/item/circuit_component/bot_circuit/input_received(datum/port/input/port)
 
-	var/mob/living/shell = parent.shell
+	var/mob/living/simple_animal/shell = parent.shell
 	if(!istype(shell) || shell.stat)
 		return
 

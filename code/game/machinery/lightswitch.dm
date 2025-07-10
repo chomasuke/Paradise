@@ -121,7 +121,7 @@
 
 /obj/item/circuit_component/light_switch
 	display_name = "Light Switch"
-	desc = "Allows to control the lights of an area."
+	desc = "Позволяет управлять освещением."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	///If the lights should be turned on or off when the trigger is triggered.

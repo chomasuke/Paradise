@@ -42,7 +42,7 @@
 /obj/item/shell/drone
 	name = "drone assembly"
 	icon_state = "setup_medium_med-open"
-	shell_to_spawn = /mob/living/circuit_drone
+	shell_to_spawn = /mob/living/simple_animal/circuit_drone
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/shell/server

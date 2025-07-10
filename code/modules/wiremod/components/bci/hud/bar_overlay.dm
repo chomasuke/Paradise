@@ -36,8 +36,9 @@
 
 	var/current_option = bar_overlay_options.value
 
-	if(active_overlays[target_atom])
-		QDEL_NULL(active_overlays[target_atom])
+	var/datum/atom_hud/existing_overlay = active_overlays[target_atom.UID()]
+	if(!isnull(existing_overlay))
+		qdel(existing_overlay)
 
 	var/number_clear = clamp(bar_number.value, 0, 100)
 	if(current_option == COMP_BAR_OVERLAY_HORIZONTAL)
@@ -63,7 +64,7 @@
 	)
 	alt_appearance.show_to(owner)
 
-	active_overlays[target_atom] = WEAKREF(alt_appearance)
+	active_overlays[target_atom.UID()] = alt_appearance
 
 #undef COMP_BAR_OVERLAY_VERTICAL
 #undef COMP_BAR_OVERLAY_HORIZONTAL

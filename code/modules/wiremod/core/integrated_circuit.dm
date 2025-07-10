@@ -10,6 +10,14 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
  */
 /obj/item/integrated_circuit
 	name = "integrated circuit"
+	ru_names = list(
+		NOMINATIVE = "интегральная схема",
+		GENITIVE = "интегральной схемы",
+		DATIVE = "интегральной схеме",
+		ACCUSATIVE = "интегральную схему",
+		INSTRUMENTAL = "интегральной схемой",
+		PREPOSITIONAL = "интегральной схеме"
+	)
 	desc = "By inserting components and a cell into this, wiring them up, and putting them into a shell, anyone can pretend to be a programmer."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "integrated_circuit"
@@ -506,9 +514,12 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			var/mob/user = ui.user
 			if(component.loc == src)
 				user.put_in_hands(component)
-			// var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve() Всё будет, но не сразу
-			// if (!isnull(printer))
-			// 	printer.base_item_interaction(user, component)
+			if(params["ctrl"])
+				return
+
+			var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
+			if(!isnull(printer))
+				printer.recycling_component(user, component)
 			. = TRUE
 		if("set_component_coordinates")
 			var/component_id = text2num(params["component_id"])

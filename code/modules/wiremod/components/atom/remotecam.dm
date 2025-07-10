@@ -358,7 +358,7 @@
 
 /obj/item/circuit_component/remotecam/drone/register_shell(atom/movable/shell)
 	. = ..()
-	if(!istype(shell_parent, /mob/living/circuit_drone))
+	if(!istype(shell_parent, /mob/living/simple_animal/circuit_drone))
 		return
 	current_camera_state = FALSE //Always reset camera state for built-in shell components
 	shell_camera = new /obj/machinery/camera (shell_parent)

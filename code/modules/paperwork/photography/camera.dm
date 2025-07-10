@@ -170,7 +170,7 @@
 
 /obj/item/camera/proc/can_capture_turf(turf/T, mob/user)
 	var/viewer = user
-	if(user.client)		//To make shooting through security cameras possible
+	if(istype(user) && user.client)		//To make shooting through security cameras possible
 		viewer = user.client.eye
 	var/can_see = (T in view(viewer)) //No x-ray vision cameras.
 	return can_see
@@ -198,7 +198,7 @@
 	var/datum/picture/P = createpicture(target, user, turfs, mobs, log, get_blueprints)
 	printpicture(user, P)
 
-/obj/item/camera/proc/createpicture(atom/target, mob/user, list/turfs, mobs, logs, have_blueprints = FALSE)
+/obj/item/camera/proc/createpicture(atom/target, atom/user, list/turfs, mobs, logs, have_blueprints = FALSE)
 	var/range = picture_size * 2 + 1
 	var/clone_area = SSmapping.request_turf_block_reservation(range, range, 1)
 	var/icon/photoimage = camera_get_icon(turfs, target, user, picture_size*32, clone_area, picture_size, range)
@@ -216,7 +216,7 @@
 	pc.Blend(tiny_img,ICON_OVERLAY, 12, 19)
 
 	var/datum/picture/P = new()
-	if(istype(src,/obj/item/camera/digital))
+	if(istype(src,/obj/item/camera/digital) && istype(user, /mob/living/carbon/human))
 		P.fields["name"] = tgui_input_text(user, "Name photo:", "Photo", encode = FALSE)
 		P.name = P.fields["name"]//So the name is displayed on the print/delete list.
 	else
@@ -237,7 +237,7 @@
 /obj/item/camera/proc/printpicture(mob/user, datum/picture/P)
 	var/obj/item/photo/Photo = new/obj/item/photo()
 	Photo.loc = user.loc
-	if(!user.get_inactive_hand())
+	if(istype(user) && !user.get_inactive_hand())
 		user.put_in_inactive_hand(Photo)
 
 	Photo.construct(P)

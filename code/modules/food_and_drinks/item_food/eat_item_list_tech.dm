@@ -419,56 +419,56 @@
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 30, \
-	)	
+	)
 
 /obj/item/stock_parts/scanning_module/phasic/add_eatable_component()
 	AddComponent( \
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 30, \
-	)	
+	)
 
 /obj/item/stock_parts/manipulator/pico/add_eatable_component()
 	AddComponent( \
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 30, \
-	)	
+	)
 
 /obj/item/stock_parts/micro_laser/ultra/add_eatable_component()
 	AddComponent( \
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 30, \
-	)	
+	)
 
 /obj/item/stock_parts/matter_bin/super/add_eatable_component()
 	AddComponent( \
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 30, \
-	)	
+	)
 
 /obj/item/stock_parts/capacitor/quadratic/add_eatable_component()
 	AddComponent( \
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 60, \
-	)	
+	)
 
 /obj/item/stock_parts/scanning_module/triphasic/add_eatable_component()
 	AddComponent( \
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 60, \
-	)	
-	
+	)
+
 /obj/item/stock_parts/manipulator/femto/add_eatable_component()
 	AddComponent( \
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 60, \
-	)	
+	)
 
 /obj/item/stock_parts/micro_laser/quadultra/add_eatable_component()
 	AddComponent( \
@@ -548,4 +548,55 @@
 	/datum/component/eatable, \
 	material_type = MATERIAL_CLASS_TECH, \
 	nutritional_value = 10, \
+	)
+
+/obj/item/integrated_circuit/add_eatable_component()
+	AddComponent( \
+	/datum/component/eatable, \
+	material_type = MATERIAL_CLASS_TECH, \
+	max_bites = 10, \
+	nutritional_value = 50, \
+	)
+
+/obj/item/circuit_component/add_eatable_component()
+	AddComponent( \
+	/datum/component/eatable, \
+	material_type = MATERIAL_CLASS_TECH, \
+	max_bites = 5, \
+	nutritional_value = 10, \
+	)
+
+/obj/item/usb_cable/add_eatable_component()
+	AddComponent( \
+	/datum/component/eatable, \
+	material_type = MATERIAL_CLASS_TECH, \
+	max_bites = 10, \
+	nutritional_value = 5, \
+	)
+
+/obj/item/controller/add_eatable_component()
+	AddComponent( \
+	/datum/component/eatable, \
+	material_type = MATERIAL_CLASS_TECH, \
+	max_bites = 10, \
+	nutritional_value = 5, \
+	is_only_grab_intent = TRUE, \
+	)
+
+/obj/item/compact_remote/add_eatable_component()
+	AddComponent( \
+	/datum/component/eatable, \
+	material_type = MATERIAL_CLASS_TECH, \
+	max_bites = 10, \
+	nutritional_value = 5, \
+	is_only_grab_intent = TRUE, \
+	)
+
+/obj/item/keyboard_shell/add_eatable_component()
+	AddComponent( \
+	/datum/component/eatable, \
+	material_type = MATERIAL_CLASS_TECH, \
+	max_bites = 10, \
+	nutritional_value = 5, \
+	is_only_grab_intent = TRUE, \
 	)

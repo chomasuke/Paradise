@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(circuit_component)
 		if(QDELETED(to_call))
 			continue
 
-		to_call.usr_uid = null
+		to_call.user = null
 		to_call.InvokeAsync()
 
 		if(MC_TICK_CHECK)
@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(circuit_component)
 		while(length(instant_run_currentrun))
 			var/datum/callback/to_call = instant_run_currentrun[1]
 			instant_run_currentrun.Cut(1,2)
-			to_call.usr_uid = null
+			to_call.user = null
 			to_call.InvokeAsync(received_inputs)
 
 	if(length(instant_run_stack))

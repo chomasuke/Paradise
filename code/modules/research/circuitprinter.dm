@@ -156,6 +156,17 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 	return ..()
 
+/obj/machinery/r_n_d/circuit_imprinter/proc/recycling_component(mob/living/user, obj/item/tool)
+	//to allow quick recycling of circuits
+	if(istype(tool, /obj/item/circuit_component))
+		var/amount_inserted = materials.insert_item(tool)
+
+		if(amount_inserted)
+			qdel(tool)
+			to_chat(user, span_notice("[tool] worth [] sheets of material was consumed by [src]")) // хуй
+		else
+			to_chat(user, span_warning("[tool] was rejected by [src]"))
+
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/circuit_iteract(mob/user, obj/item/circuit)
 	if(!is_circuit(circuit))

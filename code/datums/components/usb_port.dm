@@ -126,7 +126,7 @@
 	SIGNAL_HANDLER
 
 	if(isnull(attached_circuit))
-		examine_text += span_notice("There is a USB port on the front.")
+		examine_text += span_notice("На передней панели расположен USB-порт.")
 	else
 		examine_text += span_notice("[attached_circuit.shell || attached_circuit] is connected to [parent.p_them()] by a USB port.")
 
@@ -134,6 +134,7 @@
 	SIGNAL_HANDLER
 
 	// examine_text += span_notice("[source.p_They()] [source.p_are()] attached to [parent] with a USB cable.") Приятного аппетита, господин локализатор
+	examine_text += span_notice("подключен к [parent] с помошью USB-кабеля.")
 
 /datum/component/usb_port/proc/on_atom_usb_cable_try_attach(datum/source, obj/item/usb_cable/connecting_cable, mob/user)
 	SIGNAL_HANDLER
@@ -145,21 +146,21 @@
 
 	if(!isnull(attached_circuit))
 		if(user)
-			atom_parent.balloon_alert(user, "usb already connected")
+			atom_parent.balloon_alert(user, "подключено")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	if(isnull(connecting_cable.attached_circuit))
 		if(user)
-			connecting_cable.balloon_alert(user, "connect to a shell first")
+			connecting_cable.balloon_alert(user, "сначала оболочка")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	if(!IN_GIVEN_RANGE(connecting_cable.attached_circuit, parent, USB_CABLE_MAX_RANGE))
 		if(user)
-			connecting_cable.balloon_alert(user, "too far away")
+			connecting_cable.balloon_alert(user, "слишком далеко")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	if(connecting_cable.attached_circuit.locked)
-		connecting_cable.balloon_alert(user, "shell is locked!")
+		connecting_cable.balloon_alert(user, "оболочка заблокирована!")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	usb_cable_ref = WEAKREF(connecting_cable)

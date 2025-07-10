@@ -1,6 +1,14 @@
 /// A cable that can connect integrated circuits to anything with a USB port, such as computers and machines.
 /obj/item/usb_cable
 	name = "usb cable"
+	ru_names = list(
+		NOMINATIVE = "USB-кабель",
+		GENITIVE = "USB-кабеля",
+		DATIVE = "USB-кабелю",
+		ACCUSATIVE = "USB-кабель",
+		INSTRUMENTAL = "USB-кабелем",
+		PREPOSITIONAL = "USB-кабеле",
+	)
 	desc = "A cable that can connect integrated circuits to anything with a USB port, such as computers and machines."
 	icon = 'icons/obj/circuits.dmi'
 	icon_state = "usb_cable"

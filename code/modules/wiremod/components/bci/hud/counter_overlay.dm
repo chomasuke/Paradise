@@ -117,7 +117,7 @@
 	numbers = list()
 
 	var/datum/atom_hud/overlay = counter_appearance?.resolve()
-	overlay.hide_from(owner)
+	overlay?.hide_from(owner)
 	QDEL_NULL(overlay)
 
 /obj/item/circuit_component/counter_overlay/Destroy()
