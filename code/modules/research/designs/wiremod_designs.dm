@@ -2,6 +2,7 @@
 	name = "Integrated Circuit"
 	desc = "The foundation of all circuits. All Circuitry go onto this."
 	id = "integrated_circuit"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/integrated_circuit
 	build_type = PROTOLATHE
 	category = list(
@@ -13,6 +14,7 @@
 	name = "Circuit Multitool"
 	desc = "A circuit multitool to mark entities and load them into."
 	id = "circuit_multitool"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/multitool/circuit
 	build_type = PROTOLATHE
 	category = list(
@@ -24,6 +26,7 @@
 	name = "USB Cable"
 	desc = "A cable that allows certain shells to connect to nearby computers and machines."
 	id = "usb_cable"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/usb_cable
 	build_type = PROTOLATHE
 	category = list(
@@ -35,6 +38,7 @@
 /datum/design/component
 	name = "Component ( NULL ENTRY )"
 	desc = "A component that goes into an integrated circuit."
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 500)
 	category = list(
@@ -508,6 +512,7 @@
 	name = "Compact Remote Shell"
 	desc = "A handheld shell with one big button."
 	id = "compact_remote_shell"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/compact_remote
 	materials = list(MAT_GLASS = 1000, MAT_METAL = 2500)
 	build_type = PROTOLATHE
@@ -519,6 +524,7 @@
 	name = "Controller Shell"
 	desc = "A handheld shell with several buttons."
 	id = "controller_shell"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/controller
 	build_type = PROTOLATHE
 	materials = list(MAT_GLASS = 1000, MAT_METAL = 3500)
@@ -530,6 +536,7 @@
 	name = "Scanner Shell"
 	desc = "A handheld scanner shell that can scan entities."
 	id = "scanner_shell"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/wiremod_scanner
 	build_type = PROTOLATHE
 	materials = list(MAT_GLASS = 1000, MAT_METAL = 3500)
@@ -541,6 +548,7 @@
 	name = "Keyboard Shell"
 	desc = "A handheld shell that allows the user to input a string"
 	id = "keyboard_shell"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/keyboard_shell
 	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000)
 	build_type = PROTOLATHE
@@ -548,21 +556,23 @@
 		"Circuitry"
 	)
 
-// /datum/design/gun_shell
-// 	name = "Gun Shell"
-// 	desc = "A handheld shell that can fire projectiles to output entities."
-// 	id = "gun_shell"
-// 	build_path = /obj/item/gun/energy/wiremod_gun
-// 	build_type = PROTOLATHE
-// 	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_PLASMA = 500)
-// 	category = list(
-// 		"Circuitry"
-// 	)
+/datum/design/gun_shell
+	name = "Gun Shell"
+	desc = "A handheld shell that can fire projectiles to output entities."
+	id = "gun_shell"
+	req_tech = list("materials" = 2, "programming" = 2)
+	build_path = /obj/item/gun/energy/wiremod_gun
+	build_type = PROTOLATHE
+	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_PLASMA = 500)
+	category = list(
+		"Circuitry"
+	)
 
 /datum/design/bot_shell
 	name = "Bot Shell"
 	desc = "An immobile shell that can store more components. Has a USB port to be able to connect to computers and machines."
 	id = "bot_shell"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/shell/bot
 	build_type = PROTOLATHE
 	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000)
@@ -574,6 +584,7 @@
 	name = "Money Bot Shell"
 	desc = "An immobile shell that is similar to a regular bot shell, but accepts monetary inputs and can also dispense money."
 	id = "money_bot_shell"
+	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/shell/money_bot
 	build_type = PROTOLATHE
 	materials = list(MAT_GLASS = 1000, MAT_METAL = 5000, MAT_GOLD = 200)
@@ -585,6 +596,7 @@
 	name = "Drone Shell"
 	desc = "A shell with the ability to move itself around."
 	id = "drone_shell"
+	req_tech = list("materials" = 4, "programming" = 5, "engineering" = 4)
 	build_path = /obj/item/shell/drone
 	build_type = PROTOLATHE
 	materials = list(
@@ -600,6 +612,7 @@
 	name = "Server Shell"
 	desc = "A very large shell that cannot be moved around. Stores the most components."
 	id = "server_shell"
+	req_tech = list("materials" = 5, "programming" = 7, "engineering" = 6)
 	materials = list(
 		MAT_GLASS = 2500,
 		MAT_METAL = 7500,
@@ -615,6 +628,7 @@
 	name = "Airlock Shell"
 	desc = "A door shell that cannot be moved around when assembled."
 	id = "door_shell"
+	req_tech = list("materials" = 4, "programming" = 3, "engineering" = 4, "magnets" = 3)
 	materials = list(
 		MAT_GLASS = 5000,
 		MAT_METAL = 10000,
@@ -629,6 +643,7 @@
 	name = "Dispenser Shell"
 	desc = "A dispenser shell that can dispense items."
 	id = "dispenser_shell"
+	req_tech = list("materials" = 4, "programming" = 5, "engineering" = 4)
 	materials = list(
 		MAT_GLASS = 2500,
 		MAT_METAL = 7500,
@@ -643,6 +658,7 @@
 	name = "Brain-Computer Interface Shell"
 	desc = "An implant that can be placed in a user's head to control circuits using their brain."
 	id = "bci_shell"
+	req_tech = list("programming" = 4, "engineering" = 3, "biotech" = 3)
 	materials = list(
 		MAT_GLASS = 1000,
 		MAT_METAL = 4000,
@@ -683,6 +699,7 @@
 	name = "Assembly Shell"
 	desc = "An assembly shell that can be attached to wires and other assemblies."
 	id = "assembly_shell"
+	req_tech = list("materials" = 2, "programming" = 2)
 	materials = list(MAT_GLASS = 1000, MAT_METAL = 2500)
 	build_path = /obj/item/assembly/wiremod
 	build_type = PROTOLATHE

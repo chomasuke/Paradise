@@ -19,7 +19,6 @@
 	maxHealth = 25
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	mob_size = MOB_SIZE_SMALL
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	pass_flags = PASSTABLE
 	light_on = FALSE

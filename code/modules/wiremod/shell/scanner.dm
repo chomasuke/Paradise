@@ -32,9 +32,8 @@
 	var/datum/port/output/attacking
 
 
-
 /obj/item/circuit_component/wiremod_scanner/populate_ports()
-	attacker = add_output_port("Scanner", PORT_TYPE_ATOM)
+	attacker = add_output_port("Scanner", PORT_TYPE_USER)
 	attacking = add_output_port("Scanned Entity", PORT_TYPE_ATOM)
 	signal = add_output_port("Scanned", PORT_TYPE_SIGNAL)
 
