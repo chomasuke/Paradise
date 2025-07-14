@@ -58,6 +58,7 @@ export class ObjectComponent extends Component<
 
   handleDrag(e) {
     const { dragPos, isDragging, lastMousePos } = this.state;
+    const { zoom } = this.props;
     if (dragPos && isDragging) {
       e.preventDefault();
       const { screenZoomX, screenZoomY, screenX, screenY } = e;
@@ -66,8 +67,8 @@ export class ObjectComponent extends Component<
       if (lastMousePos) {
         this.setState({
           dragPos: {
-            x: dragPos.x - (lastMousePos.x - xPos),
-            y: dragPos.y - (lastMousePos.y - yPos),
+            x: dragPos.x - (lastMousePos.x - xPos) * Math.pow(zoom, -1),
+            y: dragPos.y - (lastMousePos.y - yPos) * Math.pow(zoom, -1),
           },
         });
       }

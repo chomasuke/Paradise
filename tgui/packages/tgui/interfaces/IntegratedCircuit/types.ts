@@ -114,6 +114,7 @@ export interface PortProps {
 export interface ObjectComponentProps extends HTMLAttributes<HTMLDivElement> {
   act?: (action: string, payload: any) => void;
   gridMode?: boolean;
+  zoom?: number;
   onPortMouseDown?: (
     portIndex: number,
     componentId: number,

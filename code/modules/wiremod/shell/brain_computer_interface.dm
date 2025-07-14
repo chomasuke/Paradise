@@ -261,7 +261,7 @@
 
 /datum/action/innate/bci_charge_action/proc/update_maptext()
 	var/obj/item/stock_parts/cell/cell = circuit_component.parent.cell
-	button.maptext = cell ? MAPTEXT("[round(cell.percent(), 3)]%") : ""
+	button.maptext = cell ? MAPTEXT("[round(cell.percent(), 1)]%") : ""
 
 /obj/machinery/bci_implanter
 	name = "brain-computer interface manipulation chamber"

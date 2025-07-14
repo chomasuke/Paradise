@@ -140,6 +140,7 @@ export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
   // mouse up called whilst over a port. This means we can check if selectedPort
   // exists and do perform some actions if it does.
   handlePortUp(portIndex, componentId, port, isOutput, event) {
+    // Вот этот пидорас срёт
     const { act, data: uiData } = useBackend<IntegratedCircuitData>();
     const { selectedPort } = this.state;
     if (!selectedPort) {
@@ -194,8 +195,12 @@ export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
     const { data } = useBackend<IntegratedCircuitData>();
     const { screen_x, screen_y } = data;
     this.setState((state) => ({
-      mouseX: event.clientX - (state.backgroundX || screen_x),
-      mouseY: event.clientY - (state.backgroundY || screen_y),
+      mouseX:
+        (event.clientX - (state.backgroundX || screen_x)) *
+        Math.pow(state.zoom, -1),
+      mouseY:
+        (event.clientY - (state.backgroundY || screen_y)) *
+        Math.pow(state.zoom, -1),
     }));
   }
 
@@ -350,8 +355,8 @@ export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
     act('add_setter_or_getter', {
       variable: draggingVariable,
       is_setter: variableIsSetter,
-      rel_x: xPos * Math.pow(zoom, -1),
-      rel_y: (yPos + ABSOLUTE_Y_OFFSET) * Math.pow(zoom, -1),
+      rel_x: xPos,
+      rel_y: yPos + ABSOLUTE_Y_OFFSET * Math.pow(this.state.zoom, -1),
     });
   }
 
@@ -368,7 +373,7 @@ export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
 
   handleComponentDropped(event) {
     const { act } = useBackend();
-    const { draggingComponent, zoom, draggingComponentPos, mouseX, mouseY } =
+    const { draggingComponent, draggingComponentPos, mouseX, mouseY } =
       this.state;
 
     this.setState({
@@ -386,8 +391,8 @@ export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
 
     act('print_component', {
       component_to_print: draggingComponent.type,
-      rel_x: xPos * Math.pow(zoom, -1),
-      rel_y: (yPos + ABSOLUTE_Y_OFFSET) * Math.pow(zoom, -1),
+      rel_x: xPos,
+      rel_y: yPos + ABSOLUTE_Y_OFFSET * Math.pow(this.state.zoom, -1),
     });
   }
 
@@ -440,12 +445,11 @@ export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
     }
 
     if (selectedPort) {
-      const { zoom } = this.state;
       const isOutput = selectedPort.is_output;
       const portLocation = locations[selectedPort.ref];
       const mouseCoords = {
-        x: mouseX * Math.pow(zoom, -1),
-        y: (mouseY + ABSOLUTE_Y_OFFSET) * Math.pow(zoom, -1),
+        x: mouseX,
+        y: mouseY + ABSOLUTE_Y_OFFSET * Math.pow(this.state.zoom, -1),
       };
       connections.push({
         color: (portLocation && portLocation.color) || 'blue',
@@ -539,6 +543,7 @@ export class IntegratedCircuit extends Component<{}, IntegratedCircuitState> {
                   <ObjectComponent
                     key={index}
                     {...comp}
+                    zoom={this.state.zoom}
                     index={index + 1}
                     onPortUpdated={this.handlePortLocation}
                     onPortLoaded={this.handlePortLocation}

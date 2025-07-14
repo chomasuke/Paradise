@@ -102,8 +102,8 @@ export const InfinitePlane = (props: Props) => {
     event.preventDefault();
     handleZoom(
       event.deltaY < 0 ? ZoomDirection.Increase : ZoomDirection.Decrease,
-      event.nativeEvent.offsetX,
-      event.nativeEvent.offsetY
+      event.clientX,
+      event.clientY
     );
   };
 
@@ -121,11 +121,11 @@ export const InfinitePlane = (props: Props) => {
     // Convert left and top values to new ones to zoom into the screen center
     // instead of (0, 0)
     const newLeft = ((left - zoomX) / zoom) * newZoom + zoomX;
-    const newTop = (top - zoomY) * newZoom + zoomY;
-
+    const newTop = ((top - zoomY) / zoom) * newZoom + zoomY;
     setZoom(newZoom);
     setLeft(newLeft);
     setTop(newTop);
+    onBackgroundMoved?.(newLeft, newTop);
     onZoomChange?.(newZoom);
   };
 
