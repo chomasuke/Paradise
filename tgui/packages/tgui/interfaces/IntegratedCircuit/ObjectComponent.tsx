@@ -41,9 +41,9 @@ export class ObjectComponent extends Component<
   }
 
   handleStopDrag(e) {
-    const { dragPos } = this.state;
+    const { dragPos, isDragging } = this.state;
     const { index, act = noop } = this.props;
-    if (dragPos) {
+    if (dragPos && isDragging) {
       act('set_component_coordinates', {
         component_id: index,
         rel_x: this.roundToGrid(dragPos.x),

@@ -25,7 +25,7 @@
 	COOLDOWN_DECLARE(power_used_cooldown)
 
 	/// The maximum power that the shell can use in a minute before entering overheating and destroying itself.
-	var/max_power_use_in_minute = 200000 //20 * STANDARD_CELL_CHARGE
+	var/max_power_use_in_minute = 200000
 
 /datum/component/shell/Initialize(unremovable_circuit_components, capacity, shell_flags, starting_circuit)
 	. = ..()
@@ -132,13 +132,16 @@
 		return
 
 	if(!attached_circuit)
-		examine_text += span_notice("There is no integrated circuit attached.")
+		examine_text += span_notice("Интегральная схема отсутствует.")
 		return
 
-	examine_text += span_notice("There is an integrated circuit attached. Use a multitool to access the wiring. Use a screwdriver to remove it from [source].")
+	examine_text += span_notice("Установлена интегральная схема. Use a multitool to access the wiring. Use a screwdriver to remove it from [source].")
 	examine_text += span_notice("The cover panel to the integrated circuit is [locked? "locked" : "unlocked"].")
 	var/obj/item/stock_parts/cell/cell = attached_circuit.cell
-	examine_text += span_notice("The charge meter reads [cell ? round(cell.percent(), 1) : 0]%.")
+	if(cell)
+		. += span_notice("Заряд элемента питания: [round(cell.percent(), 1)]%.")
+	else
+		. += span_notice("Элемент питания не установлен.")
 
 	if (shell_flags & SHELL_FLAG_USB_PORT)
 		examine_text += span_notice("There is a <b>USB port</b> on the front.")
@@ -171,7 +174,7 @@
 		return
 
 	if(istype(item, /obj/item/stock_parts/cell))
-		source.balloon_alert(attacker, "can't put cell in directly!")
+		source.balloon_alert(attacker, "нельзя установить!")
 		return
 
 	if(attached_circuit)
@@ -367,15 +370,15 @@
 		return
 
 	if (!(shell_flags & SHELL_FLAG_USB_PORT))
-		source.balloon_alert(user, "this shell has no usb ports")
+		source.balloon_alert(user, "отсутствует USB порт")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	if (isnull(attached_circuit))
-		source.balloon_alert(user, "no circuit inside")
+		source.balloon_alert(user, "схема отсутствует")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	if(attached_circuit.locked)
-		source.balloon_alert(user, "circuit is locked!")
+		source.balloon_alert(user, "схема заблокирована!")
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	usb_cable.attached_circuit = attached_circuit

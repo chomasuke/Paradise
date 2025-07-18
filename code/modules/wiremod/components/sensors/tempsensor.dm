@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/tempsensor
 	display_name = "Temperature Sensor"
-	desc = "Датчик температуры."
+	desc = "Датчик температуры. Возвращает значение в градусах Кельвина."
 	category = "Sensor"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

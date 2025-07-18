@@ -67,10 +67,10 @@
 	if(istype(item, /obj/item/wrench) || istype(item, /obj/item/multitool) || istype(item, /obj/item/integrated_circuit))
 		return ..()
 	if(item.w_class > max_weight && !istype(item, /obj/item/storage/bag))
-		balloon_alert(user, "item too big!")
+		balloon_alert(user, "предмет слишком большой!")
 		return ATTACK_CHAIN_BLOCKED
 	if(length(stored_items) >= capacity)
-		balloon_alert(user, "at maximum capacity!")
+		balloon_alert(user, "хранилище заполнено!")
 		return ATTACK_CHAIN_BLOCKED
 	if(istype(item, /obj/item/storage/bag))
 		for(var/obj/item/bag_item in item.contents)

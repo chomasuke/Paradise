@@ -125,9 +125,9 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 /obj/item/integrated_circuit/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += span_notice("The charge meter reads [cell ? round(cell.percent(), 1) : 0]%.")
+		. += span_notice("Заряд элемента питания: [round(cell.percent(), 1)]%.")
 	else
-		. += span_notice("There is no power cell installed.")
+		. += span_notice("Элемент питания не установлен.")
 
 /obj/item/integrated_circuit/attack_self(mob/user as mob)
 	ui_interact(user)
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 
 	if(istype(I, /obj/item/stock_parts/cell))
 		if(cell)
-			balloon_alert(user, "there already is a cell inside!")
+			balloon_alert(user, "уже установлено!")
 			return
 		if(!user.transfer_item_to_loc(I, src))
 			return
@@ -514,7 +514,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			var/mob/user = ui.user
 			if(component.loc == src)
 				user.put_in_hands(component)
-			if(params["ctrl"])
+			if(params[CTRL_CLICK])
 				return
 
 			var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
@@ -684,11 +684,11 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			if((!admin_only && !ui.user.can_advanced_admin_interact()) || !check_rights_for(ui.user.client, R_SPAWN))
 				var/obj/machinery/r_n_d/circuit_imprinter/printer = linked_circuit_imprinter?.resolve()
 				if(!printer)
-					balloon_alert(ui.user, "linked printer not found!")
+					balloon_alert(ui.user, "привязанный принтер не обнаружен!")
 					return
 				component = printer.print_component(component_path)
 				if(!component)
-					balloon_alert(ui.user, "failed to make the component!")
+					balloon_alert(ui.user, "ошибка печати компонента!")
 					return
 			else
 				if(!ispath(component_path, /obj/item/circuit_component))
