@@ -9,7 +9,9 @@
 	if(usr.hud_used.inventory_shown)
 		usr.hud_used.inventory_shown = FALSE
 		usr.client.screen -= usr.hud_used.toggleable_inventory
+
 	else
+
 		usr.hud_used.inventory_shown = TRUE
 		usr.client.screen += usr.hud_used.toggleable_inventory
 
