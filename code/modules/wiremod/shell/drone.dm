@@ -5,14 +5,6 @@
  */
 /mob/living/simple_animal/circuit_drone
 	name = "drone"
-	ru_names = list(
-		NOMINATIVE = "программируемый дрон",
-		GENITIVE = "программируемого дрона",
-		DATIVE = "программируемому дрону",
-		ACCUSATIVE = "программируемый дрон",
-		INSTRUMENTAL = "программируемым дроном",
-		PREPOSITIONAL = "программируемом дроне"
-	)
 	icon = 'icons/obj/circuits.dmi'
 	icon_state = "setup_medium_med"
 	health = 25
@@ -26,6 +18,15 @@
 	can_collar = TRUE
 	del_on_death = TRUE
 
+/mob/living/simple_animal/circuit_drone/get_ru_names()
+	return list(
+		NOMINATIVE = "программируемый дрон",
+		GENITIVE = "программируемого дрона",
+		DATIVE = "программируемому дрону",
+		ACCUSATIVE = "программируемый дрон",
+		INSTRUMENTAL = "программируемым дроном",
+		PREPOSITIONAL = "программируемом дроне"
+	)
 
 /mob/living/simple_animal/circuit_drone/Destroy()
 	visible_message(span_userdanger("[capitalize(declent_ru(NOMINATIVE))] разлетается на части!"))

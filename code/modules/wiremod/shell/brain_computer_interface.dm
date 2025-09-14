@@ -253,8 +253,8 @@
 	if(isnull(cell))
 		to_chat(owner, span_boldwarning("[circuit_component.parent] has no power cell."))
 	else
-		to_chat(owner, span_info("[circuit_component.parent]'s [cell.name] has <b>[cell.percent()]%</b> charge left."))
-		to_chat(owner, span_info("You can recharge it by using a cyborg recharging station."))
+		to_chat(owner, span_notice("[circuit_component.parent]'s [cell.name] has <b>[cell.percent()]%</b> charge left."))
+		to_chat(owner, span_notice("You can recharge it by using a cyborg recharging station."))
 
 /datum/action/innate/bci_charge_action/process(seconds_per_tick)
 	update_maptext()

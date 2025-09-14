@@ -10,14 +10,6 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
  */
 /obj/item/integrated_circuit
 	name = "integrated circuit"
-	ru_names = list(
-		NOMINATIVE = "интегральная схема",
-		GENITIVE = "интегральной схемы",
-		DATIVE = "интегральной схеме",
-		ACCUSATIVE = "интегральную схему",
-		INSTRUMENTAL = "интегральной схемой",
-		PREPOSITIONAL = "интегральной схеме"
-	)
 	desc = "By inserting components and a cell into this, wiring them up, and putting them into a shell, anyone can pretend to be a programmer."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "integrated_circuit"
@@ -94,6 +86,16 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 
 	/// The current linked circuit imprinter. Lets you remotely print off circuit components and places them in the integrated circuit.
 	var/datum/weakref/linked_circuit_imprinter
+
+/obj/item/integrated_circuit/get_ru_names()
+	return list(
+		NOMINATIVE = "интегральная схема",
+		GENITIVE = "интегральной схемы",
+		DATIVE = "интегральной схеме",
+		ACCUSATIVE = "интегральную схему",
+		INSTRUMENTAL = "интегральной схемой",
+		PREPOSITIONAL = "интегральной схеме"
+	)
 
 /obj/item/integrated_circuit/Initialize(mapload)
 	. = ..()

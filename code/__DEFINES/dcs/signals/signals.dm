@@ -883,8 +883,6 @@
 // obj/machinery/crematorium
 ///from obj/machinery/crematorium/cremate(): (/mob/living/target)
 #define COMSIG_LIVING_CREMATED "crematorium_cremated_living"
-/// from /obj/machinery/light_switch/set_lights(), sent to every switch in the area: (status)
-#define COMSIG_LIGHT_SWITCH_SET "light_switch_set"
 
 // /obj/item signals
 

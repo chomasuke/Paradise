@@ -22,7 +22,7 @@
 	var/datum/port/input/frequency
 
 	/// The cooldown for this component of how often it can play sounds.
-	var/sound_cooldown = 2 SECONDS
+	var/sound_emitter_cooldown = 2 SECONDS
 
 	/// The maximum pitch this component can play sounds at.
 	var/max_pitch = 50
@@ -36,7 +36,7 @@
 
 /obj/item/circuit_component/soundemitter/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Sound Cooldown: [DisplayTimeText(sound_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("Sound Cooldown: [DisplayTimeText(sound_emitter_cooldown)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/soundemitter/populate_ports()
 	volume = add_input_port("Volume", PORT_TYPE_NUMBER, default = 35)
@@ -62,7 +62,7 @@
 		"Whip" = 'sound/weapons/whip.ogg',
 		"Laugh Track" = 'sound/items/sitcomLaugh1.ogg',
 		"Gavel" = 'sound/items/gavel.ogg',
-		"Fart" = "fart",
+		"Fart" = SFX_FART,
 	)
 	sound_file = add_option_port("Sound Option", component_options)
 	options_map = component_options
@@ -91,4 +91,4 @@
 
 	playsound(src, sound_to_play, actual_volume, TRUE, frequency = actual_frequency)
 
-	TIMER_COOLDOWN_START(parent.shell, COOLDOWN_CIRCUIT_SOUNDEMITTER, sound_cooldown)
+	TIMER_COOLDOWN_START(parent.shell, COOLDOWN_CIRCUIT_SOUNDEMITTER, sound_emitter_cooldown)

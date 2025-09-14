@@ -199,7 +199,6 @@
 // Called when a carbon changes stat, virus or XENO_HOST
 // Returns TRUE if the mob is considered "perfectly healthy", FALSE otherwise
 /mob/living/proc/med_hud_set_status()
-	var/image/holder = hud_list[STATUS_HUD]
 	if(stat == DEAD)
 		set_hud_image_state(STATUS_HUD, STATUS_HUD_DEAD)
 	else if(has_virus())
@@ -661,28 +660,9 @@
 		commenter_display = "[U.name] (artificial intelligence)"
 	comment_text = "Made by [commenter_display] on [GLOB.current_date_string] [station_time_timestamp()]:<br>[comment_text]"
 
-	if(!record.fields["comments"])
-		record.fields["comments"] = list()
-	record.fields["comments"] += list(comment_text)
-
-
-#define CACHED_WIDTH_INDEX "width"
-#define CACHED_HEIGHT_INDEX "height"
-
-/atom/proc/get_cached_width()
-	if(isnull(icon))
-		return 0
-	var/list/dimensions = get_icon_dimensions(icon)
-	return dimensions[CACHED_WIDTH_INDEX]
-
-/atom/proc/get_cached_height()
-	if(isnull(icon))
-		return 0
-	var/list/dimensions = get_icon_dimensions(icon)
-	return dimensions[CACHED_HEIGHT_INDEX]
-
-#undef CACHED_WIDTH_INDEX
-#undef CACHED_HEIGHT_INDEX
+	if(!target.fields["comments"])
+		target.fields["comments"] = list()
+	target.fields["comments"] += list(comment_text)
 
 /atom/proc/get_visual_width()
 	var/width = get_cached_width()
