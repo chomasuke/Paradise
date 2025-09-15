@@ -3,8 +3,8 @@
  * A variant of arctan. When given a deltaX and deltaY, returns the angle. I will blow you out of the sky
  */
 /obj/item/circuit_component/arctan2
-	display_name = "Arctangent 2 Component"
-	desc = "A two parameter arctan2 component, for calculating any angle you want."
+	display_name = "Арктангенс двух компонентов"
+	desc = "Компонент арктангенса с двумя параметрами для расчета любого нужного вам угла."
 	category = "Math"
 
 	/// The input port for the x-offset

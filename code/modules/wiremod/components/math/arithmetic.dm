@@ -13,8 +13,8 @@
  * This one only works with numbers.
  */
 /obj/item/circuit_component/arithmetic
-	display_name = "Arithmetic"
-	desc = "General arithmetic component with arithmetic capabilities."
+	display_name = "Арифметика"
+	desc = "Общий арифметический компонент с арифметическими возможностями."
 	category = "Math"
 
 	var/datum/port/input/option/arithmetic_option

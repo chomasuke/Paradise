@@ -4,8 +4,8 @@
  * Return the direction of a mob relative to the component
  */
 /obj/item/circuit_component/direction
-	display_name = "Get Direction"
-	desc = "A component that returns the direction of itself and an entity."
+	display_name = "Получить направление"
+	desc = "Компонент, который возвращает направление себя и объекта."
 	category = "Entity"
 
 	/// The input port
@@ -28,7 +28,7 @@
 
 /obj/item/circuit_component/direction/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/direction/populate_ports()
 	input_port = add_input_port("Targeted Entity", PORT_TYPE_ATOM)

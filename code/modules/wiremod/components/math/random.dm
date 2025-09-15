@@ -4,7 +4,7 @@
  * Generates a random number between specific values
  */
 /obj/item/circuit_component/random
-	display_name = "Random"
+	display_name = "Случайно"
 	desc = "Возвращает случайное число."
 	category = "Math"
 

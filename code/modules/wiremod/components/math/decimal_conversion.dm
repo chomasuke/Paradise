@@ -4,8 +4,8 @@
  * Return a number from an array of binary inputs.
  */
 /obj/item/circuit_component/decimal_conversion
-	display_name = "Decimal Conversion"
-	desc = "Merges an array of binary digits, or bits, represented as 1 or 0 and often used in boolean or binary operations, into a decimal number."
+	display_name = "Преобразование десятичных дробей"
+	desc = "Объединяет массив двоичных цифр или битов, представленных как 1 или 0 и часто используемых в логических или двоичных операциях, в десятичное число."
 	category = "Math"
 
 	/// One number

@@ -4,8 +4,8 @@
  * Return the index of a list
  */
 /obj/item/circuit_component/index
-	display_name = "Index List"
-	desc = "A component that returns the value of a list at a given index."
+	display_name = "Индекс списка"
+	desc = "Компонент, который возвращает значение списка по заданному индексу."
 	category = "List"
 
 	/// The list type
@@ -55,8 +55,8 @@
 	output.set_output(list_input[index])
 
 /obj/item/circuit_component/index/assoc_string
-	display_name = "Index Associative List"
-	desc = "A component that is commonly used to access a row from a table. Accesses data from a key, value list."
+	display_name = "Индекс ассоциативного списка"
+	desc = "Компонент, который обычно используется для доступа к строке таблицы. Обеспечивает доступ к данным из списка ключей и значений."
 
 	index_type = PORT_TYPE_STRING
 

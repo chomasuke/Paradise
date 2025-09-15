@@ -5,8 +5,8 @@
  * For actuel code refer to code\modules\wiremod\components\list\list_pick.dm
  */
 /obj/item/circuit_component/list_pick/assoc
-	display_name = "Associative List Pick"
-	desc = "A component that lets a user pick 1 element from an associative list. Returns the selected element."
+	display_name = "Ассоциативный список - выбор"
+	desc = "Компонент, позволяющий пользователю выбрать один элемент из ассоциативного списка. Возвращает выбранный элемент."
 	category = "List"
 
 /obj/item/circuit_component/list_pick/assoc/populate_options()

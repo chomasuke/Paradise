@@ -4,8 +4,8 @@
  * Converts any value into a string
  */
 /obj/item/circuit_component/tostring
-	display_name = "To String"
-	desc = "A component that converts its input to text."
+	display_name = "В строку"
+	desc = "Компонент, преобразующий входные данные в текст."
 	category = "String"
 
 	/// The input port

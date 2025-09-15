@@ -4,8 +4,8 @@
  * Converts a string into a Number
  */
 /obj/item/circuit_component/tonumber
-	display_name = "To Number"
-	desc = "A component that converts its input (a string) to a number. If there's text in the input, it'll only consider it if it starts with a number. It will take that number and ignore the rest."
+	display_name = "В число"
+	desc = "Компонент, преобразующий входные данные в число. Если входные данные содержат текст, он учитывает его только в том случае, если он начинается с цифры. Компонент принимает это число и игнорирует всё остальное."
 	category = "String"
 
 	/// The input port

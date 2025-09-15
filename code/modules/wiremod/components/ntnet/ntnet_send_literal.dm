@@ -7,8 +7,8 @@
  * Any changes made to those files should be copied over with discretion
  */
 /obj/item/circuit_component/list_literal/ntnet_send
-	display_name = "NTNet Transmitter List Literal"
-	desc = "Creates a list literal data package and sends it through NTNet. If Encryption Key is set then transmitted data will be only picked up by receivers with the same Encryption Key."
+	display_name = "NTNet передатчик списка литералов"
+	desc = "Создаёт пакет данных в виде списка литералов и отправляет его через NTNet. Если задан ключ шифрования, передаваемые данные будут приняты только получателями с таким же ключом шифрования."
 	category = "NTNet"
 
 	/// Encryption key

@@ -6,8 +6,8 @@
  */
 
 /obj/item/circuit_component/thought_listener
-	display_name = "Thought Listener"
-	desc = "A component that allows the user to input a string using their mind. Requires a BCI shell."
+	display_name = "Детектор мысли"
+	desc = "Компонент, позволяющий пользователю отправлять сигнал силой мысли. Требуется оболочка BCI."
 	category = "BCI"
 
 	required_shells = list(/obj/item/organ/internal/cyberimp/brain/bci)

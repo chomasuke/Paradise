@@ -5,8 +5,8 @@
  */
 
 /obj/item/circuit_component/view_sensor
-	display_name = "View Sensor"
-	desc = "Outputs a list with all movable objects in it's view. Requires a shell. Max range of 5 tiles."
+	display_name = "Датчик наблюдения"
+	desc = "Выводит список всех подвижных объектов в поле зрения. Требуется оболочка. Максимальная дальность — 5 плиток."
 	category = "Sensor"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -31,7 +31,7 @@
 
 /obj/item/circuit_component/view_sensor/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Scan Cooldown: [DisplayTimeText(view_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("Перезарядка сканирования: [DisplayTimeText(view_cooldown)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/view_sensor/input_received(datum/port/input/port)
 	if(!parent.shell)

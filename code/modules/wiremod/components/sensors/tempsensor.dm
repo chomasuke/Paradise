@@ -4,8 +4,8 @@
  * Returns the temperature of the tile
  */
 /obj/item/circuit_component/tempsensor
-	display_name = "Temperature Sensor"
-	desc = "Датчик температуры. Возвращает значение в градусах Кельвина."
+	display_name = "Датчик температуры."
+	desc = "Считывает значение температуры окружающей среды. Возвращает значение в Кельвинах."
 	category = "Sensor"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

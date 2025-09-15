@@ -4,8 +4,8 @@
  * Stores the current input when triggered into a variable.
  */
 /obj/item/circuit_component/variable/setter
-	display_name = "Variable Setter"
-	desc = "A component that sets a variable globally on the circuit."
+	display_name = "Задать переменную"
+	desc = "Компонент, который устанавливает переменную глобально в схеме."
 
 	/// The input to store
 	var/datum/port/input/input_port

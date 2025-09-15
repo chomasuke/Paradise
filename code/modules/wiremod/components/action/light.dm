@@ -4,8 +4,8 @@
  * Emits a light of a specific brightness and colour. Requires a shell.
  */
 /obj/item/circuit_component/light
-	display_name = "Light"
-	desc = "A component that emits a light of a specific brightness and colour."
+	display_name = "Лампочка"
+	desc = "Компонент, излучающий свет определенной яркости и цвета."
 	category = "Action"
 
 	/// The colours of the light
@@ -25,7 +25,7 @@
 
 /obj/item/circuit_component/light/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Brightness: [max_power]", "orange", "lightbulb")
+	. += create_ui_notice("Максимальная яркость: [max_power]", "orange", "lightbulb")
 
 /obj/item/circuit_component/light/populate_ports()
 	red = add_input_port("Red", PORT_TYPE_NUMBER)

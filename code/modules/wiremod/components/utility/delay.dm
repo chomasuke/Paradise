@@ -7,8 +7,8 @@
  * Delays a signal by a specified duration.
  */
 /obj/item/circuit_component/delay
-	display_name = "Delay"
-	desc = "A component that delays a signal by a specified duration. Timer gets reset when triggered again."
+	display_name = "Задержка"
+	desc = "Компонент, задерживающий сигнал на заданное время. Таймер сбрасывается при повторном срабатывании."
 	category = "Utility"
 
 	/// Amount to delay by

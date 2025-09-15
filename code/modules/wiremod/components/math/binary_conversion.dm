@@ -4,8 +4,8 @@
  * Return an array of binary digits from a number input.
  */
 /obj/item/circuit_component/binary_conversion
-	display_name = "Binary Conversion"
-	desc = "Splits a decimal number into an array of binary digits, or bits, represented as 1 or 0 and often used in boolean or binary operations like AND, OR and XOR."
+	display_name = "Двоичное преобразование"
+	desc = "Разбивает десятичное число на массив двоичных цифр или битов, представленных как 1 или 0 и часто используемых в логических или двоичных операциях, таких как AND, OR и XOR."
 	category = "Math"
 
 	/// One number

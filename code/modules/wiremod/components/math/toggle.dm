@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/compare/toggle
 	display_name = "Toggle"
-	desc = "A component that toggles between on and off when triggered. All input ports (except for set toggle) will trigger the component."
+	desc = "Компонент, который переключается между включением и выключением при срабатывании. Все входные порты, кроме порта переключения, активируют компонент."
 	category = "Math"
 
 	/// A signal to reset the toggle back to 0

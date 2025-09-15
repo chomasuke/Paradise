@@ -6,8 +6,8 @@
  * Allows an MMI to be inserted into a shell, allowing it to be linked up. Requires a shell.
  */
 /obj/item/circuit_component/mmi
-	display_name = "Man-Machine Interface"
-	desc = "A component that allows MMI to enter shells to send output signals."
+	display_name = "Человеко-Машинный Интерфейс"
+	desc = "Компонент, позволяющий ЧМИ входить в оболочки для отправки выходных сигналов."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_REFUSE_MODULE
 
@@ -78,7 +78,7 @@
 		if(!target)
 			return
 
-		to_chat(target, "[span_bold("You hear a message in your ear: ")][msg_str]")
+		to_chat(target, "[span_bold("Вы слышите сообщение: ")][msg_str]")
 		COOLDOWN_START(src, message_cooldown, MMI_MESSAGE_COOLDOWN)
 
 

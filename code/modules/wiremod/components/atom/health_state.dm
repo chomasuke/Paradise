@@ -5,8 +5,8 @@
  */
 
 /obj/item/circuit_component/compare/health_state
-	display_name = "Compare Health State"
-	desc = "A component that compares the health state of an organism, and returns true or false."
+	display_name = "Сравнение состояния здоровья"
+	desc = "Компонент, который сравнивает состояние здоровья организма и возвращает значение «истина» или «ложь»."
 	category = "Entity"
 
 	/// The input port
@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/compare/health_state/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/compare/health_state/populate_options()
 	input_port = add_input_port("Organism", PORT_TYPE_ATOM)

@@ -4,8 +4,8 @@
  * General string concatenation component. Puts strings together.
  */
 /obj/item/circuit_component/concat
-	display_name = "Concatenate"
-	desc = "A component that combines strings."
+	display_name = "Объединить строки"
+	desc = "Компонент, объединяющий строки."
 	category = "String"
 
 	var/list/datum/port/input/concat_ports = list()

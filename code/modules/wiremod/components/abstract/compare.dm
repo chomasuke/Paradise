@@ -4,7 +4,7 @@
  * Abstract component to build conditional components
  */
 /obj/item/circuit_component/compare
-	display_name = "Compare"
+	display_name = "Сравнить"
 
 	/// The trigger for the true/false signals
 	var/datum/port/input/compare

@@ -4,8 +4,8 @@
  * Return the current shell.
  */
 /obj/item/circuit_component/self
-	display_name = "Self"
-	desc = "A component that returns the current shell."
+	display_name = "Текущая оболочка"
+	desc = "Компонент, возвращающий значение текущей оболочки."
 	category = "Entity"
 
 	/// The shell this component is attached to.

@@ -4,8 +4,8 @@
  * Writes one of multiple inputs to one of multiple outputs.
  */
 /obj/item/circuit_component/router
-	display_name = "Router"
-	desc = "Copies the input chosen by \"Input Selector\" to the output chosen by \"Output Selector\"."
+	display_name = "Маршрутизатор"
+	desc = "Копирует вход, выбранный с помощью параметра «Селектор входных данных», на выход, выбранный с помощью параметра «Селектор выходных данных»."
 	category = "Utility"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -69,8 +69,8 @@
 	output.set_output(input.value)
 
 /obj/item/circuit_component/router/multiplexer
-	display_name = "Multiplexer"
-	desc = "Copies the input chosen by \"Input Selector\" to the output."
+	display_name = "Мультиплексор"
+	desc = "Копирует входные данные, выбранные с помощью параметра «Выбор входных данных», на выходные данные."
 	output_port_amount = 1
 
 #undef WRAPACCESS

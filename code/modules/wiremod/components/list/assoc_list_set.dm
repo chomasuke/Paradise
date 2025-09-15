@@ -4,8 +4,8 @@
  * Sets a string value on an assoc list.
  */
 /obj/item/circuit_component/variable/assoc_list/list_set
-	display_name = "Associative List Set"
-	desc = "Sets a string key on an associative list to a specific value."
+	display_name = "Ассоциативный список - задать"
+	desc = "Задает строковый ключ в ассоциативном списке на определенное значение."
 	category = "List"
 
 	/// Key to set
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/variable/assoc_list/list_set/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Max List Size: [max_list_size]", "orange", "sitemap")
+	. += create_ui_notice("Максимальный размер списка: [max_list_size]", "orange", "sitemap")
 
 /obj/item/circuit_component/variable/assoc_list/list_set/populate_ports()
 	key = add_input_port("Key", PORT_TYPE_STRING)

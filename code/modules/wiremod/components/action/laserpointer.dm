@@ -4,8 +4,8 @@
  * Points a laser at a tile or mob
  */
 /obj/item/circuit_component/laserpointer
-	display_name = "Laser Pointer"
-	desc = "A component that shines a high powered light at a target."
+	display_name = "Лазерный указатель"
+	desc = "Компонент, который направляет лазерный луч на цель."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/laserpointer/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/laserpointer/populate_options()
 	var/static/component_options = list(
@@ -57,7 +57,7 @@
 		var/mob/living/silicon/robot/silicon = target
 		add_attack_logs(shell, silicon, "shone [src] in their eyes")
 		silicon.flash_eyes(affect_silicon = TRUE) /// no stunning, just a blind
-		to_chat(silicon, span_danger("Your sensors were overloaded by a weakened laser shone by [shell]!"))
+		to_chat(silicon, span_danger("Ваши датчики были перегружены by a weakened laser shone by [shell]!"))
 
 	var/mutable_appearance/laser_location = mutable_appearance('icons/obj/weapons/projectiles.dmi', "[pointer_icon_state]_laser", target.layer + 0.01)
 

@@ -4,8 +4,8 @@
  * General logic unit with AND OR capabilities
  */
 /obj/item/circuit_component/not
-	display_name = "Not"
-	desc = "A component that inverts its input."
+	display_name = "Логическое отрицание"
+	desc = "Компонент, который инвертирует свой вход."
 	category = "Math"
 
 	/// The input port

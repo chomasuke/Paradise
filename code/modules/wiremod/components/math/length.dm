@@ -4,8 +4,8 @@
  * Return the length of an input
  */
 /obj/item/circuit_component/length
-	display_name = "Length"
-	desc = "A component that returns the length of its input."
+	display_name = "Длина"
+	desc = "Компонент, возвращающий длину входных данных."
 	category = "Math"
 
 	/// The input port

@@ -13,8 +13,8 @@
  * This one only works with numbers.
  */
 /obj/item/circuit_component/trigonometry
-	display_name = "Trigonometry"
-	desc = "General trigonometry component with main and inverse trigonometry functions."
+	display_name = "Тригонометрия"
+	desc = "Компонент общей тригонометрии с основными и обратными тригонометрическими функциями."
 	category = "Math"
 
 	var/datum/port/input/option/trigonometric_function

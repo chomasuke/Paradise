@@ -4,8 +4,8 @@
  * Return the health of a mob
  */
 /obj/item/circuit_component/health
-	display_name = "Get Health"
-	desc = "A component that returns the health of an organism."
+	display_name = "Получить состояние здоровья"
+	desc = "Компонент, возвращающий состояние здоровья организма."
 	category = "Entity"
 
 	/// The input port
@@ -28,7 +28,7 @@
 
 /obj/item/circuit_component/health/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/health/populate_ports()
 	input_port = add_input_port("Organism", PORT_TYPE_ATOM)
