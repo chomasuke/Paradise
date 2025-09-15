@@ -34,12 +34,12 @@
 
 	var/obj/item/integrated_circuit/circuit = locate(params["circuit"])
 	if (!istype(circuit))
-		to_chat(usr, span_warning("That circuit no longer exists."))
+		to_chat(usr, span_warning("Этой схемы больше не существует."))
 		return FALSE
 
 	switch (action)
 		if ("duplicate_circuit")
-			if (alert(usr, "This will spawn the new circuit at where you are, are you sure?", "Confirm", "Yes", "No") != "Yes")
+			if (alert(usr, "Это создаст новую схему в том месте, где вы находитесь. Вы уверены?", "Confirm", "Yes", "No") != "Yes")
 				return FALSE
 
 			var/list/errors = list()
@@ -48,7 +48,7 @@
 			new_circuit.load_circuit_data(circuit.convert_to_json(), errors)
 
 			if (length(errors))
-				to_chat(usr, span_warning("Somehow, duplicating the circuit failed:"))
+				to_chat(usr, span_warning("Каким-то образом, дублирование схемы не удалось:"))
 				for (var/error in errors)
 					to_chat(usr, span_warning(error))
 		if ("follow_circuit")
