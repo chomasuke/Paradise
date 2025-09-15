@@ -128,7 +128,7 @@
 	if(isnull(attached_circuit))
 		examine_text += span_notice("На передней панели расположен USB-порт.")
 	else
-		examine_text += span_notice("[attached_circuit.shell || attached_circuit] is connected to [parent.p_them()] by a USB port.")
+		examine_text += span_notice("[attached_circuit.shell || attached_circuit] подключен к [parent.p_them()] с помощью USB-порта.")
 
 /datum/component/usb_port/proc/on_examine_shell(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
