@@ -22,7 +22,7 @@
 	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/compare/health_state/populate_options()
-	input_port = add_input_port("Organism", PORT_TYPE_ATOM)
+	input_port = add_input_port("Организм", PORT_TYPE_ATOM)
 
 	var/static/component_options = list(
 		"Alive",
@@ -30,7 +30,7 @@
 		"Unconscious",
 		"Deceased",
 	)
-	state_option = add_option_port("Comparison Option", component_options)
+	state_option = add_option_port("Вариант сравнения", component_options)
 
 /obj/item/circuit_component/compare/health_state/do_comparisons()
 	var/mob/living/organism = input_port.value

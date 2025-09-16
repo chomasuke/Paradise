@@ -34,9 +34,9 @@
 
 
 /obj/item/circuit_component/laserpointer/populate_ports()
-	target_input = add_input_port("Target", PORT_TYPE_ATOM)
-	image_pixel_x = add_input_port("X-Axis Shift", PORT_TYPE_NUMBER)
-	image_pixel_y = add_input_port("Y-Axis Shift", PORT_TYPE_NUMBER)
+	target_input = add_input_port("Цель", PORT_TYPE_ATOM)
+	image_pixel_x = add_input_port("Смещение по X", PORT_TYPE_NUMBER)
+	image_pixel_y = add_input_port("Смещение по Y", PORT_TYPE_NUMBER)
 
 
 /obj/item/circuit_component/laserpointer/input_received(datum/port/input/port)
