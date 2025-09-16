@@ -19,8 +19,8 @@
 	), SHELL_CAPACITY_SMALL)
 
 /obj/item/circuit_component/wiremod_scanner
-	display_name = "Scanner"
-	desc = "Used to receive scanned entities from the scanner."
+	display_name = "Сканер"
+	desc = "Используется для получения отсканированных объектов со сканера."
 
 	/// Called when afterattack is called on the shell.
 	var/datum/port/output/signal

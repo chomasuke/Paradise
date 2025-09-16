@@ -5,7 +5,7 @@
  */
 /obj/item/gun/energy/wiremod_gun
 	name = "circuit gun"
-	desc = "A gun that fires projectiles able to control circuitry. It can recharge using power from an attached circuit."
+	desc = "Оружие, стреляющее снарядами, которым можно управлять электронными схемами. Оно может перезаряжаться, используя энергию подключенной схемы."
 	icon = 'icons/obj/circuits.dmi'
 	icon_state = "setup_gun"
 	ammo_type = list(/obj/item/ammo_casing/energy/wiremod_gun)
@@ -41,8 +41,8 @@
 	), SHELL_CAPACITY_MEDIUM)
 
 /obj/item/circuit_component/wiremod_gun
-	display_name = "Gun"
-	desc = "Used to receive entities hit by projectiles from a gun."
+	display_name = "Оружие"
+	desc = "Используется для получения поражённых, снарядами из пушки, объектов."
 	/// Called when a projectile hits
 	var/datum/port/output/signal
 	/// The shooter

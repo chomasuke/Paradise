@@ -19,8 +19,8 @@
 	), SHELL_CAPACITY_SMALL)
 
 /obj/item/circuit_component/compact_remote
-	display_name = "Compact Remote"
-	desc = "Used to receive inputs from the compact remote shell. Use the shell in hand to trigger the output signal."
+	display_name = "Компактный пульт дистанционного управления"
+	desc = "Используется для получения входных сигналов от компактного пульта дистанционного управления. Используйте пульт в руке для активации выходного сигнала."
 
 	/// Called when attack_self is called on the shell.
 	var/datum/port/output/signal
@@ -42,7 +42,7 @@
  */
 /obj/item/circuit_component/compact_remote/proc/send_trigger(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "clicked primary button")
+	source.balloon_alert(user, "нажата большая красная кнопка")
 	playsound(source, "terminal_type", 25, FALSE)
 	entity.set_output(user)
 	signal.set_output(COMPONENT_SIGNAL)

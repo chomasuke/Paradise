@@ -36,7 +36,7 @@
 	return user.can_advanced_admin_interact()
 
 /obj/item/circuit_component/airlock
-	display_name = "Airlock"
+	display_name = "Шлюз"
 	desc = "Общий интерфейс шлюза. Включает в себя общие статусы шлюза."
 
 	/// The shell, if it is an airlock.
@@ -132,8 +132,8 @@
 
 
 /obj/item/circuit_component/airlock_access_event
-	display_name = "Airlock Access Event"
-	desc = "An event that can be handled through circuit components to determine if the door should open or not for an entity that might be trying to access it."
+	display_name = "Событие доступа к шлюзу"
+	desc = "Событие, которое можно обработать с помощью компонентов схемы, чтобы определить, следует ли открыть дверь или нет для объекта, который может попытаться получить к ней доступ."
 	circuit_flags = CIRCUIT_FLAG_INSTANT
 
 	/// The shell, if it is an airlock.

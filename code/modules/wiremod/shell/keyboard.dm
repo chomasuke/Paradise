@@ -14,8 +14,8 @@
 	), SHELL_CAPACITY_SMALL)
 
 /obj/item/circuit_component/keyboard_shell
-	display_name = "Keyboard Shell"
-	desc = "A handheld shell that allows the user to input a string. Use the shell in hand to open the input panel."
+	display_name = "Оболочка клавиатуры"
+	desc = "Ручная клавиатура, позволяющая пользователю вводить текст. Используйте клавиатуру в руке, чтобы открыть панель ввода."
 
 	/// Called when the input window is closed
 	var/datum/port/output/signal
@@ -43,7 +43,7 @@
 
 /obj/item/circuit_component/keyboard_shell/proc/use_keyboard(mob/user)
 	if(!user.is_literate())
-		to_chat(user, span_warning("You start mashing keys at random!"))
+		to_chat(user, span_warning("Вы начинаете нажимать клавиши в случайном порядке!"))
 		return
 
 	var/message = tgui_input_text(user, "Input your text", "Keyboard", max_length = MAX_MESSAGE_LEN)

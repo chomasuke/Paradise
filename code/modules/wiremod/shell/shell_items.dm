@@ -5,7 +5,7 @@
  */
 /obj/item/shell
 	name = "assembly"
-	desc = "A shell assembly that can be completed by screwdrivering it."
+	desc = "Сборка корпуса, которую можно завершить с помощью отвертки."
 	icon = 'icons/obj/circuits.dmi'
 	var/shell_to_spawn
 	var/screw_delay = 3 SECONDS
@@ -15,11 +15,11 @@
 	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
 
 /obj/item/shell/screwdriver_act(mob/living/user, obj/item/tool)
-	user.visible_message(span_notice("[user] begins finishing [src]."), span_notice("You begin finishing [src]."))
+	user.visible_message(span_notice("[user] начал заканчивать [src]."), span_notice("Вы заканчиваете [src]."))
 	tool.play_tool_sound(src)
 	if(!do_after(user, screw_delay, src))
 		return
-	user.visible_message(span_notice("[user] finishes [src]."), span_notice("You finish [src]."))
+	user.visible_message(span_notice("[user] закончил [src]."), span_notice("Вы закончили [src]."))
 
 	var/turf/drop_loc = drop_location()
 

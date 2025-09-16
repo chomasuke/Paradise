@@ -68,7 +68,7 @@
 
 
 /obj/item/circuit_component/bot_circuit
-	display_name = "Drone"
+	display_name = "Дрон"
 	desc = "Используется для отправки сигналов движения на оболочку дрона."
 
 	/// The inputs to allow for the drone to move
