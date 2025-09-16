@@ -1,3 +1,7 @@
+#define ALIVE "Жив"
+#define CRITICAL "Критическое состояние"
+#define UNCONSCIOUS "Без сознания"
+#define DECEASED "Мертв"
 /**
  * # Compare Health State Component
  *
@@ -25,10 +29,10 @@
 	input_port = add_input_port("Организм", PORT_TYPE_ATOM)
 
 	var/static/component_options = list(
-		"Alive",
-		"Critical",
-		"Unconscious",
-		"Deceased",
+		"Жив",
+		"Критическое состояние",
+		"Без сознания",
+		"Мертв",
 	)
 	state_option = add_option_port("Вариант сравнения", component_options)
 
@@ -42,13 +46,18 @@
 	var/current_option = state_option.value
 	var/state = organism.stat
 	switch(current_option)
-		if("Alive")
+		if("Жив")
 			return state != DEAD
-		if("Critical")
+		if("Критическое состояние")
 			return organism.InCritical()
-		if("Unconscious")
+		if("Без сознания")
 			return state == UNCONSCIOUS
-		if("Deceased")
+		if("Мертв")
 			return state == DEAD
 	//Unknown state, something fucked up really bad - just return false
 	return FALSE
+
+#undef ALIVE
+#undef CRITICAL
+#undef UNCONSCIOUS
+#undef DECEASED

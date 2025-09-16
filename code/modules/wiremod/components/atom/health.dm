@@ -31,7 +31,7 @@
 	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/health/populate_ports()
-	input_port = add_input_port("Organism", PORT_TYPE_ATOM)
+	input_port = add_input_port("Организм", PORT_TYPE_ATOM)
 
 	brute = add_output_port("Механический урон", PORT_TYPE_NUMBER)
 	burn = add_output_port("Ожеговый урон", PORT_TYPE_NUMBER)
