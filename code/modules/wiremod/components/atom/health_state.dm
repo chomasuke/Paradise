@@ -2,6 +2,7 @@
 #define CRITICAL "Критическое состояние"
 #define UNCONSCIOUS "Без сознания"
 #define DECEASED "Мертв"
+
 /**
  * # Compare Health State Component
  *
