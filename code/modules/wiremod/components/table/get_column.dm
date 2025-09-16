@@ -19,9 +19,9 @@
 	var/datum/port/output/output_list
 
 /obj/item/circuit_component/get_column/populate_ports()
-	received_table = add_input_port("Input", PORT_TYPE_TABLE)
-	column_name = add_input_port("Column Name", PORT_TYPE_STRING)
-	output_list = add_output_port("Output", PORT_TYPE_LIST(PORT_TYPE_ANY))
+	received_table = add_input_port("Ввод", PORT_TYPE_TABLE)
+	column_name = add_input_port("Имя столбца", PORT_TYPE_STRING)
+	output_list = add_output_port("Вывод", PORT_TYPE_LIST(PORT_TYPE_ANY))
 
 /obj/item/circuit_component/get_column/input_received(datum/port/input/port)
 

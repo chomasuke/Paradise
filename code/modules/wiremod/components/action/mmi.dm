@@ -44,18 +44,18 @@
 	COOLDOWN_DECLARE(message_cooldown)
 
 /obj/item/circuit_component/mmi/populate_ports()
-	message = add_input_port("Message", PORT_TYPE_STRING)
-	send = add_input_port("Send Message", PORT_TYPE_SIGNAL)
-	eject = add_input_port("Eject", PORT_TYPE_SIGNAL)
+	message = add_input_port("Сообщение", PORT_TYPE_STRING)
+	send = add_input_port("Отправить сообщение", PORT_TYPE_SIGNAL)
+	eject = add_input_port("Изъять", PORT_TYPE_SIGNAL)
 
-	north = add_output_port("North", PORT_TYPE_SIGNAL)
-	east = add_output_port("East", PORT_TYPE_SIGNAL)
-	south = add_output_port("South", PORT_TYPE_SIGNAL)
-	west = add_output_port("West", PORT_TYPE_SIGNAL)
+	north = add_output_port("Север", PORT_TYPE_SIGNAL)
+	east = add_output_port("Восток", PORT_TYPE_SIGNAL)
+	south = add_output_port("Юг", PORT_TYPE_SIGNAL)
+	west = add_output_port("Запад", PORT_TYPE_SIGNAL)
 
-	attack = add_output_port("Attack", PORT_TYPE_SIGNAL)
-	alt_attack = add_output_port("Alt Attack", PORT_TYPE_SIGNAL)
-	clicked_atom = add_output_port("Target Entity", PORT_TYPE_ATOM)
+	attack = add_output_port("Атака", PORT_TYPE_SIGNAL)
+	alt_attack = add_output_port("Альт атака", PORT_TYPE_SIGNAL)
+	clicked_atom = add_output_port("Целевой объект", PORT_TYPE_ATOM)
 
 /obj/item/circuit_component/mmi/Destroy()
 	remove_current_brain()

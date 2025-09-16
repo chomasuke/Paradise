@@ -17,8 +17,8 @@
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 /obj/item/circuit_component/tonumber/populate_ports()
-	input_port = add_input_port("Input", PORT_TYPE_STRING)
-	output = add_output_port("Output", PORT_TYPE_NUMBER)
+	input_port = add_input_port("Ввод", PORT_TYPE_STRING)
+	output = add_output_port("Вывод", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/tonumber/input_received(datum/port/input/port)
 	output.set_output(text2num(input_port.value))

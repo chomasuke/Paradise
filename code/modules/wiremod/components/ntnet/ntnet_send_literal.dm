@@ -16,7 +16,7 @@
 
 /obj/item/circuit_component/list_literal/ntnet_send/populate_ports()
 	. = ..()
-	enc_key = add_input_port("Encryption Key", PORT_TYPE_STRING)
+	enc_key = add_input_port("Ключ шифрования", PORT_TYPE_STRING)
 
 /obj/item/circuit_component/list_literal/ntnet_send/should_receive_input(datum/port/input/port)
 	. = ..()

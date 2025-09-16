@@ -29,13 +29,13 @@
 	param_regex = list_param_regex
 
 /obj/item/circuit_component/format/proc/make_params_port()
-	param_list_port = add_input_port("Params", PORT_TYPE_LIST(PORT_TYPE_ANY))
+	param_list_port = add_input_port("Параметры", PORT_TYPE_LIST(PORT_TYPE_ANY))
 
 /obj/item/circuit_component/format/populate_ports()
-	format_port = add_input_port("Format", PORT_TYPE_STRING)
+	format_port = add_input_port("Формат", PORT_TYPE_STRING)
 	make_params_port()
 
-	output = add_output_port("Output", PORT_TYPE_STRING)
+	output = add_output_port("Вывод", PORT_TYPE_STRING)
 
 /**
  * Get an item from the list.
@@ -79,7 +79,7 @@
 	return param_list[index_string]
 
 /obj/item/circuit_component/format/assoc/make_params_port()
-	param_list_port = add_input_port("Params", PORT_TYPE_ASSOC_LIST(PORT_TYPE_STRING, PORT_TYPE_ANY))
+	param_list_port = add_input_port("Параметры", PORT_TYPE_ASSOC_LIST(PORT_TYPE_STRING, PORT_TYPE_ANY))
 
 /**
  * # Subtype of regex that holds context to /obj/item/circuit_component/format

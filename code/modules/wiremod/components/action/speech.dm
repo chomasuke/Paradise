@@ -20,7 +20,7 @@
 	. += create_ui_notice("Перезарядка произношения: [DisplayTimeText(speech_cooldown)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/speech/populate_ports()
-	message = add_input_port("Message", PORT_TYPE_STRING, trigger = null)
+	message = add_input_port("Сообщение", PORT_TYPE_STRING, trigger = null)
 
 /obj/item/circuit_component/speech/input_received(datum/port/input/port)
 	if(!parent.shell)

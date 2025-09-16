@@ -27,14 +27,14 @@
 	var/list/datum/port/output/outs
 
 /obj/item/circuit_component/router/populate_options()
-	router_options = add_option_port("Router Options", GLOB.wiremod_basic_types)
+	router_options = add_option_port("Параметры маршрутизатора", GLOB.wiremod_basic_types)
 
 /obj/item/circuit_component/router/populate_ports()
 	current_type = router_options.value
 	if(input_port_amount > 1)
-		input_selector = add_input_port("Input Selector", PORT_TYPE_NUMBER, default = 1)
+		input_selector = add_input_port("Селектор ввода", PORT_TYPE_NUMBER, default = 1)
 	if(output_port_amount > 1)
-		output_selector = add_input_port("Output Selector", PORT_TYPE_NUMBER, default = 1)
+		output_selector = add_input_port("Селектор выхода", PORT_TYPE_NUMBER, default = 1)
 	ins = list()
 	for(var/port_id in 1 to input_port_amount)
 		ins += add_input_port(input_port_amount > 1 ? "Input [port_id]" : "Input", current_type)

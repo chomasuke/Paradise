@@ -19,10 +19,10 @@
 	var/datum/port/output/output
 
 /obj/item/circuit_component/random/populate_ports()
-	minimum = add_input_port("Minimum", PORT_TYPE_NUMBER, trigger = null)
-	maximum = add_input_port("Maximum", PORT_TYPE_NUMBER, trigger = null)
+	minimum = add_input_port("Минимум", PORT_TYPE_NUMBER, trigger = null)
+	maximum = add_input_port("Максимум", PORT_TYPE_NUMBER, trigger = null)
 
-	output = add_output_port("Output", PORT_TYPE_NUMBER)
+	output = add_output_port("Вывод", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/random/input_received(datum/port/input/port)
 

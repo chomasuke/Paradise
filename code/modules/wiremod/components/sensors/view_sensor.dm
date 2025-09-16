@@ -25,9 +25,9 @@
 	var/maximum_range = 5 //Variablised incase admins want to increase it.
 
 /obj/item/circuit_component/view_sensor/populate_ports()
-	range = add_input_port("Range", PORT_TYPE_NUMBER, default = maximum_range)
-	result = add_output_port("Result", PORT_TYPE_LIST(PORT_TYPE_ATOM))
-	cooldown = add_output_port("Scan On Cooldown", PORT_TYPE_SIGNAL)
+	range = add_input_port("Дальность", PORT_TYPE_NUMBER, default = maximum_range)
+	result = add_output_port("Результат", PORT_TYPE_LIST(PORT_TYPE_ATOM))
+	cooldown = add_output_port("Сканирование при перезарядке", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/view_sensor/get_ui_notices()
 	. = ..()

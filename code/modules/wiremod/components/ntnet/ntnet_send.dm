@@ -21,11 +21,11 @@
 	var/datum/port/input/enc_key
 
 /obj/item/circuit_component/ntnet_send/populate_options()
-	list_options = add_option_port("List Type", GLOB.wiremod_basic_types)
+	list_options = add_option_port("Тип списка", GLOB.wiremod_basic_types)
 
 /obj/item/circuit_component/ntnet_send/populate_ports()
-	data_package = add_input_port("Data Package", PORT_TYPE_LIST(PORT_TYPE_ANY))
-	enc_key = add_input_port("Encryption Key", PORT_TYPE_STRING)
+	data_package = add_input_port("Пакет данных", PORT_TYPE_LIST(PORT_TYPE_ANY))
+	enc_key = add_input_port("Ключ шифрования", PORT_TYPE_STRING)
 
 /obj/item/circuit_component/ntnet_send/should_receive_input(datum/port/input/port)
 	. = ..()

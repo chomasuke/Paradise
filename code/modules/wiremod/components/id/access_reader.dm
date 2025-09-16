@@ -18,8 +18,8 @@
 	. += create_ui_notice("Максимальная дальность: [max_range] метров.", "orange", "info")
 
 /obj/item/circuit_component/id_access_reader/populate_ports()
-	target = add_input_port("Target", PORT_TYPE_ATOM)
-	access_port = add_output_port("Access", PORT_TYPE_LIST(PORT_TYPE_STRING))
+	target = add_input_port("Цель", PORT_TYPE_ATOM)
+	access_port = add_output_port("Доступ", PORT_TYPE_LIST(PORT_TYPE_STRING))
 
 
 /obj/item/circuit_component/id_access_reader/input_received(datum/port/input/port)

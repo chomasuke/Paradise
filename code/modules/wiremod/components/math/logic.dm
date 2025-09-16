@@ -28,7 +28,7 @@
 		COMP_LOGIC_OR,
 		COMP_LOGIC_XOR,
 	)
-	logic_options = add_option_port("Logic Options", component_options)
+	logic_options = add_option_port("Выбор логического действия", component_options)
 
 /obj/item/circuit_component/compare/logic/populate_custom_ports()
 	AddComponent(/datum/component/circuit_component_add_port, \

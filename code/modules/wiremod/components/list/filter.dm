@@ -38,7 +38,7 @@
 	var/limit = 300
 
 /obj/item/circuit_component/filter_list/populate_options()
-	list_options = add_option_port("List Type", GLOB.wiremod_basic_types)
+	list_options = add_option_port("Тип списка", GLOB.wiremod_basic_types)
 
 /obj/item/circuit_component/filter_list/pre_input_received(datum/port/input/port)
 	if(port == list_options)
@@ -48,15 +48,15 @@
 		element.set_datatype(new_datatype)
 
 /obj/item/circuit_component/filter_list/populate_ports()
-	list_to_filter = add_input_port("List Input", PORT_TYPE_LIST(PORT_TYPE_ANY))
-	accept_entry = add_input_port("Accept Entry", PORT_TYPE_SIGNAL, trigger = PROC_REF(accept_entry_port))
+	list_to_filter = add_input_port("Список на ввод", PORT_TYPE_LIST(PORT_TYPE_ANY))
+	accept_entry = add_input_port("Принять запись", PORT_TYPE_SIGNAL, trigger = PROC_REF(accept_entry_port))
 
-	element = add_output_port("Element", PORT_TYPE_ANY)
-	current_index = add_output_port("Index", PORT_TYPE_NUMBER)
-	on_next_index = add_output_port("Next Index", PORT_TYPE_SIGNAL)
-	finished_list = add_output_port("Filtered List", PORT_TYPE_LIST(PORT_TYPE_ANY))
-	on_finished = add_output_port("On Finished", PORT_TYPE_SIGNAL)
-	on_failed = add_output_port("On Failed", PORT_TYPE_SIGNAL)
+	element = add_output_port("Элемент", PORT_TYPE_ANY)
+	current_index = add_output_port("Индекс", PORT_TYPE_NUMBER)
+	on_next_index = add_output_port("Следующий индекс", PORT_TYPE_SIGNAL)
+	finished_list = add_output_port("Отфильтрованный список", PORT_TYPE_LIST(PORT_TYPE_ANY))
+	on_finished = add_output_port("По завершении", PORT_TYPE_SIGNAL)
+	on_failed = add_output_port("Провал", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/filter_list/proc/accept_entry_port(datum/port/input/port, list/return_values)
 	CIRCUIT_TRIGGER

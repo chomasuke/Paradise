@@ -57,7 +57,7 @@
 		var/mob/living/silicon/robot/silicon = target
 		add_attack_logs(shell, silicon, "shone [src] in their eyes")
 		silicon.flash_eyes(affect_silicon = TRUE) /// no stunning, just a blind
-		to_chat(silicon, span_danger("Ваши датчики были перегружены by a weakened laser shone by [shell]!"))
+		to_chat(silicon, span_danger("Ваши датчики были перегружены слабым лазером испускаемым [shell]!"))
 
 	var/mutable_appearance/laser_location = mutable_appearance('icons/obj/weapons/projectiles.dmi', "[pointer_icon_state]_laser", target.layer + 0.01)
 

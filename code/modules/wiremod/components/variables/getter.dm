@@ -14,7 +14,7 @@
 	circuit_size = 0
 
 /obj/item/circuit_component/variable/getter/populate_ports()
-	value = add_output_port("Value", PORT_TYPE_ANY)
+	value = add_output_port("Значение", PORT_TYPE_ANY)
 
 /obj/item/circuit_component/variable/getter/pre_input_received(datum/port/input/port)
 	. = ..()

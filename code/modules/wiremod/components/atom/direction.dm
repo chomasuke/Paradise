@@ -31,15 +31,15 @@
 	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/direction/populate_ports()
-	input_port = add_input_port("Targeted Entity", PORT_TYPE_ATOM)
+	input_port = add_input_port("Целевой объект", PORT_TYPE_ATOM)
 
-	output = add_output_port("Direction", PORT_TYPE_STRING)
-	distance = add_output_port("Distance", PORT_TYPE_NUMBER)
+	output = add_output_port("Направление", PORT_TYPE_STRING)
+	distance = add_output_port("Дистанция", PORT_TYPE_NUMBER)
 
-	north = add_output_port("North", PORT_TYPE_SIGNAL)
-	east = add_output_port("East", PORT_TYPE_SIGNAL)
-	south = add_output_port("South", PORT_TYPE_SIGNAL)
-	west = add_output_port("West", PORT_TYPE_SIGNAL)
+	north = add_output_port("Север", PORT_TYPE_SIGNAL)
+	east = add_output_port("Восток", PORT_TYPE_SIGNAL)
+	south = add_output_port("Юг", PORT_TYPE_SIGNAL)
+	west = add_output_port("Запад", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/direction/input_received(datum/port/input/port)
 

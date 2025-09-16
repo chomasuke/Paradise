@@ -25,10 +25,10 @@
 		COMP_TYPECHECK_MOB,
 		COMP_TYPECHECK_HUMAN,
 	)
-	typecheck_options = add_option_port("Typecheck Options", component_options)
+	typecheck_options = add_option_port("Параметры проверки типов", component_options)
 
 /obj/item/circuit_component/compare/typecheck/populate_custom_ports()
-	thing_to_check = add_input_port("Value", PORT_TYPE_ANY)
+	thing_to_check = add_input_port("Значение", PORT_TYPE_ANY)
 
 /obj/item/circuit_component/compare/typecheck/do_comparisons()
 	var/input_val = thing_to_check.value

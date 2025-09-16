@@ -22,10 +22,10 @@
 	var/obj/item/organ/internal/cyberimp/brain/bci/bci
 
 /obj/item/circuit_component/vox/populate_options()
-	type_option = add_option_port("VOX Type", list(PORT_TYPE_LIST(PORT_TYPE_STRING), PORT_TYPE_STRING))
+	type_option = add_option_port("тип ВОКС-а", list(PORT_TYPE_LIST(PORT_TYPE_STRING), PORT_TYPE_STRING))
 
 /obj/item/circuit_component/vox/populate_ports()
-	word_list = add_input_port("Word List", PORT_TYPE_LIST(PORT_TYPE_STRING))
+	word_list = add_input_port("Список слов", PORT_TYPE_LIST(PORT_TYPE_STRING))
 
 /obj/item/circuit_component/vox/register_shell(atom/movable/shell)
 	if(istype(shell, /obj/item/organ/internal/cyberimp/brain/bci))

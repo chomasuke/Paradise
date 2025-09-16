@@ -19,8 +19,8 @@
 
 /obj/item/circuit_component/list_literal/nfc_send/populate_ports()
 	. = ..()
-	enc_key = add_input_port("Encryption Key", PORT_TYPE_STRING)
-	target = add_input_port("Target", PORT_TYPE_ATOM)
+	enc_key = add_input_port("Ключ шифрования", PORT_TYPE_STRING)
+	target = add_input_port("Цель", PORT_TYPE_ATOM)
 
 /obj/item/circuit_component/list_literal/nfc_send/should_receive_input(datum/port/input/port)
 	. = ..()

@@ -19,8 +19,8 @@
 
 /obj/item/circuit_component/typecast/populate_ports()
 	current_type = typecast_options.value
-	input_value = add_input_port("Input", PORT_TYPE_ANY)
-	output_value = add_output_port("Output", current_type)
+	input_value = add_input_port("Ввод", PORT_TYPE_ANY)
+	output_value = add_output_port("Вывод", current_type)
 
 /obj/item/circuit_component/typecast/populate_options()
 	var/static/list/component_options = list(
@@ -29,7 +29,7 @@
 		PORT_COMPOSITE_TYPE_LIST,
 		PORT_TYPE_ATOM,
 	)
-	typecast_options = add_option_port("Typecast Options", component_options)
+	typecast_options = add_option_port("Параметры приведения типов", component_options)
 
 /obj/item/circuit_component/typecast/pre_input_received(datum/port/input/port)
 	var/current_option = typecast_options.value

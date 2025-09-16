@@ -31,7 +31,7 @@
 		minimum_amount = 1, \
 		maximum_amount = MAX_BITFIELD_SIZE \
 	)
-	number = add_input_port("Number", PORT_TYPE_NUMBER, order = 1.1)
+	number = add_input_port("Число", PORT_TYPE_NUMBER, order = 1.1)
 
 /obj/item/circuit_component/binary_conversion/input_received(datum/port/input/port)
 	if(!length(bit_array))

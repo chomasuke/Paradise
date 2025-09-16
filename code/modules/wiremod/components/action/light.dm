@@ -28,12 +28,12 @@
 	. += create_ui_notice("Максимальная яркость: [max_power]", "orange", "lightbulb")
 
 /obj/item/circuit_component/light/populate_ports()
-	red = add_input_port("Red", PORT_TYPE_NUMBER)
-	green = add_input_port("Green", PORT_TYPE_NUMBER)
-	blue = add_input_port("Blue", PORT_TYPE_NUMBER)
-	brightness = add_input_port("Brightness", PORT_TYPE_NUMBER)
+	red = add_input_port("Красный", PORT_TYPE_NUMBER)
+	green = add_input_port("Зеленый", PORT_TYPE_NUMBER)
+	blue = add_input_port("Синий", PORT_TYPE_NUMBER)
+	brightness = add_input_port("Яркость", PORT_TYPE_NUMBER)
 
-	on = add_input_port("On", PORT_TYPE_NUMBER)
+	on = add_input_port("Вкл", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/light/register_shell(atom/movable/shell)
 	. = ..()

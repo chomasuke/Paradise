@@ -22,9 +22,9 @@
 	. += create_ui_notice("When \"Check Any\" is false, returns true only if \"Access To Check\" contains ALL values in \"Required Access\".", "orange", "info")
 
 /obj/item/circuit_component/compare/access/populate_custom_ports()
-	subject_accesses = add_input_port("Access To Check", PORT_TYPE_LIST(PORT_TYPE_STRING))
-	required_accesses = add_input_port("Required Access", PORT_TYPE_LIST(PORT_TYPE_STRING))
-	check_any = add_input_port("Check Any", PORT_TYPE_NUMBER)
+	subject_accesses = add_input_port("Доступ для проверки", PORT_TYPE_LIST(PORT_TYPE_STRING))
+	required_accesses = add_input_port("Требуемый доступ", PORT_TYPE_LIST(PORT_TYPE_STRING))
+	check_any = add_input_port("Проверить любой", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/compare/access/save_data_to_list(list/component_data)
 	. = ..()

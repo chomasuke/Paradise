@@ -26,9 +26,9 @@
 
 /obj/item/circuit_component/reagent_injector/populate_ports()
 	. = ..()
-	inject = add_input_port("Inject", PORT_TYPE_SIGNAL, trigger = PROC_REF(trigger_inject))
-	transfer_amounts = add_input_port("Transfer Amounts", PORT_TYPE_NUMBER, default = 15)
-	injected = add_output_port("Injected", PORT_TYPE_SIGNAL)
+	inject = add_input_port("Ввести", PORT_TYPE_SIGNAL, trigger = PROC_REF(trigger_inject))
+	transfer_amounts = add_input_port("Количество", PORT_TYPE_NUMBER, default = 15)
+	injected = add_output_port("Введен", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/reagent_injector/pre_input_received(datum/port/input/port)
 	transfer_amounts.set_value(clamp(transfer_amounts.value, 1, 15))
@@ -49,7 +49,7 @@
 	var/units = bci.reagents.trans_to(bci.owner, transfer_amounts.value)
 	if(units)
 		injected.set_output(COMPONENT_SIGNAL)
-		add_attack_logs(bci.owner, bci.owner, "Injected with [name] containing [bci.reagents.log_list()], transfered [units] units", bci.reagents.harmless_helper() ? ATKLOG_ALMOSTALL : null)
+		add_attack_logs(bci.owner, bci.owner, "Введено с помощью [name] содержащим [bci.reagents.log_list()], введено [units] единиц", bci.reagents.harmless_helper() ? ATKLOG_ALMOSTALL : null)
 
 /obj/item/circuit_component/reagent_injector/register_shell(atom/movable/shell)
 	. = ..()

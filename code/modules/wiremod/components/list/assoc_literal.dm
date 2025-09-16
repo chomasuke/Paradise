@@ -35,7 +35,7 @@
 			port_to_set.set_datatype(new_datatype)
 
 /obj/item/circuit_component/assoc_literal/populate_options()
-	list_options = add_option_port("List Type", GLOB.wiremod_basic_types)
+	list_options = add_option_port("Тип списка", GLOB.wiremod_basic_types)
 
 /obj/item/circuit_component/assoc_literal/populate_ports()
 	AddComponent(/datum/component/circuit_component_add_port, \
@@ -56,7 +56,7 @@
 		minimum_amount = 1, \
 		maximum_amount = 20 \
 	)
-	list_output = add_output_port("Value", PORT_TYPE_ASSOC_LIST(PORT_TYPE_STRING, PORT_TYPE_ANY), order = 1.1)
+	list_output = add_output_port("Значение", PORT_TYPE_ASSOC_LIST(PORT_TYPE_STRING, PORT_TYPE_ANY), order = 1.1)
 
 /obj/item/circuit_component/assoc_literal/input_received(datum/port/input/port)
 	var/list/new_literal = list()

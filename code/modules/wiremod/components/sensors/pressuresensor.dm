@@ -14,7 +14,7 @@
 	var/datum/port/output/result
 
 /obj/item/circuit_component/pressuresensor/populate_ports()
-	result = add_output_port("Result", PORT_TYPE_NUMBER)
+	result = add_output_port("Результат", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/pressuresensor/input_received(datum/port/input/port)
 	//Get current turf

@@ -62,11 +62,11 @@
 		. += create_ui_notice("Использование энергии пока активно: [current_camera_range > 0 ? REMOTECAM_ENERGY_USAGE_FAR : REMOTECAM_ENERGY_USAGE_NEAR] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 
 /obj/item/circuit_component/remotecam/populate_ports()
-	start = add_input_port("Start", PORT_TYPE_SIGNAL)
-	stop = add_input_port("Stop", PORT_TYPE_SIGNAL)
+	start = add_input_port("Старт", PORT_TYPE_SIGNAL)
+	stop = add_input_port("Стоп", PORT_TYPE_SIGNAL)
 	if(camera_range_settable)
-		camera_range = add_input_port("Camera Range", PORT_TYPE_NUMBER, default = 0)
-	network = add_input_port("Network", PORT_TYPE_STRING, default = "SS13")
+		camera_range = add_input_port("Дальность камеры", PORT_TYPE_NUMBER, default = 0)
+	network = add_input_port("Сеть", PORT_TYPE_STRING, default = "SS13")
 
 	if(camera_range_settable)
 		current_camera_range = camera_range.value
@@ -294,8 +294,8 @@
 	camera_prefix = "Drone"
 
 /obj/item/circuit_component/remotecam/airlock
-	display_name = "Peephole Camera"
-	desc = "A peephole camera that captures both sides of the airlock. Network field is used for camera network."
+	display_name = "Камера-глазок"
+	desc = "Камера-глазок, которая снимает происходящее с обеих сторон шлюза. Сетевое поле используется для организации сети камер. Не использовать в туалетах!"
 	camera_prefix = "Airlock"
 
 	/// Hardcode camera to near range

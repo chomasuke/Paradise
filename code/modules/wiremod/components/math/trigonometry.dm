@@ -36,11 +36,11 @@
 		COMP_TRIGONOMETRY_ARCCOSINE,
 		COMP_TRIGONOMETRY_ARCTANGENT,
 	)
-	trigonometric_function = add_option_port("Trigonometric Function", component_functions)
+	trigonometric_function = add_option_port("Триганометрическая функция", component_functions)
 
 /obj/item/circuit_component/trigonometry/populate_ports()
-	input_port = add_input_port("Input", PORT_TYPE_NUMBER)
-	output = add_output_port("Output", PORT_TYPE_NUMBER)
+	input_port = add_input_port("Ввод", PORT_TYPE_NUMBER)
+	output = add_output_port("Вывод", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/trigonometry/input_received(datum/port/input/port)
 

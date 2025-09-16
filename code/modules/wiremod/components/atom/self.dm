@@ -15,8 +15,8 @@
 	var/datum/port/output/shell_received
 
 /obj/item/circuit_component/self/populate_ports()
-	output = add_output_port("Shell", PORT_TYPE_ATOM)
-	shell_received = add_output_port("Shell Updated", PORT_TYPE_SIGNAL)
+	output = add_output_port("Оболочка", PORT_TYPE_ATOM)
+	shell_received = add_output_port("Обновление оболочки", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/self/register_shell(atom/movable/shell)
 	output.set_output(shell)

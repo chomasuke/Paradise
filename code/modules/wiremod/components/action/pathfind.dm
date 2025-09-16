@@ -35,14 +35,14 @@
 	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/pathfind/populate_ports()
-	input_X = add_input_port("Target X", PORT_TYPE_NUMBER, trigger = null)
-	input_Y = add_input_port("Target Y", PORT_TYPE_NUMBER, trigger = null)
-	id_card = add_input_port("ID Card", PORT_TYPE_ATOM, trigger = null)
+	input_X = add_input_port("Целевой X", PORT_TYPE_NUMBER, trigger = null)
+	input_Y = add_input_port("Целевой Y", PORT_TYPE_NUMBER, trigger = null)
+	id_card = add_input_port("АйДи карта", PORT_TYPE_ATOM, trigger = null)
 
-	output = add_output_port("Next step", PORT_TYPE_ATOM)
-	finished = add_output_port("Arrived to destination", PORT_TYPE_SIGNAL)
-	failed = add_output_port("Failed", PORT_TYPE_SIGNAL)
-	reason_failed = add_output_port("Fail reason", PORT_TYPE_STRING)
+	output = add_output_port("Следующий шаг", PORT_TYPE_ATOM)
+	finished = add_output_port("Прибыл", PORT_TYPE_SIGNAL)
+	failed = add_output_port("Провал", PORT_TYPE_SIGNAL)
+	reason_failed = add_output_port("Причина провала", PORT_TYPE_STRING)
 
 /obj/item/circuit_component/pathfind/input_received(datum/port/input/port)
 	INVOKE_ASYNC(src, PROC_REF(perform_pathfinding), port)

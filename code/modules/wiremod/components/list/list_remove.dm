@@ -14,7 +14,7 @@
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 /obj/item/circuit_component/variable/list/listremove/populate_ports()
-	to_remove = add_input_port("To Remove", PORT_TYPE_ANY)
+	to_remove = add_input_port("К удалению", PORT_TYPE_ANY)
 
 /obj/item/circuit_component/variable/list/listremove/pre_input_received(datum/port/input/port)
 	. = ..()

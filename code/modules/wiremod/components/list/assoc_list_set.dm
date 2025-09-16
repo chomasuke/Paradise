@@ -24,9 +24,9 @@
 	. += create_ui_notice("Максимальный размер списка: [max_list_size]", "orange", "sitemap")
 
 /obj/item/circuit_component/variable/assoc_list/list_set/populate_ports()
-	key = add_input_port("Key", PORT_TYPE_STRING)
-	value = add_input_port("Value", PORT_TYPE_ANY)
-	failed = add_output_port("Failed", PORT_TYPE_SIGNAL)
+	key = add_input_port("Ключ", PORT_TYPE_STRING)
+	value = add_input_port("Значение", PORT_TYPE_ANY)
+	failed = add_output_port("Провал", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/variable/assoc_list/list_set/pre_input_received(datum/port/input/port)
 	. = ..()

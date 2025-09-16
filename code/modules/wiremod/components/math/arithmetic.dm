@@ -39,7 +39,7 @@
 		COMP_ARITHMETIC_MIN,
 		COMP_ARITHMETIC_MAX,
 	)
-	arithmetic_option = add_option_port("Arithmetic Option", component_options)
+	arithmetic_option = add_option_port("Выбор арифметического действия", component_options)
 
 /obj/item/circuit_component/arithmetic/populate_ports()
 	arithmetic_ports = list()
@@ -51,7 +51,7 @@
 		prefix = "Port", \
 		minimum_amount = 2 \
 	)
-	output = add_output_port("Output", PORT_TYPE_NUMBER, order = 1.1)
+	output = add_output_port("Вывод", PORT_TYPE_NUMBER, order = 1.1)
 
 /obj/item/circuit_component/arithmetic/input_received(datum/port/input/port)
 

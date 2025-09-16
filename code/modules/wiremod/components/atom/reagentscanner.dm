@@ -26,8 +26,8 @@
 		))
 
 /obj/item/circuit_component/reagentscanner/populate_ports()
-	input_port = add_input_port("Entity", PORT_TYPE_ATOM)
-	result = add_output_port("Reagents", PORT_TYPE_TABLE)
+	input_port = add_input_port("Объект", PORT_TYPE_ATOM)
+	result = add_output_port("Реагенты", PORT_TYPE_TABLE)
 
 /obj/item/circuit_component/reagentscanner/input_received(datum/port/input/port)
 	var/atom/entity = input_port.value

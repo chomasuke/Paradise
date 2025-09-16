@@ -29,7 +29,7 @@
 		minimum_amount = 2 \
 	)
 
-	output = add_output_port("Output", PORT_TYPE_STRING, order = 1.1)
+	output = add_output_port("Вывод", PORT_TYPE_STRING, order = 1.1)
 
 /obj/item/circuit_component/concat/input_received(datum/port/input/port)
 

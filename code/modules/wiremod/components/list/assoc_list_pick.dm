@@ -10,10 +10,10 @@
 	category = "List"
 
 /obj/item/circuit_component/list_pick/assoc/populate_options()
-	list_options = add_option_port("List Type", GLOB.wiremod_basic_types)
+	list_options = add_option_port("Тип списка", GLOB.wiremod_basic_types)
 
 /obj/item/circuit_component/list_pick/assoc/make_list_port()
-	input_list = add_input_port("List", PORT_TYPE_ASSOC_LIST(PORT_TYPE_STRING, PORT_TYPE_ANY))
+	input_list = add_input_port("Список", PORT_TYPE_ASSOC_LIST(PORT_TYPE_STRING, PORT_TYPE_ANY))
 
 /obj/item/circuit_component/list_pick/assoc/pre_input_received(datum/port/input/port)
 	if(port == list_options)

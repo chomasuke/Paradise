@@ -53,15 +53,15 @@
 		COMP_RADIO_PUBLIC,
 		COMP_RADIO_PRIVATE,
 	)
-	public_options = add_option_port("Encryption Options", component_options)
+	public_options = add_option_port("Параметры шифрования", component_options)
 
 /obj/item/circuit_component/radio/populate_ports()
-	freq = add_input_port("Frequency", PORT_TYPE_NUMBER, default = RSD_FREQ)
-	code = add_input_port("Code", PORT_TYPE_NUMBER, default = DEFAULT_SIGNALER_CODE)
+	freq = add_input_port("Частота", PORT_TYPE_NUMBER, default = RSD_FREQ)
+	code = add_input_port("Код", PORT_TYPE_NUMBER, default = DEFAULT_SIGNALER_CODE)
 	trigger_component()
 	// These are cleaned up on the parent
-	trigger_input = add_input_port("Send", PORT_TYPE_SIGNAL)
-	trigger_output = add_output_port("Received", PORT_TYPE_SIGNAL)
+	trigger_input = add_input_port("Отправлено", PORT_TYPE_SIGNAL)
+	trigger_output = add_output_port("Получено", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/radio/Destroy()
 	SSradio.remove_object(src, current_freq)

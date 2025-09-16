@@ -12,8 +12,8 @@
 	var/datum/port/input/haystack
 
 /obj/item/circuit_component/compare/contains/populate_custom_ports()
-	needle = add_input_port("Needle", PORT_TYPE_STRING)
-	haystack = add_input_port("Haystack", PORT_TYPE_STRING)
+	needle = add_input_port("Искомая строка", PORT_TYPE_STRING)
+	haystack = add_input_port("Строка", PORT_TYPE_STRING)
 
 /obj/item/circuit_component/compare/contains/Destroy()
 	needle = null
