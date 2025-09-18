@@ -128,13 +128,13 @@
 	if(isnull(attached_circuit))
 		examine_text += span_notice("На передней панели расположен USB-порт.")
 	else
-		examine_text += span_notice("[attached_circuit.shell || attached_circuit] подключен к [parent.p_them()] с помощью USB-порта.")
+		examine_text += span_notice("[attached_circuit.shell || attached_circuit] подключен с помощью USB-порта.")
 
 /datum/component/usb_port/proc/on_examine_shell(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
 	// examine_text += span_notice("[source.p_They()] [source.p_are()] attached to [parent] with a USB cable.") Приятного аппетита, господин локализатор
-	examine_text += span_notice("подключен к [parent] с помошью USB-кабеля.")
+	examine_text += span_notice("[attached_circuit.shell || attached_circuit] подключен к [parent.declent_ru(DATIVE)] с помошью USB-кабеля.")
 
 /datum/component/usb_port/proc/on_atom_usb_cable_try_attach(datum/source, obj/item/usb_cable/connecting_cable, mob/user)
 	SIGNAL_HANDLER

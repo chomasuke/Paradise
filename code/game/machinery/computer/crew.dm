@@ -3,7 +3,7 @@
 #define STAT "статус"
 #define OXY "удушье"
 #define TOX "токсины"
-#define FIRE "ожеги"
+#define FIRE "ожоги"
 #define BRUTE "травмы"
 #define AREA "местоположение"
 #define HEALTH "здоровье"
@@ -92,15 +92,15 @@
 /obj/item/circuit_component/medical_console_data/get_ui_notices()
 	. = ..()
 	. += create_table_notices(list(
-		"имя",
-		"должность",
-		"статус",
-		"удушье",
-		"токсины",
-		"ожеги",
-		"травмы",
-		"местоположение",
-		"здоровье",
+		NAME,
+		ASSIGNMENT,
+		STAT,
+		OXY,
+		TOX,
+		FIRE,
+		BRUTE,
+		AREA,
+		HEALTH,
 	))
 
 
@@ -113,15 +113,15 @@
 	var/list/new_table = list()
 	for(var/list/player_record as anything in GLOB.crew_repository.health_data(T))
 		var/list/entry = list()
-		entry["имя"] = player_record["name"]
-		entry["должность"] = player_record["assignment"]
-		entry["статус"] = player_record["stat"]
-		entry["удушье"] = player_record["oxy"]
-		entry["токсины"] = player_record["tox"]
-		entry["ожеги"] = player_record["fire"]
-		entry["травмы"] = player_record["brute"]
-		entry["местоположение"] = player_record["area"]
-		entry["здоровье"] = player_record["health"]
+		entry[NAME] = player_record["name"]
+		entry[ASSIGNMENT] = player_record["assignment"]
+		entry[STAT] = player_record["stat"]
+		entry[OXY] = player_record["oxy"]
+		entry[TOX] = player_record["tox"]
+		entry[FIRE] = player_record["fire"]
+		entry[BRUTE] = player_record["brute"]
+		entry[AREA] = player_record["area"]
+		entry[HEALTH] = player_record["health"]
 		new_table += list(entry)
 
 	records.set_output(new_table)

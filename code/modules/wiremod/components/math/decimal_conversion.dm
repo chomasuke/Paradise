@@ -4,7 +4,7 @@
  * Return a number from an array of binary inputs.
  */
 /obj/item/circuit_component/decimal_conversion
-	display_name = "Преобразование десятичных дробей"
+	display_name = "Десятичное преобразование"
 	desc = "Объединяет массив двоичных цифр или битов, представленных как 1 или 0 и часто используемых в логических или двоичных операциях, в десятичное число."
 	category = "Math"
 

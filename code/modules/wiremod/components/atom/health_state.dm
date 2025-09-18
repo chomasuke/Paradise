@@ -30,10 +30,10 @@
 	input_port = add_input_port("Организм", PORT_TYPE_ATOM)
 
 	var/static/component_options = list(
-		"Жив",
-		"Критическое состояние",
-		"Без сознания",
-		"Мертв",
+		ALIVE,
+		CRITICAL,
+		UNCONSCIOUS,
+		DECEASED,
 	)
 	state_option = add_option_port("Вариант сравнения", component_options)
 
@@ -47,13 +47,13 @@
 	var/current_option = state_option.value
 	var/state = organism.stat
 	switch(current_option)
-		if("Жив")
+		if(ALIVE)
 			return state != DEAD
-		if("Критическое состояние")
+		if(CRITICAL)
 			return organism.InCritical()
-		if("Без сознания")
+		if(UNCONSCIOUS)
 			return state == UNCONSCIOUS
-		if("Мертв")
+		if(DECEASED)
 			return state == DEAD
 	//Unknown state, something fucked up really bad - just return false
 	return FALSE

@@ -34,7 +34,7 @@
 	input_port = add_input_port("Организм", PORT_TYPE_ATOM)
 
 	brute = add_output_port("Травмы", PORT_TYPE_NUMBER)
-	burn = add_output_port("Ожеги", PORT_TYPE_NUMBER)
+	burn = add_output_port("Ожоги", PORT_TYPE_NUMBER)
 	toxin = add_output_port("Токсины", PORT_TYPE_NUMBER)
 	oxy = add_output_port("Удушье", PORT_TYPE_NUMBER)
 	health = add_output_port("Здоровье", PORT_TYPE_NUMBER)
