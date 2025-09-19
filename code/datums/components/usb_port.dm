@@ -132,9 +132,11 @@
 
 /datum/component/usb_port/proc/on_examine_shell(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
+	var/atom/shell = parent
+	if(!istype(shell))
+		return
 
-	// examine_text += span_notice("[source.p_They()] [source.p_are()] attached to [parent] with a USB cable.") Приятного аппетита, господин локализатор
-	examine_text += span_notice("[attached_circuit.shell || attached_circuit] подключен к [parent.declent_ru(DATIVE)] с помошью USB-кабеля.")
+	examine_text += span_notice("подключен к [shell.declent_ru(DATIVE)] с помошью USB-кабеля.")
 
 /datum/component/usb_port/proc/on_atom_usb_cable_try_attach(datum/source, obj/item/usb_cable/connecting_cable, mob/user)
 	SIGNAL_HANDLER
@@ -239,7 +241,7 @@
 
 	var/atom/atom_parent = parent
 	usb_cable.forceMove(atom_parent.drop_location())
-	usb_cable.balloon_alert_to_viewers("snap")
+	usb_cable.balloon_alert_to_viewers("щелк")
 
 	physical_object = null
 	attached_circuit = null
