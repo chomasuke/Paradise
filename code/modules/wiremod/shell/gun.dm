@@ -17,6 +17,15 @@
 	clumsy_check = FALSE
 	needs_permit = FALSE
 
+/obj/item/gun/energy/wiremod_gun/get_ru_names()
+	return list(
+		NOMINATIVE = "сигнальная пушка",
+		GENITIVE = "сигнальной пушки",
+		DATIVE = "сигнальной пушке",
+		ACCUSATIVE = "сигнальную пушку",
+		INSTRUMENTAL = "сигнальной пушкой",
+		PREPOSITIONAL = "сигнальной пушке"
+	)
 /obj/item/ammo_casing/energy/wiremod_gun
 	projectile_type = /obj/projectile/energy/wiremod_gun
 	harmful = FALSE
@@ -41,7 +50,7 @@
 	), SHELL_CAPACITY_MEDIUM)
 
 /obj/item/circuit_component/wiremod_gun
-	display_name = "Оружие"
+	display_name = "Сигнальная пушка"
 	desc = "Используется для получения поражённых, снарядами из пушки, объектов."
 	/// Called when a projectile hits
 	var/datum/port/output/signal
@@ -52,9 +61,9 @@
 
 /obj/item/circuit_component/wiremod_gun/Initialize(mapload)
 	. = ..()
-	shooter = add_output_port("Shooter", PORT_TYPE_ATOM)
-	shot = add_output_port("Shot Entity", PORT_TYPE_ATOM)
-	signal = add_output_port("Shot", PORT_TYPE_SIGNAL)
+	shooter = add_output_port("Пользователь", PORT_TYPE_ATOM)
+	shot = add_output_port("Цель", PORT_TYPE_ATOM)
+	signal = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/wiremod_gun/register_shell(atom/movable/shell)
 	RegisterSignal(shell, COMSIG_PROJECTILE_ON_HIT, PROC_REF(handle_shot))

@@ -1,5 +1,5 @@
 /obj/item/circuit_component/id_access_reader
-	display_name = "Чтение доступа идентификатора"
+	display_name = "Чтение доступа"
 	desc = "Компонент, который считывает доступ по идентификатору."
 	category = "ID"
 

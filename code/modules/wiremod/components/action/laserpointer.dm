@@ -30,13 +30,13 @@
 		"blue",
 		"purple",
 	)
-	lasercolour_option = add_option_port("Laser Colour", component_options)
+	lasercolour_option = add_option_port("Цвет лазера", component_options)
 
 
 /obj/item/circuit_component/laserpointer/populate_ports()
 	target_input = add_input_port("Цель", PORT_TYPE_ATOM)
-	image_pixel_x = add_input_port("Смещение по X", PORT_TYPE_NUMBER)
-	image_pixel_y = add_input_port("Смещение по Y", PORT_TYPE_NUMBER)
+	image_pixel_x = add_input_port("X", PORT_TYPE_NUMBER)
+	image_pixel_y = add_input_port("Y", PORT_TYPE_NUMBER)
 
 
 /obj/item/circuit_component/laserpointer/input_received(datum/port/input/port)

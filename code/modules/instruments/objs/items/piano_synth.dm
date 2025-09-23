@@ -1,6 +1,6 @@
 /obj/item/instrument/piano_synth
 	name = "synthesizer"
-	desc = "An advanced electronic synthesizer that can be used as various instruments."
+	desc = "Современный электронный синтезатор, который можно использовать в качестве различных инструментов."
 	icon_state = "synth"
 	item_state = "synth"
 	allowed_instrument_ids = "piano"

@@ -35,9 +35,9 @@
 	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/pathfind/populate_ports()
-	input_X = add_input_port("Целевой X", PORT_TYPE_NUMBER, trigger = null)
-	input_Y = add_input_port("Целевой Y", PORT_TYPE_NUMBER, trigger = null)
-	id_card = add_input_port("АйДи карта", PORT_TYPE_ATOM, trigger = null)
+	input_X = add_input_port("X", PORT_TYPE_NUMBER, trigger = null)
+	input_Y = add_input_port("Y", PORT_TYPE_NUMBER, trigger = null)
+	id_card = add_input_port("ID-карта", PORT_TYPE_ATOM, trigger = null)
 
 	output = add_output_port("Следующий шаг", PORT_TYPE_ATOM)
 	finished = add_output_port("Прибыл", PORT_TYPE_SIGNAL)

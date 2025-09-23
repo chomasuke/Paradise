@@ -28,7 +28,7 @@
 	trigger = add_input_port("Вызов", PORT_TYPE_SIGNAL, trigger = PROC_REF(trigger_delay))
 	interrupt = add_input_port("Прервать", PORT_TYPE_SIGNAL, trigger = PROC_REF(interrupt_timer))
 
-	output = add_output_port("Результат", PORT_TYPE_SIGNAL)
+	output = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/delay/proc/trigger_delay(datum/port/input/port)
 	CIRCUIT_TRIGGER

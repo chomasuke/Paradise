@@ -59,7 +59,7 @@
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
-	. += span_notice("A light switch. It is [area.lightswitch ? "on" : "off"].")
+	. += span_notice("Переключатель света. Он [area.lightswitch ? "включен" : "выключен"].")
 
 
 /obj/machinery/light_switch/attack_ghost(mob/user)

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/self
 	display_name = "Текущая оболочка"
-	desc = "Компонент, возвращающий значение текущей оболочки."
+	desc = "Компонент, возвращающий значение текущей оболочки. Отправляет сигнал при обновлении оболочки"
 	category = "Entity"
 
 	/// The shell this component is attached to.
@@ -16,7 +16,7 @@
 
 /obj/item/circuit_component/self/populate_ports()
 	output = add_output_port("Оболочка", PORT_TYPE_ATOM)
-	shell_received = add_output_port("Обновление оболочки", PORT_TYPE_SIGNAL)
+	shell_received = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/self/register_shell(atom/movable/shell)
 	output.set_output(shell)

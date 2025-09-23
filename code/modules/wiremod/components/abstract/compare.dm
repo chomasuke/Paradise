@@ -18,7 +18,7 @@
 
 /obj/item/circuit_component/compare/populate_ports()
 	populate_custom_ports()
-	compare = add_input_port("Сравнить", PORT_TYPE_SIGNAL)
+	compare = add_input_port("Вызов", PORT_TYPE_SIGNAL)
 
 	true = add_output_port("Истина", PORT_TYPE_SIGNAL)
 	false = add_output_port("Ложь", PORT_TYPE_SIGNAL)

@@ -20,7 +20,7 @@
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 /obj/item/circuit_component/pinpointer/populate_ports()
-	target = add_input_port("Целевой объект", PORT_TYPE_ATOM, FALSE)
+	target = add_input_port("Цель", PORT_TYPE_ATOM, FALSE)
 
 	x_pos = add_output_port("X", PORT_TYPE_NUMBER)
 	y_pos = add_output_port("Y", PORT_TYPE_NUMBER)

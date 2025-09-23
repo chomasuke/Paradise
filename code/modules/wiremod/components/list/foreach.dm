@@ -31,7 +31,7 @@
 
 
 /obj/item/circuit_component/foreach/populate_options()
-	list_options = add_option_port("Тип списка", GLOB.wiremod_basic_types)
+	list_options = add_option_port("Тип", GLOB.wiremod_basic_types)
 
 /obj/item/circuit_component/foreach/pre_input_received(datum/port/input/port)
 	if(port == list_options)
@@ -40,14 +40,14 @@
 		element.set_datatype(new_datatype)
 
 /obj/item/circuit_component/foreach/populate_ports()
-	list_to_iterate = add_input_port("Список на ввод", PORT_TYPE_LIST(PORT_TYPE_ANY))
+	list_to_iterate = add_input_port("Список", PORT_TYPE_LIST(PORT_TYPE_ANY))
 	next_index = add_input_port("Следующий индекс", PORT_TYPE_SIGNAL, trigger = PROC_REF(trigger_next_index))
-	reset_index = add_input_port("Сброс и вызов", PORT_TYPE_SIGNAL, trigger = PROC_REF(restart))
+	reset_index = add_input_port("Вызов/сброс", PORT_TYPE_SIGNAL, trigger = PROC_REF(restart))
 
-	element = add_output_port("Элемент", PORT_TYPE_ANY)
+	element = add_output_port("Результат", PORT_TYPE_ANY)
 	current_index = add_output_port("Индекс", PORT_TYPE_NUMBER)
 	on_next_index = add_output_port("Следующий индекс", PORT_TYPE_SIGNAL)
-	on_finished = add_output_port("По завершении", PORT_TYPE_SIGNAL)
+	on_finished = add_output_port("Завершение", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/foreach/proc/restart(datum/port/input/port)
 	CIRCUIT_TRIGGER

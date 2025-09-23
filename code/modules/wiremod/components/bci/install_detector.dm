@@ -20,8 +20,8 @@
 
 /obj/item/circuit_component/install_detector/populate_ports()
 	. = ..()
-	current_state = add_output_port("Текущее состояние", PORT_TYPE_NUMBER)
-	implanted = add_output_port("Имплантировано", PORT_TYPE_SIGNAL)
+	current_state = add_output_port("Состояние", PORT_TYPE_NUMBER)
+	implanted = add_output_port("Установлено", PORT_TYPE_SIGNAL)
 	removed = add_output_port("Изъято", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/install_detector/register_shell(atom/movable/shell)

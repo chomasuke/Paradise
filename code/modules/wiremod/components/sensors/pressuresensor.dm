@@ -4,7 +4,7 @@
  * Returns the pressure of the tile
  */
 /obj/item/circuit_component/pressuresensor
-	display_name = "Датчик давления."
+	display_name = "Датчик давления"
 	desc = "Считывает значение давления окружающей среды. Возвращает значение в Паскалях."
 	category = "Sensor"
 

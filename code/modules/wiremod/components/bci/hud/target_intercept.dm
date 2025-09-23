@@ -18,9 +18,9 @@
 	var/intercept_cooldown = 1 SECONDS
 
 /obj/item/circuit_component/target_intercept/populate_ports()
-	trigger_input = add_input_port("Активация", PORT_TYPE_SIGNAL)
+	trigger_input = add_input_port("Вызов", PORT_TYPE_SIGNAL)
 	trigger_output = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
-	clicked_atom = add_output_port("Целевой объект", PORT_TYPE_ATOM)
+	clicked_atom = add_output_port("Цель", PORT_TYPE_ATOM)
 
 /obj/item/circuit_component/target_intercept/register_shell(atom/movable/shell)
 	if(istype(shell, /obj/item/organ/internal/cyberimp/brain/bci))

@@ -1,5 +1,5 @@
 /obj/item/circuit_component/id_info_reader
-	display_name = "Чтение информации идентификатора"
+	display_name = "Чтение ID"
 	desc = "Компонент, который считывает имя, должность и возраст с удостоверения личности."
 	category = "ID"
 

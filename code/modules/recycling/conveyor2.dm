@@ -752,9 +752,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/obj/machinery/conveyor_switch/attached_switch
 
 /obj/item/circuit_component/conveyor_switch/populate_ports()
-	active = add_input_port("Активировать", PORT_TYPE_SIGNAL, trigger = PROC_REF(activate))
+	active = add_input_port("Старт", PORT_TYPE_SIGNAL, trigger = PROC_REF(activate))
 	stop = add_input_port("Стоп", PORT_TYPE_SIGNAL, trigger = PROC_REF(stop))
-	direction = add_output_port("Направление конвейера", PORT_TYPE_NUMBER)
+	direction = add_output_port("Направление", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/conveyor_switch/get_ui_notices()
 	. = ..()

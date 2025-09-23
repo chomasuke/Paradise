@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/vox
-	display_name = "ВОКС объявление"
+	display_name = "ВОКС"
 	desc = "Компонент, воспроизводящий локальное ВОКС-объявление для пользователя. Требуется оболочка BCI."
 	category = "BCI"
 
@@ -25,7 +25,7 @@
 	type_option = add_option_port("тип ВОКС-а", list(PORT_TYPE_LIST(PORT_TYPE_STRING), PORT_TYPE_STRING))
 
 /obj/item/circuit_component/vox/populate_ports()
-	word_list = add_input_port("Список слов", PORT_TYPE_LIST(PORT_TYPE_STRING))
+	word_list = add_input_port("Слова", PORT_TYPE_LIST(PORT_TYPE_STRING))
 
 /obj/item/circuit_component/vox/register_shell(atom/movable/shell)
 	if(istype(shell, /obj/item/organ/internal/cyberimp/brain/bci))

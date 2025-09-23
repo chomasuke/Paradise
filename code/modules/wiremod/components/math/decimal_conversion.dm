@@ -25,7 +25,7 @@
 		add_action = "add", \
 		remove_action = "remove", \
 		port_type = PORT_TYPE_NUMBER, \
-		prefix = "Bit", \
+		prefix = "Бит", \
 		minimum_amount = 1, \
 		maximum_amount = MAX_BITFIELD_SIZE \
 	)

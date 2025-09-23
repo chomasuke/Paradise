@@ -4,7 +4,7 @@
  * Checks if a string contains a word/letter
  */
 /obj/item/circuit_component/compare/contains
-	display_name = "Строка содержит"
+	display_name = "Содержит"
 	desc = "Проверяет, содержит ли строка слово или букву"
 	category = "String"
 
@@ -12,8 +12,8 @@
 	var/datum/port/input/haystack
 
 /obj/item/circuit_component/compare/contains/populate_custom_ports()
-	needle = add_input_port("Искомая строка", PORT_TYPE_STRING)
-	haystack = add_input_port("Строка", PORT_TYPE_STRING)
+	needle = add_input_port("Строка", PORT_TYPE_STRING)
+	haystack = add_input_port("Ввод", PORT_TYPE_STRING)
 
 /obj/item/circuit_component/compare/contains/Destroy()
 	needle = null

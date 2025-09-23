@@ -27,7 +27,7 @@
 		remove_action = "remove", \
 		is_output = TRUE, \
 		port_type = PORT_TYPE_NUMBER, \
-		prefix = "Bit", \
+		prefix = "Бит", \
 		minimum_amount = 1, \
 		maximum_amount = MAX_BITFIELD_SIZE \
 	)

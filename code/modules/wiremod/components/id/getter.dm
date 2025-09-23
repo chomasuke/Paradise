@@ -1,5 +1,5 @@
 /obj/item/circuit_component/id_getter
-	display_name = "Получить идентификатор"
+	display_name = "Получить ID"
 	desc = "Компонент, который возвращает первую доступную идентификационную карту организма."
 	category = "ID"
 
@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/id_getter/populate_ports()
 	target = add_input_port("Цель", PORT_TYPE_ATOM)
-	id_port = add_output_port("Идентификатор", PORT_TYPE_ATOM)
+	id_port = add_output_port("ID", PORT_TYPE_ATOM)
 
 /obj/item/circuit_component/id_getter/input_received(datum/port/input/port)
 	var/mob/living/target_mob = target.value

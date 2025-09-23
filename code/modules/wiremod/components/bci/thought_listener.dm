@@ -24,11 +24,11 @@
 	var/ready = TRUE
 
 /obj/item/circuit_component/thought_listener/populate_ports()
-	input_name = add_input_port("Ввести имя", PORT_TYPE_STRING)
-	input_desc = add_input_port("Ввести описание", PORT_TYPE_STRING)
-	output = add_output_port("Полученная мысль", PORT_TYPE_STRING)
+	input_name = add_input_port("Название", PORT_TYPE_STRING)
+	input_desc = add_input_port("Описание", PORT_TYPE_STRING)
+	output = add_output_port("Мысль", PORT_TYPE_STRING)
 	trigger_output = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
-	failure = add_output_port("При провале", PORT_TYPE_SIGNAL)
+	failure = add_output_port("Провал", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/thought_listener/register_shell(atom/movable/shell)
 	if(istype(shell, /obj/item/organ/internal/cyberimp/brain/bci))

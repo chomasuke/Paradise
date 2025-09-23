@@ -20,7 +20,7 @@
 
 /obj/item/circuit_component/tostring/populate_ports()
 	input_port = add_input_port("Ввод", PORT_TYPE_ANY)
-	output = add_output_port("Вывод", PORT_TYPE_STRING)
+	output = add_output_port("Результат", PORT_TYPE_STRING)
 
 /obj/item/circuit_component/tostring/input_received(datum/port/input/port)
 

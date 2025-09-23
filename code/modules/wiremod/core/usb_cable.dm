@@ -117,7 +117,7 @@
 		return FALSE
 
 	if(!IN_GIVEN_RANGE(attached_circuit, src, USB_CABLE_MAX_RANGE))
-		balloon_alert_to_viewers("отсоединенный, слишком далеко")
+		balloon_alert_to_viewers("USB-кабель выскочил из порта")
 		unregister_circuit_signals(attached_circuit)
 		attached_circuit = null
 		STOP_PROCESSING(SSobj, src)

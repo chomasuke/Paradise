@@ -27,7 +27,7 @@
 	button_name = add_input_port("Имя", PORT_TYPE_STRING)
 
 	user = add_output_port("Пользователь", PORT_TYPE_USER)
-	signal = add_output_port("Сигнал", PORT_TYPE_SIGNAL)
+	signal = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/equipment_action/Destroy()
 	QDEL_LIST_ASSOC_VAL(granted_to)

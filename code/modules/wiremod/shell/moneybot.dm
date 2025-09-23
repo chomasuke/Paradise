@@ -15,6 +15,16 @@
 	var/stored_money = 0
 	var/locked = FALSE
 
+/obj/structure/money_bot/get_ru_names()
+	return list(
+		NOMINATIVE = "бот-банкомат",
+		GENITIVE = "бота-банкомата",
+		DATIVE = "боту-банкомату",
+		ACCUSATIVE = "бота-банкомата",
+		INSTRUMENTAL = "ботом-банкоматом",
+		PREPOSITIONAL = "боте-банкомате"
+	)
+
 /obj/structure/money_bot/deconstruct(disassembled)
 	new /obj/item/stack/spacecash(drop_location(), stored_money)
 	return ..()
@@ -35,12 +45,12 @@
 		return
 	set_anchored(!anchored)
 	tool.play_tool_sound(src)
-	balloon_alert(user, anchored ? "secured" : "unsecured")
+	balloon_alert(user, anchored ? "Зареплен" : "Не закреплен")
 	return TRUE
 
 
 /obj/item/circuit_component/money_dispenser
-	display_name = "Денежный раздатчик"
+	display_name = "Бот-банкомат"
 	desc = "Используется для выдачи денег из денежного бота. Деньги берутся из внутреннего хранилища."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -53,8 +63,8 @@
 	var/obj/structure/money_bot/attached_bot
 
 /obj/item/circuit_component/money_dispenser/populate_ports()
-	dispense_amount = add_input_port("Amount", PORT_TYPE_NUMBER)
-	on_fail = add_output_port("On Failed", PORT_TYPE_SIGNAL)
+	dispense_amount = add_input_port("Количество", PORT_TYPE_NUMBER)
+	on_fail = add_output_port("Провал", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/money_dispenser/register_shell(atom/movable/shell)
 	. = ..()
@@ -93,10 +103,10 @@
 	var/datum/port/output/entity
 
 /obj/item/circuit_component/money_bot/populate_ports()
-	total_money = add_output_port("Total Money", PORT_TYPE_NUMBER)
-	money_input = add_output_port("Last Input Money", PORT_TYPE_NUMBER)
-	entity = add_output_port("User", PORT_TYPE_USER)
-	money_trigger = add_output_port("Money Input", PORT_TYPE_SIGNAL)
+	total_money = add_output_port("Всего денег", PORT_TYPE_NUMBER)
+	money_input = add_output_port("Последняя транзакция", PORT_TYPE_NUMBER)
+	entity = add_output_port("Пользователь", PORT_TYPE_USER)
+	money_trigger = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/money_bot/register_shell(atom/movable/shell)
 	. = ..()

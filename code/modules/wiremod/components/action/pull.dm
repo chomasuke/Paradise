@@ -4,7 +4,7 @@
  * Tells the shell to start pulling on a designated atom. Only works on movable shells.
  */
 /obj/item/circuit_component/pull
-	display_name = "Начать тянуть"
+	display_name = "Захват"
 	desc = "Компонент, который может заставить оболочку тащить объект. Работает только для оболочек дронов."
 	category = "Action"
 

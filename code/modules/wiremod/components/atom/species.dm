@@ -4,7 +4,7 @@
  * Return the species of a mob
  */
 /obj/item/circuit_component/species
-	display_name = "Получить расу"
+	display_name = "Раса"
 	desc = "Компонент, который возвращает расу входного объекта"
 	category = "Entity"
 

@@ -38,12 +38,12 @@
 /obj/item/circuit_component/object_overlay/populate_ports()
 	target = add_input_port("Цель", PORT_TYPE_ATOM)
 
-	signal_on = add_input_port("Создать отображение", PORT_TYPE_SIGNAL)
-	signal_off = add_input_port("Убрать отображение", PORT_TYPE_SIGNAL)
+	signal_on = add_input_port("Создать", PORT_TYPE_SIGNAL)
+	signal_off = add_input_port("Убрать", PORT_TYPE_SIGNAL)
 
-	image_pixel_x = add_input_port("Сместить по X", PORT_TYPE_NUMBER)
-	image_pixel_y = add_input_port("Сместить по Y", PORT_TYPE_NUMBER)
-	image_rotation = add_input_port("Разворот отображения", PORT_TYPE_NUMBER)
+	image_pixel_x = add_input_port("X", PORT_TYPE_NUMBER)
+	image_pixel_y = add_input_port("Y", PORT_TYPE_NUMBER)
+	image_rotation = add_input_port("Разворот", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/object_overlay/Destroy()
 	QDEL_LIST_ASSOC_VAL(active_overlays)

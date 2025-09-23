@@ -4,7 +4,7 @@
  * General string concatenation component. Puts strings together.
  */
 /obj/item/circuit_component/concat
-	display_name = "Объединить строки"
+	display_name = "Объединить"
 	desc = "Компонент, объединяющий строки."
 	category = "String"
 
@@ -25,11 +25,11 @@
 		add_action = "add", \
 		remove_action = "remove", \
 		port_type = PORT_TYPE_STRING, \
-		prefix = "Port", \
+		prefix = "Строка", \
 		minimum_amount = 2 \
 	)
 
-	output = add_output_port("Вывод", PORT_TYPE_STRING, order = 1.1)
+	output = add_output_port("Результат", PORT_TYPE_STRING, order = 1.1)
 
 /obj/item/circuit_component/concat/input_received(datum/port/input/port)
 

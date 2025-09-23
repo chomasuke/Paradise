@@ -1,5 +1,5 @@
-#define COMP_RADIO_PUBLIC "public"
-#define COMP_RADIO_PRIVATE "private"
+#define COMP_RADIO_PUBLIC "Публичный"
+#define COMP_RADIO_PRIVATE "Частный"
 
 /**
  * # Radio Component
@@ -7,7 +7,7 @@
  * Listens out for signals on the designated frequencies and sends signals on designated frequencies
  */
 /obj/item/circuit_component/radio
-	display_name = "Радио"
+	display_name = "Сигнал"
 	desc = "Компонент, который может принимать и передавать частоты. Если выбран режим «Частный», компонент будет принимать сигналы только от других компонентов, подключенных к печатным платам с тем же идентификатором владельца."
 	category = "Action"
 
@@ -53,15 +53,15 @@
 		COMP_RADIO_PUBLIC,
 		COMP_RADIO_PRIVATE,
 	)
-	public_options = add_option_port("Параметры шифрования", component_options)
+	public_options = add_option_port("Шифрование", component_options)
 
 /obj/item/circuit_component/radio/populate_ports()
 	freq = add_input_port("Частота", PORT_TYPE_NUMBER, default = RSD_FREQ)
 	code = add_input_port("Код", PORT_TYPE_NUMBER, default = DEFAULT_SIGNALER_CODE)
 	trigger_component()
 	// These are cleaned up on the parent
-	trigger_input = add_input_port("Отправлено", PORT_TYPE_SIGNAL)
-	trigger_output = add_output_port("Получено", PORT_TYPE_SIGNAL)
+	trigger_input = add_input_port("Вызов", PORT_TYPE_SIGNAL)
+	trigger_output = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/radio/Destroy()
 	SSradio.remove_object(src, current_freq)

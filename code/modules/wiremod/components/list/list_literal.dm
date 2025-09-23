@@ -4,7 +4,7 @@
  * Return a list literal.
  */
 /obj/item/circuit_component/list_literal
-	display_name = "Список - литерал"
+	display_name = "Список - элемент"
 	desc = "Компонент, который создает список на основе любых введенных вами данных."
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -25,7 +25,7 @@
 	var/max_list_count = 100
 
 /obj/item/circuit_component/list_literal/populate_options()
-	list_options = add_option_port("Тип списка", GLOB.wiremod_basic_types)
+	list_options = add_option_port("Тип", GLOB.wiremod_basic_types)
 
 /obj/item/circuit_component/list_literal/pre_input_received(datum/port/input/port)
 	if(port == list_options)
@@ -40,11 +40,11 @@
 		add_action = "add", \
 		remove_action = "remove", \
 		port_type = PORT_TYPE_ANY, \
-		prefix = "Index", \
+		prefix = "Ввод", \
 		minimum_amount = 1, \
 		maximum_amount = 20 \
 	)
-	list_output = add_output_port("Значение", PORT_TYPE_LIST(PORT_TYPE_ANY), order = 1.1)
+	list_output = add_output_port("Результат", PORT_TYPE_LIST(PORT_TYPE_ANY), order = 1.1)
 
 /obj/item/circuit_component/list_literal/input_received(datum/port/input/port)
 	var/list/new_literal = list()

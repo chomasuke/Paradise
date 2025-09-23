@@ -4,7 +4,7 @@
  * Fires every tick of the circuit timer SS
  */
 /obj/item/circuit_component/clock
-	display_name = "Часы"
+	display_name = "Повторитель"
 	desc = "Компонент, который срабатывает неоднократно."
 	category = "Utility"
 
@@ -21,7 +21,7 @@
 /obj/item/circuit_component/clock/populate_ports()
 	on = add_input_port("Вкл", PORT_TYPE_NUMBER)
 
-	signal = add_output_port("Сигнал", PORT_TYPE_SIGNAL)
+	signal = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/clock/input_received(datum/port/input/port)
 

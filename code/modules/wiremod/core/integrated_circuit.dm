@@ -173,11 +173,11 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			return
 		set_cell(I)
 		I.add_fingerprint(user)
-		user.visible_message(span_notice("[user] вставляет элемент питания в [src]."), span_notice("Вы вставили элемент питания в [src]."))
+		user.visible_message(span_notice("[user] вставляет элемент питания в [src.declent_ru(ACCUSATIVE)]."), span_notice("Вы вставили элемент питания в [src.declent_ru(ACCUSATIVE)]."))
 		return
 
 	if(isidcard(I))
-		balloon_alert(user, "идентификатор пользователя установлен для [I]")
+		balloon_alert(user, "идентификатор пользователя установлен для [I.declent_ru(GENITIVE)]")
 		owner_id = WEAKREF(I)
 		return
 
@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 		if(!cell)
 			return
 		I.play_tool_sound(src)
-		user.visible_message(span_notice("[user] откручивает элемент питания от [src]."), span_notice("Вы откручиваете элемент питания от [src]."))
+		user.visible_message(span_notice("[user] откручивает элемент питания от [src.declent_ru(GENITIVE)]."), span_notice("Вы откручиваете элемент питания от [src.declent_ru(GENITIVE)]."))
 		cell.forceMove(drop_location())
 		set_cell(null)
 		return
@@ -591,7 +591,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			var/string_form = copytext("[value]", 1, PORT_MAX_STRING_DISPLAY)
 			if(length(string_form) >= PORT_MAX_STRING_DISPLAY-1)
 				string_form += "..."
-			balloon_alert(usr, "[port.name] value: [string_form]")
+			balloon_alert(usr, "[port.name] значение: [string_form]")
 			. = TRUE
 		if("set_display_name")
 			var/new_name = params["display_name"]

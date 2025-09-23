@@ -18,7 +18,7 @@
 /obj/item/circuit_component/length/populate_ports()
 	input_port = add_input_port("Ввод", PORT_TYPE_ANY)
 
-	output = add_output_port("Длина", PORT_TYPE_NUMBER)
+	output = add_output_port("Результат", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/length/input_received(datum/port/input/port)
 

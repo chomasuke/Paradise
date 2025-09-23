@@ -5,7 +5,7 @@
  * Alternative to the Concatenate component.
  */
 /obj/item/circuit_component/format
-	display_name = "Формат списков"
+	display_name = "Формат списка"
 	desc = "Компонент, который форматирует списки, заменяя n в строке формата соответствующим n-ным элементом списка."
 	category = "List"
 
@@ -35,7 +35,7 @@
 	format_port = add_input_port("Формат", PORT_TYPE_STRING)
 	make_params_port()
 
-	output = add_output_port("Вывод", PORT_TYPE_STRING)
+	output = add_output_port("Результат", PORT_TYPE_STRING)
 
 /**
  * Get an item from the list.

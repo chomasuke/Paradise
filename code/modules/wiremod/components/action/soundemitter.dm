@@ -4,7 +4,7 @@
  * A component that emits a sound when it receives an input.
  */
 /obj/item/circuit_component/soundemitter
-	display_name = "Излучатель звука"
+	display_name = "Динамик"
 	desc = "Компонент, издающий звук при получении входного сигнала. Частота — это множитель, определяющий скорость воспроизведения звука."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -41,7 +41,7 @@
 /obj/item/circuit_component/soundemitter/populate_ports()
 	volume = add_input_port("Громкость", PORT_TYPE_NUMBER, default = 35)
 	frequency = add_input_port("Частота", PORT_TYPE_NUMBER, default = 0)
-	backwards = add_input_port("Проиграть наоборот", PORT_TYPE_NUMBER, default = 0)
+	backwards = add_input_port("Наоборот", PORT_TYPE_NUMBER, default = 0)
 
 /obj/item/circuit_component/soundemitter/populate_options()
 	var/static/component_options = list(
@@ -64,7 +64,7 @@
 		"Gavel" = 'sound/items/gavel.ogg',
 		"Fart" = SFX_FART,
 	)
-	sound_file = add_option_port("Выбор звука", component_options)
+	sound_file = add_option_port("Звук", component_options)
 	options_map = component_options
 
 /obj/item/circuit_component/soundemitter/pre_input_received(datum/port/input/port)

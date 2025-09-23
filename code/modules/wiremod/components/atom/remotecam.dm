@@ -65,7 +65,7 @@
 	start = add_input_port("Старт", PORT_TYPE_SIGNAL)
 	stop = add_input_port("Стоп", PORT_TYPE_SIGNAL)
 	if(camera_range_settable)
-		camera_range = add_input_port("Дальность камеры", PORT_TYPE_NUMBER, default = 0)
+		camera_range = add_input_port("Дальность", PORT_TYPE_NUMBER, default = 0)
 	network = add_input_port("Сеть", PORT_TYPE_STRING, default = "SS13")
 
 	if(camera_range_settable)

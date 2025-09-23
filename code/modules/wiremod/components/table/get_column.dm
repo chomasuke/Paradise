@@ -4,7 +4,7 @@
  * Gets the column of a table and returns it as a regular list.
  */
 /obj/item/circuit_component/get_column
-	display_name = "Получить столбец"
+	display_name = "Таблица - получить"
 	desc = "Получает столбец таблицы и возвращает его как обычный список."
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -20,8 +20,8 @@
 
 /obj/item/circuit_component/get_column/populate_ports()
 	received_table = add_input_port("Ввод", PORT_TYPE_TABLE)
-	column_name = add_input_port("Имя столбца", PORT_TYPE_STRING)
-	output_list = add_output_port("Вывод", PORT_TYPE_LIST(PORT_TYPE_ANY))
+	column_name = add_input_port("Название", PORT_TYPE_STRING)
+	output_list = add_output_port("Результат", PORT_TYPE_LIST(PORT_TYPE_ANY))
 
 /obj/item/circuit_component/get_column/input_received(datum/port/input/port)
 

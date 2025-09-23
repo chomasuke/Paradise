@@ -31,11 +31,11 @@
 	input_list = add_input_port("Список", PORT_TYPE_LIST(PORT_TYPE_STRING))
 
 /obj/item/circuit_component/list_pick/populate_ports()
-	input_name = add_input_port("Имя на ввод", PORT_TYPE_STRING)
+	input_name = add_input_port("Ввод", PORT_TYPE_STRING)
 	user = add_input_port("Пользователь", PORT_TYPE_USER)
 	make_list_port()
 
-	output = add_output_port("Выбранный элемент", PORT_TYPE_STRING)
+	output = add_output_port("Результат", PORT_TYPE_STRING)
 	failure = add_output_port("Провал", PORT_TYPE_SIGNAL)
 	success = add_output_port("Успех", PORT_TYPE_SIGNAL)
 

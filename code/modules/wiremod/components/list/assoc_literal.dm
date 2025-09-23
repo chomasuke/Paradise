@@ -4,7 +4,7 @@
  * Return an associative list literal.
  */
 /obj/item/circuit_component/assoc_literal
-	display_name = "Ассоциативный список - литерал"
+	display_name = "Ассоциативный список - элемент"
 	desc = "Компонент, который возвращает ассоциативный список, состоящий из входных данных."
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -43,7 +43,7 @@
 		add_action = "add", \
 		remove_action = "remove", \
 		port_type = PORT_TYPE_STRING, \
-		prefix = "Key", \
+		prefix = "Ключ", \
 		minimum_amount = 1, \
 		maximum_amount = 20 \
 	)
@@ -52,7 +52,7 @@
 		add_action = "add", \
 		remove_action = "remove", \
 		port_type = PORT_TYPE_ANY, \
-		prefix = "Value", \
+		prefix = "Значение", \
 		minimum_amount = 1, \
 		maximum_amount = 20 \
 	)

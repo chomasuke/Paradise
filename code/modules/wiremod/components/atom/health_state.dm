@@ -35,7 +35,7 @@
 		UNCONSCIOUS,
 		DECEASED,
 	)
-	state_option = add_option_port("Вариант сравнения", component_options)
+	state_option = add_option_port("Параметр", component_options)
 
 /obj/item/circuit_component/compare/health_state/do_comparisons()
 	var/mob/living/organism = input_port.value

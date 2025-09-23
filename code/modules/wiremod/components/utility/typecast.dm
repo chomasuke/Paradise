@@ -29,7 +29,7 @@
 		PORT_COMPOSITE_TYPE_LIST,
 		PORT_TYPE_ATOM,
 	)
-	typecast_options = add_option_port("Параметры приведения типов", component_options)
+	typecast_options = add_option_port("Тип", component_options)
 
 /obj/item/circuit_component/typecast/pre_input_received(datum/port/input/port)
 	var/current_option = typecast_options.value

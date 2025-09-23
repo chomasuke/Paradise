@@ -22,7 +22,7 @@
 	var/index_type = PORT_TYPE_NUMBER
 
 /obj/item/circuit_component/index/populate_options()
-	list_options = add_option_port("Тип списка", GLOB.wiremod_basic_types)
+	list_options = add_option_port("Тип", GLOB.wiremod_basic_types)
 
 /obj/item/circuit_component/index/proc/make_list_port()
 	list_port = add_input_port("Список", PORT_TYPE_LIST(PORT_TYPE_ANY))
@@ -31,7 +31,7 @@
 	index_port = add_input_port("Индекс", index_type)
 	make_list_port()
 
-	output = add_output_port("Значение", PORT_TYPE_ANY)
+	output = add_output_port("Результат", PORT_TYPE_ANY)
 
 /obj/item/circuit_component/index/pre_input_received(datum/port/input/port)
 	if(port == list_options)

@@ -23,8 +23,8 @@
 /obj/item/circuit_component/hear/populate_ports()
 	on = add_input_port("Вкл", PORT_TYPE_NUMBER, default = 1)
 	message_port = add_output_port("Сообщение", PORT_TYPE_STRING)
-	speaker_port = add_output_port("Говорящий", PORT_TYPE_ATOM)
-	speaker_name = add_output_port("Имя гворящего", PORT_TYPE_STRING)
+	speaker_port = add_output_port("Объект", PORT_TYPE_ATOM)
+	speaker_name = add_output_port("Имя", PORT_TYPE_STRING)
 	trigger_port = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/hear/register_shell(atom/movable/shell)

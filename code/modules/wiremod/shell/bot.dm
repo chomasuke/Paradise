@@ -12,6 +12,16 @@
 	light_system = MOVABLE_LIGHT
 	light_on = FALSE
 
+/obj/structure/bot/get_ru_names()
+	return list(
+		NOMINATIVE = "бот",
+		GENITIVE = "бота",
+		DATIVE = "боту",
+		ACCUSATIVE = "бота",
+		INSTRUMENTAL = "ботом",
+		PREPOSITIONAL = "боте"
+	)
+
 /obj/structure/bot/Initialize(mapload)
 	. = ..()
 	AddComponent( \
@@ -31,8 +41,8 @@
 	var/datum/port/output/entity
 
 /obj/item/circuit_component/bot/populate_ports()
-	entity = add_output_port("User", PORT_TYPE_USER)
-	signal = add_output_port("Signal", PORT_TYPE_SIGNAL)
+	entity = add_output_port("Пользователь", PORT_TYPE_USER)
+	signal = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/bot/register_shell(atom/movable/shell)
 	RegisterSignal(shell, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))

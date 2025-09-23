@@ -6,7 +6,7 @@
 
 /obj/item/circuit_component/view_sensor
 	display_name = "Датчик наблюдения"
-	desc = "Выводит список всех подвижных объектов в поле зрения. Требуется оболочка. Максимальная дальность — 5 плиток."
+	desc = "Выводит список всех подвижных объектов в поле зрения. Требуется оболочка. Максимальная дальность — 5 метров."
 	category = "Sensor"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -27,7 +27,7 @@
 /obj/item/circuit_component/view_sensor/populate_ports()
 	range = add_input_port("Дальность", PORT_TYPE_NUMBER, default = maximum_range)
 	result = add_output_port("Результат", PORT_TYPE_LIST(PORT_TYPE_ATOM))
-	cooldown = add_output_port("Сканирование при перезарядке", PORT_TYPE_SIGNAL)
+	cooldown = add_output_port("Поиск", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/view_sensor/get_ui_notices()
 	. = ..()

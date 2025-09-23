@@ -1,9 +1,9 @@
-#define COMP_TRIGONOMETRY_SINE "Sine"
-#define COMP_TRIGONOMETRY_COSINE "Cosine"
-#define COMP_TRIGONOMETRY_TANGENT "Tangent"
-#define COMP_TRIGONOMETRY_ARCSINE "Arcsine"
-#define COMP_TRIGONOMETRY_ARCCOSINE "Arccosine"
-#define COMP_TRIGONOMETRY_ARCTANGENT "Arctangent"
+#define COMP_TRIGONOMETRY_SINE "Синус"
+#define COMP_TRIGONOMETRY_COSINE "Косинус"
+#define COMP_TRIGONOMETRY_TANGENT "Тангенс"
+#define COMP_TRIGONOMETRY_ARCSINE "Арксинус"
+#define COMP_TRIGONOMETRY_ARCCOSINE "Арккосинус"
+#define COMP_TRIGONOMETRY_ARCTANGENT "Арктангенс"
 
 
 /**
@@ -36,11 +36,11 @@
 		COMP_TRIGONOMETRY_ARCCOSINE,
 		COMP_TRIGONOMETRY_ARCTANGENT,
 	)
-	trigonometric_function = add_option_port("Триганометрическая функция", component_functions)
+	trigonometric_function = add_option_port("Параметр", component_functions)
 
 /obj/item/circuit_component/trigonometry/populate_ports()
 	input_port = add_input_port("Ввод", PORT_TYPE_NUMBER)
-	output = add_output_port("Вывод", PORT_TYPE_NUMBER)
+	output = add_output_port("Результат", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/trigonometry/input_received(datum/port/input/port)
 

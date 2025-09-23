@@ -1,5 +1,5 @@
-#define COMP_TEXT_LOWER "To Lower"
-#define COMP_TEXT_UPPER "To Upper"
+#define COMP_TEXT_LOWER "Нижний"
+#define COMP_TEXT_UPPER "Верхний"
 
 /**
  * # Text Component
@@ -7,7 +7,7 @@
  * Either makes the text upper case or lower case.
  */
 /obj/item/circuit_component/textcase
-	display_name = "Текстовый регистр"
+	display_name = "Регистр"
 	desc = "Компонент, который преобразует входные данные в заглавные или строчные буквы."
 	category = "String"
 
@@ -26,11 +26,11 @@
 		COMP_TEXT_LOWER,
 		COMP_TEXT_UPPER,
 	)
-	textcase_options = add_option_port("Параметры текстового регистра", component_options)
+	textcase_options = add_option_port("Параметр", component_options)
 
 /obj/item/circuit_component/textcase/populate_ports()
 	input_port = add_input_port("Ввод", PORT_TYPE_STRING)
-	output = add_output_port("Вывод", PORT_TYPE_STRING)
+	output = add_output_port("Результат", PORT_TYPE_STRING)
 
 /obj/item/circuit_component/textcase/input_received(datum/port/input/port)
 

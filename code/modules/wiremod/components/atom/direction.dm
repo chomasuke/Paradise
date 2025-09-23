@@ -31,7 +31,7 @@
 	. += create_ui_notice("Максимальная дальность: [max_range] метров", "orange", "info")
 
 /obj/item/circuit_component/direction/populate_ports()
-	input_port = add_input_port("Целевой объект", PORT_TYPE_ATOM)
+	input_port = add_input_port("Цель", PORT_TYPE_ATOM)
 
 	output = add_output_port("Направление", PORT_TYPE_STRING)
 	distance = add_output_port("Дистанция", PORT_TYPE_NUMBER)

@@ -11,6 +11,16 @@
 	light_on = FALSE
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/compact_remote/get_ru_names()
+	return list(
+		NOMINATIVE = "компактный пульт дистанционного управления",
+		GENITIVE = "компактного пульта дистанционного управления",
+		DATIVE = "компактному пульту дистанционного управления",
+		ACCUSATIVE = "компактный пульт дистанционного управления",
+		INSTRUMENTAL = "компактным пультом дистанционного управления",
+		PREPOSITIONAL = "компактном пульте дистанционного управления"
+	)
+
 /obj/item/compact_remote/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_CLONE_IN_EXPERIMENTATOR, INNATE_TRAIT)
@@ -28,8 +38,8 @@
 	var/datum/port/output/entity
 
 /obj/item/circuit_component/compact_remote/populate_ports()
-	entity = add_output_port("User", PORT_TYPE_USER)
-	signal = add_output_port("Signal", PORT_TYPE_SIGNAL)
+	entity = add_output_port("Пользователь", PORT_TYPE_USER)
+	signal = add_output_port("Вызвано", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/compact_remote/register_shell(atom/movable/shell)
 	RegisterSignal(shell, COMSIG_ITEM_ATTACK_SELF, PROC_REF(send_trigger))

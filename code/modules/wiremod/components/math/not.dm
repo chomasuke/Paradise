@@ -4,7 +4,7 @@
  * General logic unit with AND OR capabilities
  */
 /obj/item/circuit_component/not
-	display_name = "Логическое отрицание"
+	display_name = "Отрицание"
 	desc = "Компонент, который инвертирует свой вход."
 	category = "Math"
 

@@ -397,7 +397,7 @@
  * Returns a list that can then be added to the return list in get_ui_notices()
  * Used by components to list their available columns. Recommended to use at the end of get_ui_notices()
  */
-/obj/item/circuit_component/proc/create_table_notices(list/entries, column_name = "Column", column_name_plural = "Columns")
+/obj/item/circuit_component/proc/create_table_notices(list/entries, column_name = "Столбец", column_name_plural = "Столбцы")
 	SHOULD_BE_PURE(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	. = list()

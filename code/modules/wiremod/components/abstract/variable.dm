@@ -16,7 +16,7 @@
 	var/should_listen = FALSE
 
 /obj/item/circuit_component/variable/populate_options()
-	variable_name = add_option_port("Variable", null)
+	variable_name = add_option_port("Переменная", null)
 
 /obj/item/circuit_component/variable/add_to(obj/item/integrated_circuit/added_to)
 	. = ..()

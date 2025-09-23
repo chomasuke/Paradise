@@ -45,7 +45,7 @@
 
 /obj/item/circuit_component/mmi/populate_ports()
 	message = add_input_port("Сообщение", PORT_TYPE_STRING)
-	send = add_input_port("Отправить сообщение", PORT_TYPE_SIGNAL)
+	send = add_input_port("Отправить", PORT_TYPE_SIGNAL)
 	eject = add_input_port("Изъять", PORT_TYPE_SIGNAL)
 
 	north = add_output_port("Север", PORT_TYPE_SIGNAL)
@@ -55,7 +55,7 @@
 
 	attack = add_output_port("Атака", PORT_TYPE_SIGNAL)
 	alt_attack = add_output_port("Альт атака", PORT_TYPE_SIGNAL)
-	clicked_atom = add_output_port("Целевой объект", PORT_TYPE_ATOM)
+	clicked_atom = add_output_port("Цель", PORT_TYPE_ATOM)
 
 /obj/item/circuit_component/mmi/Destroy()
 	remove_current_brain()

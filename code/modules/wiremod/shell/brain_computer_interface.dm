@@ -7,6 +7,16 @@
 	slot = INTERNAL_ORGAN_BRAIN_COMPUTER_INTERFACE
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/organ/internal/cyberimp/brain/bci/get_ru_names()
+	return list(
+		NOMINATIVE = "интерфейс \"Мозг-Компьютер\"",
+		GENITIVE = "интерфейса \"Мозг-Компьютер\"",
+		DATIVE = "интерфейсу \"Мозг-Компьютер\"",
+		ACCUSATIVE = "интерфейс \"Мозг-Компьютер\"",
+		INSTRUMENTAL = "интерфейсом \"Мозг-Компьютер\"",
+		PREPOSITIONAL = "интерфейсе \"Мозг-Компьютер\""
+	)
+
 /obj/item/organ/internal/cyberimp/brain/bci/Initialize(mapload)
 	. = ..()
 
@@ -92,11 +102,11 @@
 
 /obj/item/circuit_component/bci_core/populate_ports()
 
-	message = add_input_port("Message", PORT_TYPE_STRING, trigger = null)
-	send_message_signal = add_input_port("Send Message", PORT_TYPE_SIGNAL)
-	show_charge_meter = add_input_port("Show Charge Meter", PORT_TYPE_NUMBER, trigger = PROC_REF(update_charge_action))
+	message = add_input_port("Сообщение", PORT_TYPE_STRING, trigger = null)
+	send_message_signal = add_input_port("Отправить", PORT_TYPE_SIGNAL)
+	show_charge_meter = add_input_port("Показать заряд", PORT_TYPE_NUMBER, trigger = PROC_REF(update_charge_action))
 
-	user_port = add_output_port("User", PORT_TYPE_USER)
+	user_port = add_output_port("Пользователь", PORT_TYPE_USER)
 
 /obj/item/circuit_component/bci_core/Destroy()
 	QDEL_NULL(charge_action)
@@ -203,7 +213,7 @@
 		return
 
 	parent.cell.give(shock_damage * 2)
-	to_chat(source, span_notice("You absorb some of the shock into your [parent.name]!"))
+	to_chat(source, span_notice("Часть электрошока поглощается вашим [parent.name.declent_ru(INSTRUMENTAL)]!"))
 
 /obj/item/circuit_component/bci_core/proc/on_examine(datum/source, mob/mob, list/examine_text)
 	SIGNAL_HANDLER
@@ -251,9 +261,9 @@
 	var/obj/item/stock_parts/cell/cell = circuit_component.parent.cell
 
 	if(isnull(cell))
-		to_chat(owner, span_boldwarning("[circuit_component.parent] не имеет элемента питания."))
+		to_chat(owner, span_boldwarning("[circuit_component.parent.declent_ru(NOMINATIVE)] не имеет элемента питания."))
 	else
-		to_chat(owner, span_notice("[circuit_component.parent]'s [cell.name] has <b>[cell.percent()]%</b> charge left."))
+		to_chat(owner, span_notice("В [cell.name] [circuit_component.parent.declent_ru(GENITIVE)] осталось <b>[cell.percent()]%</b> заряда."))
 		to_chat(owner, span_notice("Его можно подзарядить с помощью станции зарядки киборгов."))
 
 /datum/action/innate/bci_charge_action/process(seconds_per_tick)
@@ -384,7 +394,7 @@
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 			return FALSE
 		if(HAS_TRAIT(occupant, TRAIT_NO_CYBERIMPLANTS))
-			atom_say("Невозможно имплантировать BCI в этот субъект.")
+			atom_say("Невозможно имплантировать BCI в цель.")
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 			return FALSE
 
@@ -507,9 +517,9 @@
 	var/message
 
 	if(locked)
-		message = "it won't budge!"
+		message = "не влезает!"
 	else if(user.stat != CONSCIOUS)
-		message = "you don't have the energy!"
+		message = "нету энергии!"
 
 	if(!isnull(message))
 		if(COOLDOWN_FINISHED(src, message_cooldown))

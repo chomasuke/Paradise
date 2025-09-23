@@ -22,7 +22,7 @@
 /obj/item/circuit_component/split/populate_ports()
 	input_port = add_input_port("Ввод", PORT_TYPE_STRING)
 	separator = add_input_port("Разделитель", PORT_TYPE_STRING)
-	output = add_output_port("Вывод", PORT_TYPE_LIST(PORT_TYPE_STRING))
+	output = add_output_port("Результат", PORT_TYPE_LIST(PORT_TYPE_STRING))
 
 /obj/item/circuit_component/split/input_received(datum/port/input/port)
 

@@ -374,12 +374,12 @@
 
 /obj/item/circuit_component/camera/populate_ports()
 	picture_taken = add_output_port("Сделан снимок", PORT_TYPE_SIGNAL)
-	photographed_atom = add_output_port("Сфотографированная цель", PORT_TYPE_ATOM)
+	photographed_atom = add_output_port("Цель", PORT_TYPE_ATOM)
 
-	picture_target = add_input_port("Цель фотографии", PORT_TYPE_ATOM)
-	picture_coord_x = add_input_port("Координата фотографии X", PORT_TYPE_NUMBER)
-	picture_coord_y = add_input_port("Координата фотографии Y", PORT_TYPE_NUMBER)
-	adjust_size = add_input_port("Размер фотографии", PORT_TYPE_NUMBER, trigger = PROC_REF(sanitize_picture_size))
+	picture_target = add_input_port("Цель", PORT_TYPE_ATOM)
+	picture_coord_x = add_input_port("X", PORT_TYPE_NUMBER)
+	picture_coord_y = add_input_port("Y", PORT_TYPE_NUMBER)
+	adjust_size = add_input_port("Размер", PORT_TYPE_NUMBER, trigger = PROC_REF(sanitize_picture_size))
 
 /obj/item/circuit_component/camera/register_shell(atom/movable/shell)
 	. = ..()
