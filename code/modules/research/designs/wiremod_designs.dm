@@ -510,7 +510,7 @@
 
 /datum/design/compact_remote_shell
 	name = "Compact Remote Shell"
-	desc = "A handheld shell with one big button."
+	desc = "Портативная оболочка с одной большой кнопкой."
 	id = "compact_remote_shell"
 	req_tech = list("materials" = 2, "programming" = 2)
 	build_path = /obj/item/compact_remote
