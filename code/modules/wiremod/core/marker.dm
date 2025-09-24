@@ -50,7 +50,7 @@
 	select_target(target)
 
 /obj/item/multitool/circuit/proc/select_target(atom/target)
-	atom_say("Отмечен [target].")
+	atom_say("Отмечен [target.declent_ru(NOMINATIVE)].")
 	marked_atom = target
 	RegisterSignal(marked_atom, COMSIG_QDELETING, PROC_REF(cleanup_marked_atom))
 	update_icon()

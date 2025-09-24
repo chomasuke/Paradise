@@ -213,7 +213,7 @@
 		return
 
 	parent.cell.give(shock_damage * 2)
-	to_chat(source, span_notice("Часть электрошока поглощается вашим [parent.name.declent_ru(INSTRUMENTAL)]!"))
+	to_chat(source, span_notice("Часть электрошока поглощается вашим [parent]!"))
 
 /obj/item/circuit_component/bci_core/proc/on_examine(datum/source, mob/mob, list/examine_text)
 	SIGNAL_HANDLER
@@ -291,6 +291,16 @@
 	var/obj/item/organ/internal/cyberimp/brain/bci/bci_to_implant
 
 	COOLDOWN_DECLARE(message_cooldown)
+
+/obj/machinery/bci_implanter/get_ru_names()
+	return list(
+		NOMINATIVE = "камера манипуляций интерфейсом \"Мозг-компьютер\"",
+		GENITIVE = "камеры манипуляций интерфейсом \"Мозг-компьютер\"",
+		DATIVE = "камере манипуляций интерфейсом \"Мозг-компьютер\"",
+		ACCUSATIVE = "камеру манипуляций интерфейсом \"Мозг-компьютер\"",
+		INSTRUMENTAL = "камерой манипуляций интерфейсом \"Мозг-компьютер\"",
+		PREPOSITIONAL = "камере манипуляций интерфейсом \"Мозг-компьютер\""
+	)
 
 /obj/machinery/bci_implanter/examine(mob/user)
 	. = ..()

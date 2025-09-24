@@ -163,7 +163,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 		if(amount_inserted)
 			qdel(tool)
-			to_chat(user, span_notice("[tool.declent_ru(NOMINATIVE)] стоимостью [] листов материала было потреблено [src.declent_ru(INSTRUMENTAL)]"))
+			to_chat(user, span_notice("[tool.declent_ru(NOMINATIVE)] стоимостью [amount_inserted /  SHEET_VOLUME] листов материала было потреблено [src.declent_ru(INSTRUMENTAL)]"))
 		else
 			to_chat(user, span_warning("[tool.declent_ru(NOMINATIVE)] был отклонен [src.declent_ru(INSTRUMENTAL)]"))
 
