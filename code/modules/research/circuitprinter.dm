@@ -163,9 +163,9 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 		if(amount_inserted)
 			qdel(tool)
-			to_chat(user, span_notice("[tool] worth [] sheets of material was consumed by [src]")) // хуй
+			to_chat(user, span_notice("[tool.declent_ru(NOMINATIVE)] стоимостью [amount_inserted /  SHEET_VOLUME] листов материала было потреблено [src.declent_ru(INSTRUMENTAL)]"))
 		else
-			to_chat(user, span_warning("[tool] was rejected by [src]"))
+			to_chat(user, span_warning("[tool.declent_ru(NOMINATIVE)] был отклонен [src.declent_ru(INSTRUMENTAL)]"))
 
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/circuit_iteract(mob/user, obj/item/circuit)
@@ -409,7 +409,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		return .
 	if(!panel_open)
 		add_fingerprint(user)
-		to_chat(user, span_warning("Open the maintenance panel first."))
+		to_chat(user, span_warning("Сначала откройте панель обслуживания."))
 		return .
 	var/atom/drop_loc = drop_location()
 	for(var/obj/component as anything in component_parts)
