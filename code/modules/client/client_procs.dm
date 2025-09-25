@@ -1139,7 +1139,7 @@
 /client/proc/admin_follow(atom/movable/target)
 	var/can_ghost = TRUE
 
-	if (!isobserver(mob))
+	if(!isobserver(mob))
 		can_ghost = admin_ghost()
 
 	if(!can_ghost)
