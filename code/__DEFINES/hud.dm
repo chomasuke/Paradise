@@ -59,6 +59,10 @@
 #define KIDAN_PHEROMONES_HUD "pheromone_hud"
 /// Hud for pacifists(only for dantalion for now)
 #define PACIFISM_HUD "pacifism_hud"
+/// Insurance level
+#define INSURANCE_HUD "insurance_hud"
+
+
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior
