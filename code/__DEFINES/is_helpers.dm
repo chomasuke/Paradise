@@ -105,7 +105,7 @@
 
 #define is_pda(W) (istype(W, /obj/item/pda))
 
-#define isidcard(I) (istype(I, /obj/item/card/id))
+#define is_id_card(W) (istype(W, /obj/item/card/id))
 
 #define isradio(A) (istype(A, /obj/item/radio))
 
@@ -125,7 +125,7 @@
 
 #define is_spectercell(A) (istype(A, /obj/item/stock_parts/cell/specter))
 
-#define iscash(A) (istype(A, /obj/item/coin) || istype(A, /obj/item/stack/spacecash))
+#define is_cash(A) (istype(A, /obj/item/coin) || istype(A, /obj/item/stack/spacecash))
 
 #define is_circuit(A) (istype(A, /obj/item/circuit_component/module) || istype(A, /obj/item/integrated_circuit))
 
