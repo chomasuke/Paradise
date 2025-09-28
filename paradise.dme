@@ -215,6 +215,7 @@
 #include "code\__DEFINES\dcs\signals\signals_circuit.dm"
 #include "code\__DEFINES\dcs\signals\signals_lazy_templates.dm"
 #include "code\__DEFINES\dcs\signals\signals_object.dm"
+#include "code\__DEFINES\dcs\signals\signals_powernet.dm"
 #include "code\__DEFINES\dcs\signals\signals_silicon.dm"
 #include "code\__DEFINES\dcs\signals\signals_spatial_grid.dm"
 #include "code\__DEFINES\dcs\signals\signals_turf.dm"

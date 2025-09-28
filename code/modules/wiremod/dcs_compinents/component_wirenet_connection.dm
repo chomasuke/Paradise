@@ -1,5 +1,4 @@
 /datum/component/circuit_component_wirenet_connection
-	var/cable_layer = CABLE_LAYER_2
 
 	var/atom/movable/tracked_shell
 
@@ -9,43 +8,25 @@
 
 	var/static/list/turf_connections = list(COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON = PROC_REF(on_atom_initialized_on_turf))
 
-	/// What action sets the component to link to cable layer 1
-	var/layer_1_action
-
-	/// What action sets the component to link to cable layer 2
-	var/layer_2_action
-
-	/// What action sets the component to link to cable layer 3
-	var/layer_3_action
-
 	/// Callback to invoke when the component is connected to a powernet
 	var/datum/callback/connection_callback
 
 	/// Callback to invoke when the component is disconnected from a powernet
 	var/datum/callback/disconnection_callback
 
-	/// Callback to invoke after setting the cable layer to link to
-	var/datum/callback/post_set_cable_layer_callback
-
-/datum/component/circuit_component_wirenet_connection/Initialize(layer_1_action = CABLE_LAYER_1_NAME, layer_2_action = CABLE_LAYER_2_NAME, layer_3_action = CABLE_LAYER_3_NAME, datum/callback/connection_callback, datum/callback/disconnection_callback, datum/callback/post_set_cable_layer_callback)
+/datum/component/circuit_component_wirenet_connection/Initialize(datum/callback/connection_callback, datum/callback/disconnection_callback)
 	. = ..()
 	if(!istype(parent, /obj/item/circuit_component))
 		return COMPONENT_INCOMPATIBLE
-	src.layer_1_action = layer_1_action
-	src.layer_2_action = layer_2_action
-	src.layer_3_action = layer_3_action
 	src.connection_callback = connection_callback
 	src.disconnection_callback = disconnection_callback
-	src.post_set_cable_layer_callback = post_set_cable_layer_callback
 
 /datum/component/circuit_component_wirenet_connection/Destroy(force)
 	. = ..()
 	connection_callback = null
 	disconnection_callback = null
-	post_set_cable_layer_callback = null
 
 /datum/component/circuit_component_wirenet_connection/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_CIRCUIT_COMPONENT_PERFORM_ACTION, PROC_REF(on_action))
 	RegisterSignal(parent, COMSIG_CIRCUIT_COMPONENT_ADDED, PROC_REF(on_parent_added_to_circuit))
 	RegisterSignal(parent, COMSIG_CIRCUIT_COMPONENT_REMOVED, PROC_REF(on_parent_removed_from_circuit))
 
@@ -72,8 +53,8 @@
 /datum/component/circuit_component_wirenet_connection/proc/set_shell(atom/movable/new_shell)
 	tracked_shell = new_shell
 	if(isassembly(new_shell))
-		RegisterSignals(new_shell, list(COMSIG_ASSEMBLY_ATTACHED, COMSIG_ASSEMBLY_ADDED_TO_BUTTON), PROC_REF(on_assembly_shell_attached))
-		RegisterSignals(new_shell, list(COMSIG_ASSEMBLY_DETACHED, COMSIG_ASSEMBLY_REMOVED_FROM_BUTTON), PROC_REF(on_assembly_shell_detached))
+		RegisterSignal(new_shell, list(COMSIG_ASSEMBLY_ATTACHED, COMSIG_ASSEMBLY_ADDED_TO_BUTTON), PROC_REF(on_assembly_shell_attached))
+		RegisterSignal(new_shell, list(COMSIG_ASSEMBLY_DETACHED, COMSIG_ASSEMBLY_REMOVED_FROM_BUTTON), PROC_REF(on_assembly_shell_detached))
 	else
 		set_tracked_movable(new_shell)
 
@@ -124,7 +105,7 @@
 	if(tracked_node)
 		unset_tracked_node()
 	var/turf/our_turf = get_turf(tracked_movable)
-	var/obj/structure/cable/node = our_turf.get_cable_node(cable_layer)
+	var/obj/structure/cable/node = our_turf.get_cable_node()
 	if(!node)
 		AddElement(/datum/element/connect_loc, turf_connections)
 		return
@@ -133,8 +114,6 @@
 /datum/component/circuit_component_wirenet_connection/proc/on_atom_initialized_on_turf(_source, obj/structure/cable/initialized)
 	SIGNAL_HANDLER
 	if(!istype(initialized))
-		return
-	if(!(initialized.cable_layer & cable_layer))
 		return
 	set_tracked_node(initialized)
 
@@ -169,20 +148,3 @@
 	disconnection_callback?.Invoke(tracked_powernet)
 	tracked_powernet = null
 
-/datum/component/circuit_component_wirenet_connection/proc/on_action(obj/item/circuit_component/component, mob/user, action)
-	SIGNAL_HANDLER
-	switch(action)
-		if(CABLE_LAYER_1_NAME)
-			set_cable_layer(CABLE_LAYER_1)
-		if(CABLE_LAYER_2_NAME)
-			set_cable_layer(CABLE_LAYER_2)
-		if(CABLE_LAYER_3_NAME)
-			set_cable_layer(CABLE_LAYER_3)
-
-/datum/component/circuit_component_wirenet_connection/proc/set_cable_layer(new_layer)
-	if(cable_layer == new_layer)
-		return
-	cable_layer = new_layer
-	post_set_cable_layer_callback?.Invoke(new_layer)
-	if(tracked_movable?.anchored)
-		try_set_tracked_node()

@@ -5,14 +5,6 @@
 
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL //trigger_output
 
-	ui_buttons = list(
-		"1" = CABLE_LAYER_1_NAME,
-		"2" = CABLE_LAYER_2_NAME,
-		"3" = CABLE_LAYER_3_NAME,
-	)
-
-	var/cable_layer = /datum/component/circuit_component_wirenet_connection::cable_layer
-
 	/// The list type
 	var/datum/port/input/option/list_options
 
@@ -28,7 +20,6 @@
 		/datum/component/circuit_component_wirenet_connection,\
 		connection_callback = CALLBACK(src, PROC_REF(on_powernet_connection)),\
 		disconnection_callback = CALLBACK(src, PROC_REF(on_powernet_disconnection)),\
-		post_set_cable_layer_callback = CALLBACK(src, PROC_REF(on_set_cable_layer)),\
 	)
 
 /obj/item/circuit_component/wirenet_receive/proc/on_powernet_connection(datum/powernet/new_powernet)
@@ -36,14 +27,6 @@
 
 /obj/item/circuit_component/wirenet_receive/proc/on_powernet_disconnection(datum/powernet/old_powernet)
 	UnregisterSignal(old_powernet, COMSIG_POWERNET_CIRCUIT_TRANSMISSION)
-
-/obj/item/circuit_component/wirenet_receive/proc/on_set_cable_layer(new_layer)
-	cable_layer = new_layer
-
-/obj/item/circuit_component/wirenet_receive/get_ui_notices()
-	. = ..()
-	. += create_ui_notice("Set the cable layer to connect to with the \"1\", \"2\", and \"3\" buttons.", "green", "info")
-	. += create_ui_notice("Currently connected to: [GLOB.cable_layer_to_name["[cable_layer]"]]", "green", "info")
 
 /obj/item/circuit_component/wirenet_receive/populate_options()
 	list_options = add_option_port("List Type", GLOB.wiremod_basic_types)
