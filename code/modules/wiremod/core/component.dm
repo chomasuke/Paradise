@@ -359,8 +359,7 @@
 			. += create_ui_notice(initial(shell.name), "green", "plus-square")
 
 	if(length(input_ports))
-		. += create_ui_notice("Потребление энергии на вход: [energy_usage_per_input]", "orange", "bolt") // похуй потом [display_energy(energy_usage_per_input)]
-
+		. += create_ui_notice("Потребление энергии на вход: [energy_usage_per_input]", "orange", "bolt")
 
 /**
  * Called when a special button is pressed on this component in the UI.
