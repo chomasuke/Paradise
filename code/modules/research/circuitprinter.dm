@@ -194,7 +194,6 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 	return TRUE
 
-
 /obj/machinery/r_n_d/circuit_imprinter/proc/check_menu(mob/living/user, obj/item/circuit)
 	if(!istype(user))
 		return FALSE
@@ -204,7 +203,6 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		return FALSE
 
 	return TRUE
-
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/link_circuit(mob/living/user, obj/item/tool)
 	if(!is_circuit(tool))
@@ -283,7 +281,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 			balloon_alert(user, "название занято!")
 			return
 
-	var/circuit_desc = tgui_input_text(user, "Введите описание схемы.", "Описание", "")
+	var/circuit_desc = reject_bad_name(sanitize(tgui_input_text(user, "Введите описание схемы.", "Описание", "")), allow_numbers = TRUE)
 
 	data["desc"] = circuit_desc ? circuit_desc : "Схема, сохранённая пользователем [user]."
 
